@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>win 10 快捷操作 | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">win 10 快捷操作</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 4, 2019&nbsp;&nbsp;22:38:10</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="一、WIN-R"><a href="#一、WIN-R" class="headerlink" title="一、WIN + R"></a>一、WIN + R</h2><ul>
+<li><p>把桌面上的一些常用软件的快捷方式复制到指定的文件夹中，可将文件夹命名为shortcut。</p>
+</li>
+<li><p>然后在<strong><em>path</em></strong>环境变量中写入该文件夹的路径，然后点击确定保存即可。</p>
+</li>
+<li><p>按下快捷键Win+r打开运行窗口，然后输入快捷方式的名称即可运行程序，例如输入chrome，回车。即可打开chrome浏览器。 </p>
+</li>
+</ul>
+<p>常用系统指令：</p>
+<blockquote>
+<p>cmd  ===&gt;  cmd命令提示符<br>write ===&gt;  写字板<br>mspaint  ===&gt;  画图<br>notepad  ===&gt; 记事本<br>winver  ===&gt; 显示windows版本<br>devmgmt.msc  ===&gt;  设备管理器<br>dfrg.msc  ===&gt;  磁盘碎片整理<br>diskmgmt.msc  ===&gt;  磁盘管理<br>services.msc  ===&gt;  本地服务设置<br>explorer  ===&gt;  资源管理器<br>regedit  ===&gt;  注册表<br>calc  ===&gt;  计算器<br>charmap  ===&gt;  字符映射表<br>compmgmt.msc  ===&gt;  计算机管理<br>magnify  ===&gt;  放大镜<br>nslookup  ===&gt; ip地址侦测器<br>osk  ===&gt;  打开屏幕键盘<br>taskmgr  ===&gt;  任务管理器</p>
+</blockquote>
+<h2 id="二、其他快捷键"><a href="#二、其他快捷键" class="headerlink" title="二、其他快捷键"></a>二、其他快捷键</h2><h3 id="win-x"><a href="#win-x" class="headerlink" title="win + **  *x***"></a><strong>win + **  *</strong>x***</h3><blockquote>
+<p><strong>win + Q</strong> 打开Cortana搜索栏</p>
+<p><strong>win + ←</strong>     最大化窗口到左侧的屏幕上</p>
+<p><strong>win + →</strong>     最大化窗口到右侧的屏幕上</p>
+<p><strong>win+ ↑</strong>        最大化窗口</p>
+<p><strong>win+ ↓</strong>        最小化窗口</p>
+<p><strong>win + Ctrl + D</strong>   新建虚拟桌面    </p>
+<p><strong>win + Ctrl + F4</strong> 关闭虚拟桌面</p>
+<p><strong>win + D</strong>     显示桌面</p>
+<p><strong>win + E</strong>     打开文件资源管理器</p>
+<p><strong>win + I</strong>      打开设置</p>
+<p><strong>win + L</strong>     锁屏</p>
+<p><strong>win + S</strong>     打开搜索 小娜</p>
+</blockquote>
+<h3 id="Ctrl-x"><a href="#Ctrl-x" class="headerlink" title="Ctrl + **  *x***"></a><strong>Ctrl + **  *</strong>x***</h3><blockquote>
+<p>*<em>Ctrl+X *</em>       剪切</p>
+<p><strong>Ctrl + V</strong>      粘贴</p>
+<p><strong>Ctrl + S</strong>      保存</p>
+<p><strong>Ctrl + Y</strong>      恢复上一步操作</p>
+<p><strong>Ctrl+P</strong>        快捷打印</p>
+<p><strong>Ctrl + Alt + Del</strong>   任务管理器菜单</p>
+</blockquote>
+<h3 id="alt-x"><a href="#alt-x" class="headerlink" title="alt + **  *x***"></a><strong>alt + **  *</strong>x***</h3><blockquote>
+<p><strong>alt+空格，再按n</strong>  窗口就最小化</p>
+<p><strong>alt+空格，再按x</strong>  小窗口时，窗口最大化</p>
+</blockquote>
+<h2 id="三、win-10-手势"><a href="#三、win-10-手势" class="headerlink" title="三、win 10 手势"></a>三、win 10 手势</h2><h3 id="三指操作"><a href="#三指操作" class="headerlink" title="三指操作"></a>三指操作</h3><p>1、三指单击触摸板，弹出小娜搜索框</p>
+<p>2、三指同时向上划，三指同时上划，弹出多任务界面，相当于快捷：win+Tab</p>
+<p>3、三指同时向下划，当前所有窗口最小化，显示桌面</p>
+<p>4、三指同时向左/右划，实现快速切换任务程序，相当于快捷键：Ait+tab</p>
+<h3 id="四指操作"><a href="#四指操作" class="headerlink" title="四指操作"></a>四指操作</h3><p>1、四指单击，弹出win10操作中心，进行消息查看和开启系统功能，相当于快捷键：win+A</p>
+<p>2、四指同时向左/右划，实现在多个桌面中，来回切换。</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/windows/"># windows</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/10/04/餐饮管理系统/">餐饮管理系统设计</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
