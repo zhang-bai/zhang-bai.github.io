@@ -7,7 +7,7 @@
 
 
 
-<title>win 10 快捷操作 | Blog</title>
+<title>机器学习笔记（一） | Blog</title>
 
 
 
@@ -34,6 +34,44 @@
 
     
     
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
         
     
 
@@ -165,66 +203,37 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">win 10 快捷操作</h1>
+            <h1 class="post-title">机器学习笔记（一）</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 4, 2019&nbsp;&nbsp;22:38:10</a>
+                        Date: <a href="#">October 5, 2019&nbsp;&nbsp;21:59:00</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/course/">course</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="一、WIN-R"><a href="#一、WIN-R" class="headerlink" title="一、WIN + R"></a>一、WIN + R</h2><ul>
-<li><p>把桌面上的一些常用软件的快捷方式复制到指定的文件夹中，可将文件夹命名为shortcut。</p>
-</li>
-<li><p>然后在<strong><em>path</em></strong>环境变量中写入该文件夹的路径，然后点击确定保存即可。</p>
-</li>
-<li><p>按下快捷键Win+r打开运行窗口，然后输入快捷方式的名称即可运行程序，例如输入chrome，回车。即可打开chrome浏览器。 </p>
-</li>
-</ul>
-<p>常用系统指令：</p>
-<blockquote>
-<p>cmd  ===&gt;  cmd命令提示符<br>write ===&gt;  写字板<br>mspaint  ===&gt;  画图<br>notepad  ===&gt; 记事本<br>winver  ===&gt; 显示windows版本<br>devmgmt.msc  ===&gt;  设备管理器<br>dfrg.msc  ===&gt;  磁盘碎片整理<br>diskmgmt.msc  ===&gt;  磁盘管理<br>services.msc  ===&gt;  本地服务设置<br>explorer  ===&gt;  资源管理器<br>regedit  ===&gt;  注册表<br>calc  ===&gt;  计算器<br>charmap  ===&gt;  字符映射表<br>compmgmt.msc  ===&gt;  计算机管理<br>magnify  ===&gt;  放大镜<br>nslookup  ===&gt; ip地址侦测器<br>osk  ===&gt;  打开屏幕键盘<br>taskmgr  ===&gt;  任务管理器</p>
-</blockquote>
-<h2 id="二、其他快捷键"><a href="#二、其他快捷键" class="headerlink" title="二、其他快捷键"></a>二、其他快捷键</h2><h3 id="win-x"><a href="#win-x" class="headerlink" title="win + **  *x***"></a><strong>win + **  *</strong>x***</h3><blockquote>
-<p><strong>win + Q</strong> 打开Cortana搜索栏</p>
-<p><strong>win + ←</strong>     最大化窗口到左侧的屏幕上</p>
-<p><strong>win + →</strong>     最大化窗口到右侧的屏幕上</p>
-<p><strong>win+ ↑</strong>        最大化窗口</p>
-<p><strong>win+ ↓</strong>        最小化窗口</p>
-<p><strong>win + Ctrl + D</strong>   新建虚拟桌面    </p>
-<p><strong>win + Ctrl + F4</strong> 关闭虚拟桌面</p>
-<p><strong>win + D</strong>     显示桌面</p>
-<p><strong>win + E</strong>     打开文件资源管理器</p>
-<p><strong>win + I</strong>      打开设置</p>
-<p><strong>win + L</strong>     锁屏</p>
-<p><strong>win + S</strong>     打开搜索 小娜</p>
-</blockquote>
-<h3 id="Ctrl-x"><a href="#Ctrl-x" class="headerlink" title="Ctrl + **  *x***"></a><strong>Ctrl + **  *</strong>x***</h3><blockquote>
-<p>*<em>Ctrl+X *</em>       剪切</p>
-<p><strong>Ctrl + V</strong>      粘贴</p>
-<p><strong>Ctrl + S</strong>      保存</p>
-<p><strong>Ctrl + Y</strong>      恢复上一步操作</p>
-<p><strong>Ctrl+P</strong>        快捷打印</p>
-<p><strong>Ctrl + Alt + Del</strong>   任务管理器菜单</p>
-</blockquote>
-<h3 id="alt-x"><a href="#alt-x" class="headerlink" title="alt + **  *x***"></a><strong>alt + **  *</strong>x***</h3><blockquote>
-<p><strong>alt+空格，再按n</strong>  窗口就最小化</p>
-<p><strong>alt+空格，再按x</strong>  小窗口时，窗口最大化</p>
-</blockquote>
-<h2 id="三、win-10-手势"><a href="#三、win-10-手势" class="headerlink" title="三、win 10 手势"></a>三、win 10 手势</h2><h3 id="三指操作"><a href="#三指操作" class="headerlink" title="三指操作"></a>三指操作</h3><p>1、三指单击触摸板，弹出小娜搜索框</p>
-<p>2、三指同时向上划，三指同时上划，弹出多任务界面，相当于快捷：win+Tab</p>
-<p>3、三指同时向下划，当前所有窗口最小化，显示桌面</p>
-<p>4、三指同时向左/右划，实现快速切换任务程序，相当于快捷键：Ait+tab</p>
-<h3 id="四指操作"><a href="#四指操作" class="headerlink" title="四指操作"></a>四指操作</h3><p>1、四指单击，弹出win10操作中心，进行消息查看和开启系统功能，相当于快捷键：win+A</p>
-<p>2、四指同时向左/右划，实现在多个桌面中，来回切换。</p>
+            <h2 id="第三章-线性模型"><a href="#第三章-线性模型" class="headerlink" title="第三章 线性模型"></a>第三章 线性模型</h2><p><strong>1. 回归任务</strong></p>
+<p>主要有单元线性模型、多元线性模型和广义线性模型几种。回归任务一般根据样本的有序和无序性，采取最小二乘法求解。</p>
+<p>一元表达式：<br>$$<br>\quad f(x_i)=w^Tx_i+b<br>$$</p>
+<p>多元表达式：<br>$$<br>f(\hat{x}_i)=\hat x_i^T(X^TX)^{-1}X^Ty<br>$$</p>
+<p><strong>2.分类任务</strong></p>
+<p>二分类和多分类任务，其中，多分类任务主要策略是拆解法，即拆分、集成。</p>
+<p>此外还有类别不平衡问题——&gt;再缩放</p>
+<h2 id="第四章-决策树"><a href="#第四章-决策树" class="headerlink" title="第四章 决策树"></a>第四章 决策树</h2><p>决策树属于分类问题</p>
 
         </div>
 
@@ -235,7 +244,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/windows/"># windows</a>
+                        <a href="/tags/notes/"># notes</a>
+                    
+                        <a href="/tags/AI/"># AI</a>
                     
                         
                 </span>
@@ -248,10 +259,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/10/05/2019-10-5-机器学习笔记（一）/">机器学习笔记（一）</a>
+                <a class="prev" rel="prev" href="/2019/10/07/python-数据处理/">python 数据处理</a>
             
             
-            <a class="next" rel="next" href="/2019/10/04/餐饮管理系统/">餐饮管理系统设计</a>
+            <a class="next" rel="next" href="/2019/10/04/2019-10-4-win-10-快捷操作/">win 10 快捷操作</a>
             
         </section>
 
