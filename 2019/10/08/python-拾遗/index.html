@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>python 拾遗 | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">python 拾遗</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 8, 2019&nbsp;&nbsp;12:37:21</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/course/">course</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>[TOC]</p>
+<h2 id="1-super函数"><a href="#1-super函数" class="headerlink" title="1. super函数"></a><strong>1. super函数</strong></h2><p>在类的继承里面super()非常常用， 它解决了子类调用父类方法的一些问题， 父类多次被调用时只执行一次， 优化了执行逻辑，下面我们就来详细看一下。</p>
+<p> 举一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self, message)</span>:</span>  </span><br><span class="line">        print(message)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Foo().bar(<span class="string">"Hello, Python."</span>)</span><br><span class="line">Hello, Python.</span><br></pre></td></tr></table></figure>
+
+<p>当存在继承关系的时候，有时候需要在子类中调用父类的方法，此时最简单的方法是把对象调用转换成类调用，需要注意的是这时self参数需要显式传递，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self, message)</span>:</span>   </span><br><span class="line">        print(message)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self, message)</span>:</span> </span><br><span class="line">        FooParent.bar(self, message)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>FooChild().bar(<span class="string">"Hello, Python."</span>)</span><br><span class="line">Hello, Python.</span><br></pre></td></tr></table></figure>
+
+<p>这样做有一些缺点，比如说如果修改了父类名称，那么在子类中会涉及多处修改，另外，Python是允许多继承的语言，如上所示的方法在多继承时就需要重复写多次，显得累赘。为了解决这些问题，Python引入了super()机制，例子代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self, message)</span>:</span>  </span><br><span class="line">        print(message)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self, message)</span>:</span>  </span><br><span class="line">        super(FooChild, self).bar(message) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>FooChild().bar(<span class="string">"Hello, Python."</span>)</span><br><span class="line">Hello, Python</span><br></pre></td></tr></table></figure>
+
+<p>表面上看 super(FooChild, self).bar(message)方法和FooParent.bar(self, message)方法的结果是一致的，实际上这两种方法的内部处理机制大大不同，当涉及多继承情况时，就会表现出明显的差异来，直接给例子：<br>代码一：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"Enter A"</span>)    </span><br><span class="line">        print(<span class="string">"Leave A"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>   </span><br><span class="line">        print(<span class="string">"Enter B"</span>) </span><br><span class="line">        A.__init__(self)  </span><br><span class="line">        print(<span class="string">"Leave B"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> </span><br><span class="line">        print(<span class="string">"Enter C"</span>)   </span><br><span class="line">        A.__init__(self)   </span><br><span class="line">        print(<span class="string">"Leave C"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"Enter D"</span>)   </span><br><span class="line">        A.__init__(self)  </span><br><span class="line">        print(<span class="string">"Leave D"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">E</span><span class="params">(B, C, D)</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"Enter E"</span>)   </span><br><span class="line">        B.__init__(self)   </span><br><span class="line">        C.__init__(self)  </span><br><span class="line">        D.__init__(self)   </span><br><span class="line">        print(<span class="string">"Leave E"</span>)E()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果：<br>Enter E<br>Enter B<br>Enter A<br>Leave A<br>Leave B<br>Enter C<br>Enter A<br>Leave A<br>Leave C<br>Enter D<br>Enter A<br>Leave A<br>Leave D<br>Leave E</p>
+</blockquote>
+<p>执行顺序很好理解，唯一需要注意的是公共父类A被执行了多次。<br>代码二：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> </span><br><span class="line">        print(<span class="string">"Enter A"</span>)  </span><br><span class="line">        print(<span class="string">"Leave A"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span>  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"Enter B"</span>)   </span><br><span class="line">        super(B, self).__init__()  </span><br><span class="line">        print(<span class="string">"Leave B"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span>  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> </span><br><span class="line">        print(<span class="string">"Enter C"</span>)  </span><br><span class="line">        super(C, self).__init__()  </span><br><span class="line">        print(<span class="string">"Leave C"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(A)</span>:</span>  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> </span><br><span class="line">        print(<span class="string">"Enter D"</span>)  </span><br><span class="line">        super(D, self).__init__()   </span><br><span class="line">        print(<span class="string">"Leave D"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">E</span><span class="params">(B, C, D)</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  </span><br><span class="line">        print(<span class="string">"Enter E"</span>)  </span><br><span class="line">        super(E, self).__init__()</span><br><span class="line">        print(<span class="string">"Leave E"</span>)E()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果：</p>
+<p>Enter E</p>
+<p>Enter B</p>
+<p>Enter C</p>
+<p>Enter D</p>
+<p>Enter A</p>
+<p>Leave A</p>
+<p>Leave D</p>
+<p>Leave C</p>
+<p>Leave B</p>
+<p>Leave E</p>
+</blockquote>
+<p>在super机制里可以保证公共父类仅被执行一次，至于执行的顺序，是按照MRO（Method Resolution Order）：方法解析顺序 进行的。</p>
+<h2 id="2-enumerate"><a href="#2-enumerate" class="headerlink" title="2. enumerate()"></a><strong>2. enumerate()</strong></h2><p>enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，<strong>同时列出数据和数据下标</strong>，一般用在 for 循环当中。</p>
+<p>以下是 enumerate() 方法的语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enumerate(sequence, [start=0])</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><p>sequence – 一个序列、迭代器或其他支持迭代对象。</p>
+</li>
+<li><p>start – 下标起始位置。</p>
+</li>
+</ul>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>  返回 enumerate(枚举) 对象。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>以下展示了使用 enumerate() 方法的实例： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons))</span><br><span class="line">[(<span class="number">0</span>, <span class="string">'Spring'</span>), (<span class="number">1</span>, <span class="string">'Summer'</span>), (<span class="number">2</span>, <span class="string">'Fall'</span>), (<span class="number">3</span>, <span class="string">'Winter'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons, start=<span class="number">1</span>))       <span class="comment"># 下标从 1 开始</span></span><br><span class="line">[(<span class="number">1</span>, <span class="string">'Spring'</span>), (<span class="number">2</span>, <span class="string">'Summer'</span>), (<span class="number">3</span>, <span class="string">'Fall'</span>), (<span class="number">4</span>, <span class="string">'Winter'</span>)]</span><br></pre></td></tr></table></figure>
+
+<h4 id="for-循环使用-enumerate"><a href="#for-循环使用-enumerate" class="headerlink" title="for 循环使用 enumerate"></a>for 循环使用 enumerate</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">seq = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>] </span><br><span class="line"><span class="keyword">for</span> i, element <span class="keyword">in</span> enumerate(seq): </span><br><span class="line">        <span class="keyword">print</span> i, element </span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;    </span><br><span class="line">    <span class="number">0</span> one </span><br><span class="line">    <span class="number">1</span> two </span><br><span class="line">    <span class="number">2</span> three</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-zip"><a href="#3-zip" class="headerlink" title="3.zip()"></a>3.zip()</h2><p><strong>zip()</strong> 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。</p>
+<p> 我们可以使用 list() 转换来输出列表。</p>
+<p>如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。</p>
+<ul>
+<li>list(zip(a,b)与*zip(a,b) 效果等价</li>
+</ul>
+<p>zip 语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip([iterable, ...])</span><br></pre></td></tr></table></figure>
+
+<p> 参数说明：</p>
+<ul>
+<li>iterabl – 一个或多个迭代器;</li>
+</ul>
+<p>以下实例展示了 zip 的使用方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>zipped = zip(a,b)     <span class="comment"># 返回一个对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>zipped</span><br><span class="line">&lt;zip object at <span class="number">0x103abc288</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(zipped)  <span class="comment"># list() 转换为列表</span></span><br><span class="line">[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(zip(a,c))              <span class="comment"># 元素个数与最短的列表一致</span></span><br><span class="line">[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]</span><br><span class="line"> </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a1, a2 = zip(*zip(a,b))          <span class="comment"># 与 zip 相反，zip(*) 可理解为解压，返回二维矩阵式</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(a1)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(a2)</span><br><span class="line">[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将x个y维列表打包变成一个zip对象，将zip对象拆包可以发现它变成了y个x维元组。我们还可以将这个对象变成一个元组或列表。 </p>
+<p>如果是两个列表的zip，我们还可以将其变成字典形式。</p>
+<p>下面是一个小实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;name = [<span class="string">'wl'</span>,<span class="string">'lyf'</span>,<span class="string">'hg'</span>]</span><br><span class="line">&gt;old = [<span class="number">22</span>,<span class="number">33</span>,<span class="number">35</span>]</span><br><span class="line">&gt;<span class="keyword">for</span> i,j <span class="keyword">in</span> zip(name,old):</span><br><span class="line">&gt;    print(<span class="string">"他叫&#123;&#125;,今年&#123;&#125;岁"</span>.format(i,j))</span><br><span class="line">&gt;他叫wl,今年<span class="number">22</span>岁</span><br><span class="line">&gt;他叫lyf,今年<span class="number">33</span>岁</span><br><span class="line">&gt;他叫hg,今年<span class="number">35</span>岁</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>要注意的是，如果使用zip函数，一定要确保多个列表的元素数是相同的，不然对于多出的部分因无法匹配会自动丢弃掉</p>
+</blockquote>
+<h2 id="4-numpy"><a href="#4-numpy" class="headerlink" title="4.numpy"></a>4.numpy</h2><h4 id="1-运算符号"><a href="#1-运算符号" class="headerlink" title="(1).运算符号"></a>(1).运算符号</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dot</code></td>
+<td>两个数组的点积，即元素对应相乘。</td>
+</tr>
+<tr>
+<td><code>vdot</code></td>
+<td>两个向量的点积</td>
+</tr>
+<tr>
+<td><code>inner</code></td>
+<td>两个数组的内积</td>
+</tr>
+<tr>
+<td><code>matmul</code></td>
+<td>两个数组的矩阵积</td>
+</tr>
+<tr>
+<td><code>determinant</code></td>
+<td>数组的行列式</td>
+</tr>
+<tr>
+<td><code>solve</code></td>
+<td>求解线性矩阵方程</td>
+</tr>
+<tr>
+<td><code>inv</code></td>
+<td>计算矩阵的乘法逆矩阵</td>
+</tr>
+</tbody></table>
+<h5 id="1）向量、矩阵叉乘"><a href="#1）向量、矩阵叉乘" class="headerlink" title="1）向量、矩阵叉乘"></a>1）向量、矩阵叉乘</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.dot()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> numpy.dot()   对于两个一维的数组，计算的是这两个数组对应下标元素的乘积和(数学上称之为内积)；对于二维数组，计算的是两个数组的矩阵乘积；对于多维数组，它的通用计算公式如下，即结果数组中的每个元素都是：数组a的最后一维上的所有元素与数组b的倒数第二位上的所有元素的乘积和： dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; numpy.dot(a, b, out=None) </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>参数说明：</strong> </p>
+<ul>
+<li><strong>a</strong> : ndarray 数组 </li>
+<li><strong>b</strong> : ndarray 数组 </li>
+<li><strong>out</strong> : ndarray, 可选，用来保存dot()的计算结果</li>
+</ul>
+</blockquote>
+<h5 id="2-二维矩阵对应元素相乘（-乘）"><a href="#2-二维矩阵对应元素相乘（-乘）" class="headerlink" title="2)二维矩阵对应元素相乘（*乘）"></a>2)二维矩阵对应元素相乘（*乘）</h5><p> 有2种方式，一个是np.multiply(a,b)，另外一个是* 。</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> numpy</span><br><span class="line">&gt;a = numpy.array([[<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">&gt;                 [<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line">&gt;b = numpy.array([[<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">&gt;                 [<span class="number">7</span>,<span class="number">8</span>]])</span><br><span class="line">&gt;</span><br><span class="line">&gt;a*b</span><br><span class="line">&gt;&gt;&gt;&gt;array([[ <span class="number">5</span>, <span class="number">12</span>],</span><br><span class="line">&gt;          [<span class="number">21</span>, <span class="number">32</span>]])</span><br><span class="line">&gt;</span><br><span class="line">&gt;a.dot(b)</span><br><span class="line">&gt;&gt;&gt;&gt;array([[<span class="number">19</span>, <span class="number">22</span>],</span><br><span class="line">&gt;          [<span class="number">43</span>, <span class="number">50</span>]])</span><br><span class="line">&gt;</span><br><span class="line">&gt;numpy.dot(a,b)</span><br><span class="line">&gt;&gt;&gt;&gt;array([[<span class="number">19</span>, <span class="number">22</span>],</span><br><span class="line">&gt;          [<span class="number">43</span>, <span class="number">50</span>]])</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="3）计算平方，乘方，平方根"><a href="#3）计算平方，乘方，平方根" class="headerlink" title="3）计算平方，乘方，平方根"></a>3）计算平方，乘方，平方根</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算乘方</span></span><br><span class="line">pow(<span class="number">4</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算平方</span></span><br><span class="line">pow(<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">numpy.square(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算平方根</span></span><br><span class="line">pow(<span class="number">25</span>,<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">numpy.sqrt(<span class="number">25</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.sqrt(<span class="number">25</span>)</span><br></pre></td></tr></table></figure>
+
+<p>对于numpy定义的向量array变量，如果求其exp，需要使用np.exp()，不能使用 math.exp() ，否则报错。</p>
+<h4 id="2-矩阵拼接"><a href="#2-矩阵拼接" class="headerlink" title="(2).矩阵拼接"></a>(2).矩阵拼接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a=np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line">b=np.array([[<span class="number">11</span>,<span class="number">12</span>,<span class="number">31</span>],[<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>]])</span><br><span class="line"> </span><br><span class="line"><span class="comment">#方法1</span></span><br><span class="line">c=np.r_[a,b]  <span class="comment">#沿着矩阵行拼接</span></span><br><span class="line">print(<span class="string">'c='</span>,c)</span><br><span class="line">d=np.c_[a,b]  <span class="comment">#沿着矩阵列拼接</span></span><br><span class="line">print(<span class="string">'d='</span>,d)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#方法2</span></span><br><span class="line">e=np.vstack((a,b))  <span class="comment">#沿着矩阵行拼接</span></span><br><span class="line">print(<span class="string">'e='</span>,e)</span><br><span class="line">f=np.hstack((a,b))  <span class="comment">#沿着矩阵列拼接</span></span><br><span class="line">print(<span class="string">'f='</span>,f)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#out</span></span><br><span class="line"> </span><br><span class="line">c= [[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>]</span><br><span class="line"> [<span class="number">11</span> <span class="number">12</span> <span class="number">31</span>]</span><br><span class="line"> [<span class="number">14</span> <span class="number">15</span> <span class="number">16</span>]]</span><br><span class="line">d= [[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">11</span> <span class="number">12</span> <span class="number">31</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span>]]</span><br><span class="line">e= [[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>]</span><br><span class="line"> [<span class="number">11</span> <span class="number">12</span> <span class="number">31</span>]</span><br><span class="line"> [<span class="number">14</span> <span class="number">15</span> <span class="number">16</span>]]</span><br><span class="line">f= [[ <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span> <span class="number">11</span> <span class="number">12</span> <span class="number">31</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span>]]</span><br></pre></td></tr></table></figure>
+
+<p>在使用numpy进行矩阵拼接之时，由于 numpy会申请连续的内存，如果频繁改变大小，他就要频繁申请新的内存  <strong>numpy的数组一旦变动大小就会像搬家一样大包小包的带着自己的全部数据，拉家带口的搬到新家，所以，才需要你一开始就将numpy数组的大小设定好</strong>。 </p>
+<p> NumPy数组与列表是一个非常不同的数据结构，它被设计用于不同的方式。 你对 <code>hstack</code>的使用可能非常低效。 每次调用它时，现有数组中的所有数据都将复制到新数组中。 (<code>append</code> 函数会有同样的问题。) 因此，最好把它放在一个列表中，直到它完成，然后将它转换成数组。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a=[]</span><br><span class="line">a.append(<span class="number">2</span>)</span><br><span class="line">b=np.array(a)</span><br></pre></td></tr></table></figure>
+
+<p>可以直接使用 <strong>list</strong> 进行拼接之后再抓换位numpy中的变量.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">d = np.array([a,b])</span><br><span class="line">d.shape   <span class="comment">#d为2x3的数组,d=[[1,2,3],</span></span><br><span class="line">		 <span class="comment">#                [4,5,6]]</span></span><br></pre></td></tr></table></figure>
+
+<p>3）</p>
+<h4 id="3-创建矩阵"><a href="#3-创建矩阵" class="headerlink" title="(3).创建矩阵"></a>(3).创建矩阵</h4><p>创建的数据默认是<strong>float</strong>类型<br> np.zeros中第一个参数是<strong>shape=XX</strong>，代表创建的是几维的数组，第二个参数代表的是数据类型，<strong>dtype=int</strong>代表的是传入整数类型。</p>
+<p><strong>np.ones</strong>代表里面的数值全为1</p>
+<p> <strong>np.full</strong>代表的是数值全为指定数的值</p>
+<p> <strong>numpy中arange的使用</strong></p>
+<p><code>numpy.arrange(0:20:2)</code>步长为2，前闭后开区间，所以不包含20</p>
+<p> arange和range的最大不同是range不能传入小数 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.zeros((<span class="number">2</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-np-random-随机"><a href="#4-np-random-随机" class="headerlink" title="(4)np.random 随机"></a>(4)np.random 随机</h4><ol>
+<li>简单随机数： 产生简单的随机数据，可以是任何维度 </li>
+<li>排列：将所给对象随机排列 </li>
+<li>分布：产生指定分布的数据，如高斯分布等 </li>
+<li>生成器：种随机数种子，根据同一种子产生的随机数是相同的  </li>
+</ol>
+<h5 id="1-生成器"><a href="#1-生成器" class="headerlink" title="1)生成器"></a>1)生成器</h5><p>电脑产生随机数需要明白以下几点：<br>（1）随机数是由随机种子根据一定的计算方法计算出来的数值。所以，只要计算方法一定，随机种子一定，那么产生的随机数就不会变。<br>（2）只要用户不设置随机种子，那么在默认情况下随机种子来自系统时钟（即定时/计数器的值）<br>（3）随机数产生的算法与系统有关，Windows和Linux是不同的，也就是说，即便是随机种子一样，不同系统产生的随机数也不一样。<br>numpy.random 设置种子的方法有：</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RandomState</td>
+<td>定义种子类</td>
+<td>RandomState是一个种子类，提供了各种种子方法，最常用seed</td>
+</tr>
+<tr>
+<td>seed([seed])</td>
+<td>定义全局种子</td>
+<td>参数为整数或者矩阵</td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">1234</span>) <span class="comment">#设置随机种子为1234</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-简单随机"><a href="#2-简单随机" class="headerlink" title="2)简单随机"></a>2)简单随机</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rand(d0, d1, …, dn)</td>
+<td>产生均匀分布的随机数</td>
+<td>dn为第n维数据的维度</td>
+</tr>
+<tr>
+<td>randn(d0, d1, …, dn)</td>
+<td>产生标准正态分布随机数</td>
+<td>dn为第n维数据的维度</td>
+</tr>
+<tr>
+<td>randint(low[, high, size, dtype])</td>
+<td>产生随机整数</td>
+<td>low：最小值；high：最大值；size：数据个数</td>
+</tr>
+<tr>
+<td>random_sample([size])</td>
+<td>在[0,1）内产生随机数</td>
+<td>size：随机数的shape，可以为元祖或者列表，[2,3]表示2维随机数，维度为（2,3）</td>
+</tr>
+<tr>
+<td>random([size])</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>ranf([size])</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>sample([size]))</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>choice(a[, size, replace, p])</td>
+<td>从a中随机选择指定数据</td>
+<td>a：1维数组 size：返回数据形状</td>
+</tr>
+<tr>
+<td>bytes(length)</td>
+<td>返回随机位</td>
+<td>length：位的长度</td>
+</tr>
+</tbody></table>
+<h5 id="3-分布-经典概率分布"><a href="#3-分布-经典概率分布" class="headerlink" title="3)分布 (经典概率分布)"></a>3)分布 (经典概率分布)</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beta(a, b[, size])</td>
+<td>贝塔分布样本，在 [0, 1]内。</td>
+<td></td>
+</tr>
+<tr>
+<td>binomial(n, p[, size])</td>
+<td>二项分布的样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>chisquare(df[, size])</td>
+<td>卡方分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>dirichlet(alpha[, size])</td>
+<td>狄利克雷分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>exponential([scale, size])</td>
+<td>指数分布</td>
+<td></td>
+</tr>
+<tr>
+<td>f(dfnum, dfden[, size])</td>
+<td>F分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>gamma(shape[, scale, size])</td>
+<td>伽马分布</td>
+<td></td>
+</tr>
+<tr>
+<td>geometric(p[, size])</td>
+<td>几何分布</td>
+<td></td>
+</tr>
+<tr>
+<td>gumbel([loc, scale, size])</td>
+<td>耿贝尔分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>hypergeometric(ngood, nbad, nsample[, size])</td>
+<td>超几何分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>laplace([loc, scale, size])</td>
+<td>拉普拉斯或双指数分布样本</td>
+<td></td>
+</tr>
+<tr>
+<td>logistic([loc, scale, size])</td>
+<td>Logistic分布样本</td>
+<td></td>
+</tr>
+<tr>
+<td>lognormal([mean, sigma, size])</td>
+<td>对数正态分布</td>
+<td></td>
+</tr>
+<tr>
+<td>logseries(p[, size])</td>
+<td>对数级数分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>multinomial(n, pvals[, size])</td>
+<td>多项分布</td>
+<td></td>
+</tr>
+<tr>
+<td>multivariate_normal(mean, cov[, size])</td>
+<td>多元正态分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>negative_binomial(n, p[, size])</td>
+<td>负二项分布</td>
+<td></td>
+</tr>
+<tr>
+<td>noncentral_chisquare(df, nonc[, size])</td>
+<td>非中心卡方分布</td>
+<td></td>
+</tr>
+<tr>
+<td>noncentral_f(dfnum, dfden, nonc[, size])</td>
+<td>非中心F分布</td>
+<td></td>
+</tr>
+<tr>
+<td>normal([loc, scale, size])</td>
+<td>正态(高斯)分布</td>
+<td></td>
+</tr>
+<tr>
+<td>pareto(a[, size])</td>
+<td>帕累托（Lomax）分布</td>
+<td></td>
+</tr>
+<tr>
+<td>poisson([lam, size])</td>
+<td>泊松分布</td>
+<td></td>
+</tr>
+<tr>
+<td>power(a[, size])</td>
+<td>Draws samples in [0, 1] from a power distribution with positive exponent a - 1.</td>
+<td></td>
+</tr>
+<tr>
+<td>rayleigh([scale, size])</td>
+<td>Rayleigh 分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_cauchy([size])</td>
+<td>标准柯西分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_exponential([size])</td>
+<td>标准的指数分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_gamma(shape[, size])</td>
+<td>标准伽马分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_normal([size])</td>
+<td>标准正态分布 (mean=0, stdev=1).</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_t(df[, size])</td>
+<td>Standard Student’s t distribution with df degrees of freedom.</td>
+<td></td>
+</tr>
+<tr>
+<td>triangular(left, mode, right[, size])</td>
+<td>三角形分布</td>
+<td></td>
+</tr>
+<tr>
+<td>uniform([low, high, size])</td>
+<td>均匀分布</td>
+<td></td>
+</tr>
+<tr>
+<td>vonmises(mu, kappa[, size])</td>
+<td>von Mises分布</td>
+<td></td>
+</tr>
+<tr>
+<td>wald(mean, scale[, size])</td>
+<td>瓦尔德（逆高斯）分布</td>
+<td></td>
+</tr>
+<tr>
+<td>weibull(a[, size])</td>
+<td>Weibull 分布</td>
+<td></td>
+</tr>
+<tr>
+<td>zipf(a[, size])</td>
+<td>齐普夫分布</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="4-排列-打乱对象"><a href="#4-排列-打乱对象" class="headerlink" title="4)排列 (打乱对象)"></a>4)排列 (打乱对象)</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>shuffle(x)</td>
+<td>打乱对象x（多维矩阵按照第一维打乱）</td>
+<td>矩阵或者列表</td>
+</tr>
+<tr>
+<td>permutation(x)</td>
+<td>打乱并返回该对象（多维矩阵按照第一维打乱）</td>
+<td>整数或者矩阵</td>
+</tr>
+</tbody></table>
+<h2 id="5-输入语句"><a href="#5-输入语句" class="headerlink" title="5.输入语句"></a>5.输入语句</h2><h4 id="input-与raw-input"><a href="#input-与raw-input" class="headerlink" title="input()与raw_input()"></a>input()与raw_input()</h4><p>1、在 Python2.x 中 raw_input( ) 和 input( )，两个函数都存在，其中区别为:</p>
+<ul>
+<li>raw_input( ) 将所有输入作为字符串看待，返回字符串类型。 </li>
+<li>input( ) 只能接收”数字”的输入，在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）。</li>
+</ul>
+<p>2、在 Python3.x 中 <strong>raw_input( )</strong> 和 <strong>input( )</strong> 进行了整合，去除了 <strong>raw_input( )</strong>，仅保留了 <strong>input( )</strong> 函数，其接收任意任性输入，将所有输入默认为字符串处理，并返回字符串类型。</p>
+<p>当需要输入数值时，需要将输入的变量进行int()操作,进行变量类型转换。</p>
+<p>在string类型下，‘+’操作为拼接两个字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = input(<span class="string">"input numbers: \n"</span>)</span><br><span class="line">a = int(a)</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-matplotlib"><a href="#6-matplotlib" class="headerlink" title="6.matplotlib"></a>6.matplotlib</h2><h4 id="1-matplotlib-pyplot"><a href="#1-matplotlib-pyplot" class="headerlink" title="(1).matplotlib.pyplot"></a>(1).matplotlib.pyplot</h4><h5 id="1）坐标轴翻转"><a href="#1）坐标轴翻转" class="headerlink" title="1）坐标轴翻转"></a>1）坐标轴翻转</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">ax = plt.gca()</span><br><span class="line">ax.invert_xaxis()</span><br><span class="line">plt.plot(range(<span class="number">10</span>),range(<span class="number">10</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-更改坐标轴位置及不显示某个坐标轴"><a href="#2-更改坐标轴位置及不显示某个坐标轴" class="headerlink" title="2)更改坐标轴位置及不显示某个坐标轴"></a>2)更改坐标轴位置及不显示某个坐标轴</h5><p>由于axes会获取到四个轴，而我们只需要两个轴，所以我们需要把另外两个轴隐藏，把顶部和右边轴的颜色设置为none，将不会显示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>) <span class="comment"># 使顶部坐标轴不显示</span></span><br></pre></td></tr></table></figure>
+
+<p> ax.spines[‘bottom’]获取底部的轴，通过set_position方法，设置底部轴的位置，例如：ax.spines[‘bottom’].set_position((‘data’,0))表示设置底部轴移动到竖轴的0坐标位置，设置left的方法相同 .</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置底边的移动范围，移动到y轴的0位置</span></span><br><span class="line"><span class="comment"># data:移动轴的位置到交叉轴的指定坐标  outward:不太懂  axes:0.0 - 1.0之间的值，整个轴上的比例  </span></span><br><span class="line"><span class="comment"># center:('axes',0.5) zero:('data',0.0)</span></span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>,<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-设置坐标轴显示范围及修改label"><a href="#3-设置坐标轴显示范围及修改label" class="headerlink" title="3)设置坐标轴显示范围及修改label"></a>3)设置坐标轴显示范围及修改label</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用axes对象设置轴线的显示范围，与plt.xlim(-1,2)和plt.ylim(-2,3)的作用相同</span></span><br><span class="line">ax.set_xlim(<span class="number">-1</span>,<span class="number">2</span>)</span><br><span class="line">ax.set_ylim(<span class="number">-2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 利用axes对象设置坐标轴的标签</span></span><br><span class="line">ax.set_xlabel(<span class="string">'x data'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'y data'</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-ticks显示问题"><a href="#4-ticks显示问题" class="headerlink" title="4)ticks显示问题"></a>4)ticks显示问题</h5><p>数字和小tick 共同改变至所在坐标轴位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置坐标轴上的数字显示的位置，top:显示在顶部  bottom:显示在底部,默认是none</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'top'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'none'</span>)</span><br></pre></td></tr></table></figure>
+
+<p> Tick的方向有三种，一种为in，另外一种为out，还有一种是inout。 </p>
+<p>更改Tick的朝向：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置xtick和ytick的方向：in、out、inout</span></span><br><span class="line">plt.rcParams[<span class="string">'xtick.direction'</span>] = <span class="string">'in'</span></span><br><span class="line">plt.rcParams[<span class="string">'ytick.direction'</span>] = <span class="string">'in'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#以下代码起作用</span></span><br><span class="line">ax1.tick_params(direction=<span class="string">'in'</span>,width=<span class="number">2</span>,length=<span class="number">4</span>,colors=<span class="string">'gold'</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-不显示坐标的值"><a href="#5-不显示坐标的值" class="headerlink" title="5)不显示坐标的值"></a>5)不显示坐标的值</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成网格</span></span><br><span class="line">ax.grid(<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 取消标签的数字显示</span></span><br><span class="line">ax.tick_params(<span class="string">'y'</span>, labelleft=<span class="literal">False</span>) <span class="comment"># 取消left即可（top，bottom，right）</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-绘制等高线"><a href="#6-绘制等高线" class="headerlink" title="6)绘制等高线"></a>6)绘制等高线</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment">#引入numpy库和matplotlib库</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义等高线图的横纵坐标x，y</span></span><br><span class="line"><span class="comment">#从左边取值为从 -3 到 3 ，各取5个点，一共取 5*5 = 25 个点</span></span><br><span class="line">x = np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">y = np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment"># 将原始数据变成网格数据</span></span><br><span class="line">X, Y = np.meshgrid(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 各地点对应的高度数据</span></span><br><span class="line"><span class="comment">#Height是个 5*5 的数组，记录地图上 25 个点的高度汇总</span></span><br><span class="line">Height = [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">1</span>,<span class="number">5</span>],[<span class="number">4</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>],[<span class="number">3</span>,<span class="number">-3</span>,<span class="number">-3</span>,<span class="number">0</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">-5</span>,<span class="number">-2</span>,<span class="number">0</span>,<span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充颜色</span></span><br><span class="line">plt.contourf(X, Y, Height, <span class="number">10</span>, alpha = <span class="number">0.6</span>, cmap = plt.cm.hot)</span><br><span class="line"><span class="comment"># 绘制等高线</span></span><br><span class="line">C = plt.contour(X, Y, Height, <span class="number">10</span>, colors = <span class="string">'black'</span>, linewidth = <span class="number">0.5</span>)</span><br><span class="line"><span class="comment"># 显示各等高线的数据标签</span></span><br><span class="line">plt.clabel(C, inline = <span class="literal">True</span>, fontsize = <span class="number">10</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><strong>contourf 填充颜色函数</strong></p>
+<ul>
+<li>前三个参数 X, Y, Height 用来引进点的位置和对应的高度数据；</li>
+<li>数字 10 代表将等高线图分成10块（这里不是硬性要求，但数值过小会造成部分分区颜色区分度不高）；</li>
+<li>alpha = 0.6 用来设置填充颜色的范围，alpha取值为 [0,1) 。alpha=0时，画出的是无色图，alpha越接近1，颜色的搭配就越向深色风格过渡</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#只画z=20和40的线，并将颜色设置为黑色</span></span><br><span class="line">contour = plt.contour(X,Y,Z,[<span class="number">20</span>,<span class="number">40</span>],colors=<span class="string">'k'</span>)</span><br><span class="line"><span class="comment">#等高线上标明z（即高度）的值，字体大小是10，颜色分别是黑色和红色</span></span><br><span class="line">plt.clabel(contour,fontsize=<span class="number">10</span>,colors=(<span class="string">'k'</span>,<span class="string">'r'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-卷积"><a href="#7-卷积" class="headerlink" title="7.卷积"></a>7.卷积</h2><h4 id="1-定义"><a href="#1-定义" class="headerlink" title="(1)定义"></a>(1)定义</h4><blockquote>
+<p>设:<em>f</em>(<em>x</em>),<em>g</em>(<em>x</em>)是R1上的两个可积函数，作积分：<br>$$<br>\int ^{+\infty} _{-\infty} f(\tau) g(x-\tau)d\tau=f(x)*g(x)<br>$$</p>
+<p>可以证明，关于几乎所有的实数<em>x</em>，上述积分是存在的。这样，随着<em>x</em>的不同取值，这个积分就定义了一个新函数<em>h(x)</em>，称为函数<em>f</em>与<em>g</em>的卷积，记为<em>h(x)=(f\</em>g)(x)*。</p>
+<p>在离散情况下，有<br>$$<br>y(n)=\sum _{i=-\infty} ^{\infty}x(i)h(n-i)=x(n)<em>h(n)<br>$$<br>其中星号</em>表示卷积。当时序n=0时，序列h(-i)是h(i)的时序i取反的结果；时序取反使得h(i)以纵轴为中心翻转180度，所以这种相乘后求和的计算法称为卷积和，简称卷积。另外，n是使h(-i)位移的量，不同的n对应不同的卷积结果。</p>
+</blockquote>
+<p>知乎上在信号系统中的某种理解：</p>
+<blockquote>
+<p>一个函数（如：单位响应）在另一个函数（如：输入信号）上的加权叠加。</p>
+<p>重复一遍，这就是卷积的意义：加权叠加。</p>
+<p>对于线性时不变系统，如果知道该系统的单位响应，那么将单位响应和输入信号求卷积，就相当于把输入信号的各个时间点的单位响应 加权叠加，就直接得到了输出信号。</p>
+<p>书上先反褶再平移，把输入信号当作一个整体，一次算出一个时间点的响应值；而楼主把信号拆开，一次算出一个信号在所有时间的响应值，再把各个信号相加。两者本质上是相同的。  </p>
+</blockquote>
+<p>理解一：</p>
+<p>先将输入信号180°翻转，时间变为负值，再由 n 作为对应的每个时刻的时间点，每次将翻转后的信号右移1个单位，此时与输入信号与系统x(i)<strong>所有重叠部分相乘后求和</strong>的结果，即为该时间点的响应值，直至移动 n 个时刻为止，形成响应序列 y(n)。</p>
+<p>理解二：</p>
+<p>将输入信号序列拆开，分别计算每个时间点的信号在系统中对应的响应序列，将输入序列各个时间点产生的的响应序列叠加求和，即得到整个输入信号的综合响应，最终得到输入信号的响应序列。</p>
+<h4 id="2-numpy中的卷积"><a href="#2-numpy中的卷积" class="headerlink" title="(2)numpy中的卷积"></a>(2)numpy中的卷积</h4><p>卷积的概念还可以推广到<a href="https://baike.baidu.com/item/数列" target="_blank" rel="noopener">数列</a>、<a href="https://baike.baidu.com/item/测度" target="_blank" rel="noopener">测度</a>以及<a href="https://baike.baidu.com/item/广义函数" target="_blank" rel="noopener">广义函数</a>上去。</p>
+<p>numpy.convolve(a, v, mode=‘full’)，这是numpy函数中的卷积函数库<br>　　参数：<br>　　　　a:(N,)输入的一维数组<br>　　　　b:(M,)输入的第二个一维数组<br>　　　　mode:{‘full’, ‘valid’, ‘same’}参数可选<br>　　　　　　‘full’　默认值，返回每一个卷积值，长度是N+M-1,在卷积的边缘处，信号不重叠，存在边际效应。<br>　　　　　　‘same’　返回的数组长度为max(M, N),边际效应依旧存在。<br>　　　　　　‘valid’ 　返回的数组长度为max(M,N)-min(M,N)+1,此时返回的是完全重叠的点。边缘的点无效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]) <span class="comment"># 倒过来成为卷积核，然后在上述的数组中滑动，得到结果</span></span><br><span class="line">end_1=np.convolve([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>],<span class="string">'full'</span>)</span><br><span class="line">end_2=np.convolve([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>],<span class="string">'same'</span>)</span><br><span class="line">end_3=np.convolve([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>],<span class="string">'valid'</span>)</span><br><span class="line">plt.plot(end_1)</span><br><span class="line">print(end_1)</span><br><span class="line">print(end_2)</span><br><span class="line">print(end_3)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>’full‘ 结果 [ 1  3  8 13 13 12]<br>        ’same‘结果[ 3  8 13 13]<br>        ’valid‘结果[ 8 13] </p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/12/bicubic-interpolati/">bicubic interpolati</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/08/pytorch-learning/">pytorch learning</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

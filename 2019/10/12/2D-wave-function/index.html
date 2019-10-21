@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>2D wave function | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">2D wave function</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 12, 2019&nbsp;&nbsp;0:23:04</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/homework/">homework</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>地震波正演程序，采用marmousi模型进行地震波模拟，边界进行了PCL吸收处理。</p>
+<p>主函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="comment">%二阶空间二阶时间声波方程</span></span><br><span class="line"><span class="comment">%marmousi模型</span></span><br><span class="line"><span class="comment">%占用内存空间优化</span></span><br><span class="line"><span class="comment">%小仙出品，必属精品</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line">clc,clear</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 设置初始变量</span></span><br><span class="line"><span class="keyword">for</span> q=<span class="number">1</span></span><br><span class="line">load md.txt</span><br><span class="line">dh=<span class="number">10</span>;dk=<span class="number">10</span>;dt=<span class="number">0.001</span>;endt=<span class="number">1.7</span>;N=<span class="number">100</span>;   <span class="comment">%dh,dk,dt分别为x,z,t的增量，endt为终止时间</span></span><br><span class="line">fm=<span class="number">15</span>;X=<span class="number">384</span>+N*<span class="number">2</span>;Z=<span class="number">122</span>+N*<span class="number">2</span>;          <span class="comment">%雷克子波主频15Hz,吸收层厚度为N</span></span><br><span class="line">Sx=X/<span class="number">2</span>;Sz=N+<span class="number">3</span>;                    <span class="comment">%震源位置</span></span><br><span class="line">u=<span class="built_in">zeros</span>(Z,X,<span class="number">3</span>);           <span class="comment">%初始化位移为0</span></span><br><span class="line">DT=Dt(Sz,Sx,Z,X);               <span class="comment">%初始化δ函数</span></span><br><span class="line">[weakx ,weakz]=attnuate(Z,X,N);</span><br><span class="line">v1=<span class="built_in">min</span>(<span class="built_in">min</span>(md));v2=<span class="built_in">max</span>(<span class="built_in">max</span>(md));              <span class="comment">%速度模型</span></span><br><span class="line"><span class="comment">% v=[v1*ones(Z/2,X);v1*ones(Z/4,3*X/8) md v1*ones(Z/4,3*X/8);v1*ones(Z/4,X)];</span></span><br><span class="line"><span class="keyword">for</span> ll=<span class="number">1</span>:N</span><br><span class="line">    vll(:,ll)=md(:,<span class="number">1</span>);</span><br><span class="line">    vrr(:,ll)=md(:,<span class="number">384</span>);</span><br><span class="line">    vbb(ll,:)=md(<span class="number">122</span>,:);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">vbll=v1*<span class="built_in">ones</span>(N,N);vbrr=v1*<span class="built_in">ones</span>(N,N);</span><br><span class="line">v=[v1*<span class="built_in">ones</span>(N,X);vll md vrr;vbll vbb vbrr ];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 预判断</span></span><br><span class="line"><span class="keyword">for</span> q=<span class="number">0</span></span><br><span class="line"><span class="keyword">if</span> ( v2*dt/dh &gt;= <span class="number">1</span>/<span class="built_in">sqrt</span>(<span class="number">2</span>) )</span><br><span class="line">    errordlg( <span class="string">'ERROR!!! 不满足稳定性条件！当前 Vmax*dt/dh &gt;= 1/sqrt(2)'</span>);</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> ( dh &gt; v1/<span class="number">8</span>/fm )</span><br><span class="line">    warndlg(<span class="string">'请减小 x 的步长以减少频散'</span> );</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 计算差分方程</span></span><br><span class="line">[a,b]=<span class="built_in">meshgrid</span>(dh:dh:dh*(X<span class="number">-2</span>*N),dk:dk:dk*(Z<span class="number">-2</span>*N));</span><br><span class="line"><span class="comment">% figure(1)</span></span><br><span class="line"><span class="comment">% imagesc(0:dh:dh*(X-2*N),0:dk:dk*(Z-2*N),u(N+1:Z-N,N+1:X-N,1),[-1,1])</span></span><br><span class="line"><span class="comment">% hold on</span></span><br><span class="line"><span class="comment">% contour(a,b,md,'k')</span></span><br><span class="line"><span class="comment">% hold on</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> q=<span class="number">1</span></span><br><span class="line"> k=<span class="number">1</span>;</span><br><span class="line">  pic_num=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> number=<span class="number">2</span>:endt/dt</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:Z<span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">2</span>:X<span class="number">-1</span> </span><br><span class="line">                u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">2</span>,<span class="number">3</span>)+<span class="number">1</span>)=(dt^<span class="number">2</span>*v(<span class="built_in">i</span>,<span class="built_in">j</span>)^<span class="number">2</span>/dh^<span class="number">2</span>*(u(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)+u(<span class="built_in">i</span><span class="number">-1</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)<span class="number">-2</span>*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>))+(<span class="number">2</span>-weakx(<span class="built_in">i</span>,<span class="built_in">j</span>)^<span class="number">2</span>*dt^<span class="number">2</span>)*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)/<span class="number">2</span>+(weakx(<span class="built_in">i</span>,<span class="built_in">j</span>)*dt<span class="number">-1</span>)*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k,<span class="number">3</span>)+<span class="number">1</span>)/<span class="number">2</span>)/(weakx(<span class="built_in">i</span>,<span class="built_in">j</span>)*dt+<span class="number">1</span>)...</span><br><span class="line">                                   +(dt^<span class="number">2</span>*v(<span class="built_in">i</span>,<span class="built_in">j</span>)^<span class="number">2</span>/dk^<span class="number">2</span>*(u(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)+u(<span class="built_in">i</span>,<span class="built_in">j</span><span class="number">-1</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)<span class="number">-2</span>*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>))+(<span class="number">2</span>-weakz(<span class="built_in">i</span>,<span class="built_in">j</span>)^<span class="number">2</span>*dt^<span class="number">2</span>)*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k+<span class="number">1</span>,<span class="number">3</span>)+<span class="number">1</span>)/<span class="number">2</span>+(weakz(<span class="built_in">i</span>,<span class="built_in">j</span>)*dt<span class="number">-1</span>)*u(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="built_in">mod</span>(k,<span class="number">3</span>)+<span class="number">1</span>)/<span class="number">2</span>)/(weakz(<span class="built_in">i</span>,<span class="built_in">j</span>)*dt+<span class="number">1</span>)...</span><br><span class="line">                                   +DT(<span class="built_in">i</span>,<span class="built_in">j</span>)*ricker(number*dt-dt,fm);</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span>  </span><br><span class="line">         k=<span class="built_in">mod</span>(k,<span class="number">3</span>)+<span class="number">1</span>;</span><br><span class="line">         record(number<span class="number">-1</span>,:)=u(Sz,N+<span class="number">1</span>:X-N,k);</span><br><span class="line">             <span class="keyword">if</span>( <span class="built_in">mod</span>( number, <span class="number">10</span>) == <span class="number">0</span> )</span><br><span class="line">                    <span class="built_in">figure</span>(<span class="number">2</span>)</span><br><span class="line">                    imagesc(<span class="number">0</span>:dh:dh*(X<span class="number">-2</span>*N),<span class="number">0</span>:dk:dk*(Z<span class="number">-2</span>*N),u(N+<span class="number">1</span>:Z-N,N+<span class="number">1</span>:X-N,k),[<span class="number">-1</span>,<span class="number">1</span>]);</span><br><span class="line">                    <span class="built_in">hold</span> on</span><br><span class="line">                    contour(a,b,md,<span class="string">'k'</span>)</span><br><span class="line">                    title(<span class="string">'Marmousi model snapshot'</span>)</span><br><span class="line">                    <span class="comment">%                     h2=colorbar;</span></span><br><span class="line"><span class="comment">%                     set(get(h2,'Title'),'string','u ');</span></span><br><span class="line">                      colormap(jet)</span><br><span class="line">                   pause(<span class="number">0.0001</span>)</span><br><span class="line">                   F=getframe(gcf);    </span><br><span class="line">                I=frame2im(F);</span><br><span class="line">                [I,map]=rgb2ind(I,<span class="number">256</span>);</span><br><span class="line">                <span class="keyword">if</span> pic_num == <span class="number">1</span></span><br><span class="line">                    imwrite(I,map,<span class="string">'Marmousi_model_snapshot_100.gif'</span>,<span class="string">'gif'</span>, <span class="string">'Loopcount'</span>,<span class="built_in">inf</span>,<span class="string">'DelayTime'</span>,<span class="number">0.001</span>);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    imwrite(I,map,<span class="string">'Marmousi_model_snapshot_100.gif'</span>,<span class="string">'gif'</span>,<span class="string">'WriteMode'</span>,<span class="string">'append'</span>,<span class="string">'DelayTime'</span>,<span class="number">0.001</span>);</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                pic_num = pic_num + <span class="number">1</span>;</span><br><span class="line">             <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 绘图</span></span><br><span class="line"><span class="comment">%% ***********************速度model**************************</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> q=<span class="number">1</span></span><br><span class="line"><span class="comment">% figure(1)</span></span><br><span class="line">imagesc(<span class="number">0</span>:dh:dh*(X<span class="number">-2</span>*N),<span class="number">0</span>:dk:dk*(Z<span class="number">-2</span>*N),v(N+<span class="number">1</span>:Z-N,N+<span class="number">1</span>:X-N))</span><br><span class="line">h=colorbar;</span><br><span class="line">set(get(h,<span class="string">'Title'</span>),<span class="string">'string'</span>,<span class="string">'v (m/s)'</span>);</span><br><span class="line">colormap(jet)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% ***********************地震记录***************************</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>)</span><br><span class="line">imagesc(<span class="number">0</span>:dh:dh*(X<span class="number">-2</span>*N),<span class="number">0</span>:<span class="built_in">round</span>(endt/dt),record)</span><br><span class="line">   colormap(gray)</span><br><span class="line">colorbar</span><br><span class="line">xlabel(<span class="string">'X-m'</span>)</span><br><span class="line">ylabel(<span class="string">'t-ms'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">%% *************************滤波*****************************</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">4</span>)</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)  <span class="comment">%速度模型</span></span><br><span class="line">imagesc(<span class="number">0</span>:dh:dh*(X<span class="number">-2</span>*N),<span class="number">0</span>:dk:dk*(Z<span class="number">-2</span>*N),v(N+<span class="number">1</span>:Z-N,N+<span class="number">1</span>:X-N))</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(dh*(X<span class="number">-2</span>*N)/<span class="number">2</span>,<span class="number">20</span>,<span class="string">'pr'</span>,<span class="string">'MarkerSize'</span>,<span class="number">13</span>)</span><br><span class="line">text(dh*(X<span class="number">-2</span>*N)/<span class="number">2</span>+<span class="number">35</span>,<span class="number">80</span>,<span class="string">'震源'</span>,<span class="string">'FontSize'</span>,<span class="number">15</span>)</span><br><span class="line">h=colorbar;</span><br><span class="line">set(get(h,<span class="string">'Title'</span>),<span class="string">'string'</span>,<span class="string">'v (m/s)'</span>);</span><br><span class="line"> colormap(jet)</span><br><span class="line">title(<span class="string">'model'</span>)</span><br><span class="line">xlabel(<span class="string">'X-m'</span>)</span><br><span class="line">ylabel(<span class="string">'Z-m'</span>)</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">imagesc(<span class="number">0</span>:dh:dh*(X<span class="number">-2</span>*N),<span class="number">0</span>:<span class="built_in">round</span>(endt/dt),record)</span><br><span class="line">colorbar</span><br><span class="line"><span class="comment">% colormap(gray)</span></span><br><span class="line">xlabel(<span class="string">'X-m'</span>)</span><br><span class="line">ylabel(<span class="string">'t-ms'</span>)</span><br><span class="line">title(<span class="string">'record'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>衰减函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[x,z]</span>=<span class="title">attnuate</span><span class="params">(Z,X,N)</span></span></span><br><span class="line"><span class="comment">%a 衰减因子</span></span><br><span class="line"><span class="comment">% Z，X 行列数</span></span><br><span class="line"><span class="comment">% N 衰减层数</span></span><br><span class="line"><span class="comment">% 余弦型吸收因子</span></span><br><span class="line">B=<span class="number">500</span>;</span><br><span class="line">x=<span class="built_in">zeros</span>(Z,X);</span><br><span class="line">z=<span class="built_in">zeros</span>(Z,X);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:Z </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:X</span><br><span class="line">        <span class="keyword">if</span>( <span class="built_in">i</span> &lt; N+<span class="number">1</span> ) </span><br><span class="line">            pm=<span class="built_in">i</span>;</span><br><span class="line">            z(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pm)/<span class="number">2</span>/N));</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">j</span>&lt;N+<span class="number">1</span>)</span><br><span class="line">                pmx=<span class="built_in">j</span>;</span><br><span class="line">                x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> ( <span class="built_in">j</span> &lt;= X-N)</span><br><span class="line">                x(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                pmx=X-<span class="built_in">j</span>;</span><br><span class="line">                x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( <span class="built_in">i</span> &lt;= Z-N )</span><br><span class="line">                z(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> ( <span class="built_in">j</span> &lt; N+<span class="number">1</span> )</span><br><span class="line">                    pmx=<span class="built_in">j</span>;</span><br><span class="line">                    x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>( <span class="built_in">j</span> &lt;= X-N)</span><br><span class="line">                        x(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        pmx=X-<span class="built_in">j</span>;</span><br><span class="line">                        x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                pmz=Z-<span class="built_in">i</span>;</span><br><span class="line">                z(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmz)/<span class="number">2</span>/N));</span><br><span class="line">                 <span class="keyword">if</span> ( <span class="built_in">j</span> &lt; N+<span class="number">1</span> )</span><br><span class="line">                    pmx=<span class="built_in">j</span>;</span><br><span class="line">                    x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>( <span class="built_in">j</span> &lt;= X-N)</span><br><span class="line">                        x(<span class="built_in">i</span>,<span class="built_in">j</span>)=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        pmx=X-<span class="built_in">j</span>;</span><br><span class="line">                        x(<span class="built_in">i</span>,<span class="built_in">j</span>)=B*(<span class="number">1</span>-<span class="built_in">cos</span>(<span class="built_in">pi</span>*(N-pmx)/<span class="number">2</span>/N));</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>震源位置函数及地震子波：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>=<span class="title">Dt</span><span class="params">(x,z,xx,zz)</span></span></span><br><span class="line"><span class="comment">%x z，震源位置</span></span><br><span class="line"><span class="comment">%xx zz 网格大小</span></span><br><span class="line">a=<span class="built_in">zeros</span>(xx,zz);</span><br><span class="line">a(x,z)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">ricker</span><span class="params">(t,fm)</span></span></span><br><span class="line"><span class="comment">% t: 时间</span></span><br><span class="line"><span class="comment">% fm: 主频</span></span><br><span class="line"><span class="comment">% a: 幅值</span></span><br><span class="line">a=(<span class="number">1</span><span class="number">-2</span>*(<span class="built_in">pi</span>*fm*t).^<span class="number">2</span>).*<span class="built_in">exp</span>(-(<span class="built_in">pi</span>*fm*t).^<span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/MATLAB/"># MATLAB</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/12/大创软件设计/">大创软件设计</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/12/bicubic-interpolati/">bicubic interpolati</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

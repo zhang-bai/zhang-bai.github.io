@@ -353,7 +353,7 @@
 
 <p>返回一个新的张量，对输入的制定位置插入维度 1</p>
 <p>注意： 返回张量与输入张量共享内存，所以改变其中一个的内容会改变另一个。</p>
-<p>如果<code>dim</code>为<strong>负</strong>，则将会被转化<em>d<strong>i</strong>m</em>+<em>i<strong>n</strong>p<strong>u</strong>t</em>.<em>d<strong>i</strong>m</em>()+1</p>
+<p>如果<code>dim</code>为<strong>负</strong>，则将会被转化<em>dim+imput.dim()+1</em></p>
 <p>参数:</p>
 <ul>
 <li>tensor (Tensor) – 输入张量</li>
@@ -363,7 +363,211 @@
 <blockquote>
 <p>若a的维度为（2，3），则a.unsqueeze(1),在第二维增加一个维度，使其维度变为（2，1，3）</p>
 <p>如果需要在倒数第二个维度上增加一个维度，那么使用b.unsqueeze(-2)</p>
+<p>x = torch.unsqueeze(torch.linspace(-1, 1, 1000), dim=1)</p>
+<p>可将一维数据转变为1x1000二维的矩阵，实际效果即将行向量转变为列向量</p>
 </blockquote>
+<h3 id="三-、torch-nn"><a href="#三-、torch-nn" class="headerlink" title="(三)、torch.nn"></a>(三)、torch.nn</h3><h4 id="1-containers（容器）"><a href="#1-containers（容器）" class="headerlink" title="1. containers（容器）"></a>1. containers（容器）</h4><h5 id="class-torch-nn-Module"><a href="#class-torch-nn-Module" class="headerlink" title="class torch.nn.Module"></a>class torch.nn.Module</h5><p>所有网络的基类。</p>
+<p>你的模型也应该继承这个类。</p>
+<p><code>Modules</code>也可以包含其它<code>Modules</code>,允许使用树结构嵌入他们。你可以将子模块赋值给模型属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">class Model(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(Model, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(1, 20, 5)# submodule: Conv2d</span><br><span class="line">        self.conv2 = nn.Conv2d(20, 20, 5)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">       x = F.relu(self.conv1(x))</span><br><span class="line">       return F.relu(self.conv2(x))</span><br></pre></td></tr></table></figure>
+
+<p>通过上面方式赋值的<code>submodule</code>会被注册。当调用 <code>.cuda()</code> 的时候，<code>submodule</code>的参数也会转换为<code>cuda Tensor</code>。</p>
+<h4 id="2-linear-layers"><a href="#2-linear-layers" class="headerlink" title="2. linear layers"></a>2. linear layers</h4><h5 id="Linear-layers"><a href="#Linear-layers" class="headerlink" title="Linear layers"></a>Linear layers</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.nn.Linear(in_features, out_features, bias=True)</span><br></pre></td></tr></table></figure>
+
+<p>对输入数据做线性变换：<em>y</em>=<em>A**x</em>+<em>b</em></p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><strong>in_features</strong> - 每个输入样本的大小</li>
+<li><strong>out_features</strong> - 每个输出样本的大小</li>
+<li><strong>bias</strong> - 若设置为False，这层不会学习偏置。默认值：True</li>
+</ul>
+<p><strong>形状：</strong></p>
+<ul>
+<li><strong>输入:</strong> (<em>N</em>,<em>i**n</em>_<em>f<strong>e</strong>a<strong>t</strong>u<strong>r</strong>e**s</em>)</li>
+</ul>
+<p><strong>输出：</strong> (<em>N</em>,<em>o<strong>u</strong>t</em>_<em>f<strong>e</strong>a<strong>t</strong>u<strong>r</strong>e**s</em>)</p>
+<ul>
+<li></li>
+</ul>
+<p><strong>变量：</strong></p>
+<ul>
+<li><strong>weight</strong> -形状为(out_features x in_features)的模块中可学习的权值</li>
+<li><strong>bias</strong> -形状为(out_features)的模块中可学习的偏置</li>
+</ul>
+<p><strong>例子：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; m = nn.Linear(20, 30)</span><br><span class="line">&gt;&gt;&gt; input = autograd.Variable(torch.randn(128, 20))</span><br><span class="line">&gt;&gt;&gt; output = m(input)</span><br><span class="line">&gt;&gt;&gt; print(output.size())</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-、torch-optim"><a href="#四-、torch-optim" class="headerlink" title="(四)、torch.optim"></a>(四)、torch.optim</h3><p><code>torch.optim</code>是一个实现了各种优化算法的库。大部分常用的方法得到支持，并且接口具备足够的通用性，使得未来能够集成更加复杂的方法。</p>
+<h2 id="如何使用optimizer"><a href="#如何使用optimizer" class="headerlink" title="如何使用optimizer"></a>如何使用optimizer</h2><p>为了使用<code>torch.optim</code>，你需要构建一个optimizer对象。这个对象能够保持当前参数状态并基于计算得到的梯度进行参数更新。</p>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>为了构建一个<code>Optimizer</code>，你需要给它一个包含了需要优化的参数（必须都是<code>Variable</code>对象）的iterable。然后，你可以设置optimizer的参 数选项，比如学习率，权重衰减，等等。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">optimizer = optim.SGD(model.parameters(), lr = 0.01, momentum=0.9)</span><br><span class="line">optimizer = optim.Adam([var1, var2], lr = 0.0001)</span><br></pre></td></tr></table></figure>
+
+<h3 id="为每个参数单独设置选项"><a href="#为每个参数单独设置选项" class="headerlink" title="为每个参数单独设置选项"></a>为每个参数单独设置选项</h3><p><code>Optimizer</code>也支持为每个参数单独设置选项。若想这么做，不要直接传入<code>Variable</code>的iterable，而是传入<code>dict</code>的iterable。每一个dict都分别定 义了一组参数，并且包含一个<code>param</code>键，这个键对应参数的列表。其他的键应该optimizer所接受的其他参数的关键字相匹配，并且会被用于对这组参数的 优化。</p>
+<p><strong>注意：</strong></p>
+<p>你仍然能够传递选项作为关键字参数。在未重写这些选项的组中，它们会被用作默认值。当你只想改动一个参数组的选项，但其他参数组的选项不变时，这是 非常有用的。</p>
+<p>例如，当我们想指定每一层的学习率时，这是非常有用的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">optim.SGD([</span><br><span class="line">                &#123;&apos;params&apos;: model.base.parameters()&#125;,</span><br><span class="line">                &#123;&apos;params&apos;: model.classifier.parameters(), &apos;lr&apos;: 1e-3&#125;</span><br><span class="line">            ], lr=1e-2, momentum=0.9)</span><br></pre></td></tr></table></figure>
+
+<p>这意味着<code>model.base</code>的参数将会使用<code>1e-2</code>的学习率，<code>model.classifier</code>的参数将会使用<code>1e-3</code>的学习率，并且<code>0.9</code>的momentum将会被用于所 有的参数。</p>
+<h3 id="进行单次优化"><a href="#进行单次优化" class="headerlink" title="进行单次优化"></a>进行单次优化</h3><p>所有的optimizer都实现了<code>step()</code>方法，这个方法会更新所有的参数。它能按两种方式来使用：</p>
+<p><strong>optimizer.step()</strong></p>
+<p>这是大多数optimizer所支持的简化版本。一旦梯度被如<code>backward()</code>之类的函数计算好后，我们就可以调用这个函数。</p>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for input, target in dataset:</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    output = model(input)</span><br><span class="line">    loss = loss_fn(output, target)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></table></figure>
+
+<p><strong>optimizer.step(closure)</strong></p>
+<p>一些优化算法例如Conjugate Gradient和LBFGS需要重复多次计算函数，因此你需要传入一个闭包去允许它们重新计算你的模型。这个闭包应当清空梯度， 计算损失，然后返回。</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for input, target in dataset:</span><br><span class="line">    def closure():</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        output = model(input)</span><br><span class="line">        loss = loss_fn(output, target)</span><br><span class="line">        loss.backward()</span><br><span class="line">        return loss</span><br><span class="line">    optimizer.step(closure)</span><br></pre></td></tr></table></figure>
+
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="class-torch-optim-Optimizer-params-defaults-source"><a href="#class-torch-optim-Optimizer-params-defaults-source" class="headerlink" title="class torch.optim.Optimizer(params, defaults) [source]"></a>class torch.optim.Optimizer(params, defaults) [source]</h3><p>Base class for all optimizers.</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) —— <code>Variable</code> 或者 <code>dict</code>的iterable。指定了什么参数应当被优化。</li>
+<li>defaults —— (dict)：包含了优化选项默认值的字典（一个参数组没有指定的参数选项将会使用默认值）。</li>
+</ul>
+<h4 id="load-state-dict-state-dict-source"><a href="#load-state-dict-state-dict-source" class="headerlink" title="load_state_dict(state_dict) [source]"></a>load_state_dict(state_dict) [source]</h4><p>加载optimizer状态</p>
+<p><strong>参数：</strong></p>
+<p>state_dict (<code>dict</code>) —— optimizer的状态。应当是一个调用<code>state_dict()</code>所返回的对象。</p>
+<h4 id="state-dict-source"><a href="#state-dict-source" class="headerlink" title="state_dict() [source]"></a>state_dict() [source]</h4><p>以<code>dict</code>返回optimizer的状态。</p>
+<p>它包含两项。</p>
+<ul>
+<li>state - 一个保存了当前优化状态的dict。optimizer的类别不同，state的内容也会不同。</li>
+<li>param_groups - 一个包含了全部参数组的dict。</li>
+</ul>
+<h4 id="step-closure-source"><a href="#step-closure-source" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h4 id="zero-grad-source"><a href="#zero-grad-source" class="headerlink" title="zero_grad() [source]"></a>zero_grad() [source]</h4><p>清空所有被优化过的Variable的梯度.</p>
+<h3 id="class-torch-optim-Adadelta-params-lr-1-0-rho-0-9-eps-1e-06-weight-decay-0-source"><a href="#class-torch-optim-Adadelta-params-lr-1-0-rho-0-9-eps-1e-06-weight-decay-0-source" class="headerlink" title="class torch.optim.Adadelta(params, lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)[source]"></a>class torch.optim.Adadelta(params, lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)[source]</h3><p>实现Adadelta算法。</p>
+<p>它在<a href="https://arxiv.org/abs/1212.5701" target="_blank" rel="noopener">ADADELTA: An Adaptive Learning Rate Method.</a>中被提出。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict</li>
+<li>rho (<code>float</code>, 可选) – 用于计算平方梯度的运行平均值的系数（默认：0.9）</li>
+<li>eps (<code>float</code>, 可选) – 为了增加数值计算的稳定性而加到分母里的项（默认：1e-6）</li>
+<li>lr (<code>float</code>, 可选) – 在delta被应用到参数更新之前对它缩放的系数（默认：1.0）</li>
+<li>weight_decay (<code>float</code>, 可选) – 权重衰减（L2惩罚）（默认: 0）</li>
+</ul>
+<h4 id="step-closure-source-1"><a href="#step-closure-source-1" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h3 id="class-torch-optim-Adagrad-params-lr-0-01-lr-decay-0-weight-decay-0-source"><a href="#class-torch-optim-Adagrad-params-lr-0-01-lr-decay-0-weight-decay-0-source" class="headerlink" title="class torch.optim.Adagrad(params, lr=0.01, lr_decay=0, weight_decay=0)[source]"></a>class torch.optim.Adagrad(params, lr=0.01, lr_decay=0, weight_decay=0)[source]</h3><p>实现Adagrad算法。</p>
+<p>它在 <a href="http://jmlr.org/papers/v12/duchi11a.html" target="_blank" rel="noopener">Adaptive Subgradient Methods for Online Learning and Stochastic Optimization</a>中被提出。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict</li>
+<li>lr (<code>float</code>, 可选) – 学习率（默认: 1e-2）</li>
+<li>lr_decay (<code>float</code>, 可选) – 学习率衰减（默认: 0）</li>
+<li>weight_decay (<code>float</code>, 可选) – 权重衰减（L2惩罚）（默认: 0）</li>
+</ul>
+<h4 id="step-closure-source-2"><a href="#step-closure-source-2" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h3 id="class-torch-optim-Adam-params-lr-0-001-betas-0-9-0-999-eps-1e-08-weight-decay-0-source"><a href="#class-torch-optim-Adam-params-lr-0-001-betas-0-9-0-999-eps-1e-08-weight-decay-0-source" class="headerlink" title="class torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)[source]"></a>class torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)[source]</h3><p>实现Adam算法。</p>
+<p>它在<a href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">Adam: A Method for Stochastic Optimization</a>中被提出。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict</li>
+<li>lr (<code>float</code>, 可选) – 学习率（默认：1e-3）</li>
+<li>betas (Tuple[<code>float</code>, <code>float</code>], 可选) – 用于计算梯度以及梯度平方的运行平均值的系数（默认：0.9，0.999）</li>
+<li>eps (<code>float</code>, 可选) – 为了增加数值计算的稳定性而加到分母里的项（默认：1e-8）</li>
+<li>weight_decay (<code>float</code>, 可选) – 权重衰减（L2惩罚）（默认: 0）</li>
+</ul>
+<h4 id="step-closure-source-3"><a href="#step-closure-source-3" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h3 id="class-torch-optim-Adamax-params-lr-0-002-betas-0-9-0-999-eps-1e-08-weight-decay-0-source"><a href="#class-torch-optim-Adamax-params-lr-0-002-betas-0-9-0-999-eps-1e-08-weight-decay-0-source" class="headerlink" title="class torch.optim.Adamax(params, lr=0.002, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)[source]"></a>class torch.optim.Adamax(params, lr=0.002, betas=(0.9, 0.999), eps=1e-08, weight_decay=0)[source]</h3><p>实现Adamax算法（Adam的一种基于无穷范数的变种）。</p>
+<p>它在<a href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">Adam: A Method for Stochastic Optimization</a>中被提出。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict</li>
+<li>lr (<code>float</code>, 可选) – 学习率（默认：2e-3）</li>
+<li>betas (Tuple[<code>float</code>, <code>float</code>], 可选) – 用于计算梯度以及梯度平方的运行平均值的系数</li>
+<li>eps (<code>float</code>, 可选) – 为了增加数值计算的稳定性而加到分母里的项（默认：1e-8）</li>
+<li>weight_decay (<code>float</code>, 可选) – 权重衰减（L2惩罚）（默认: 0）</li>
+</ul>
+<h4 id="step-closure-source-4"><a href="#step-closure-source-4" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h3 id="class-torch-optim-ASGD-params-lr-0-01-lambd-0-0001-alpha-0-75-t0-1000000-0-weight-decay-0-source"><a href="#class-torch-optim-ASGD-params-lr-0-01-lambd-0-0001-alpha-0-75-t0-1000000-0-weight-decay-0-source" class="headerlink" title="class torch.optim.ASGD(params, lr=0.01, lambd=0.0001, alpha=0.75, t0=1000000.0, weight_decay=0)[source]"></a>class torch.optim.ASGD(params, lr=0.01, lambd=0.0001, alpha=0.75, t0=1000000.0, weight_decay=0)[source]</h3><p>实现平均随机梯度下降算法。</p>
+<p>它在<a href="http://dl.acm.org/citation.cfm?id=131098" target="_blank" rel="noopener">Acceleration of stochastic approximation by averaging</a>中被提出。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>params (iterable) – 待优化参数的iterable或者是定义了参数组的dict</li>
+<li>lr (<code>float</code>, 可选) – 学习率（默认：1e-2）</li>
+<li>lambd (<code>float</code>, 可选) – 衰减项（默认：1e-4）</li>
+<li>alpha (<code>float</code>, 可选) – eta更新的指数（默认：0.75）</li>
+<li>t0 (<code>float</code>, 可选) – 指明在哪一次开始平均化（默认：1e6）</li>
+<li>weight_decay (<code>float</code>, 可选) – 权重衰减（L2惩罚）（默认: 0）</li>
+</ul>
+<h4 id="step-closure-source-5"><a href="#step-closure-source-5" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h3 id="class-torch-optim-LBFGS-params-lr-1-max-iter-20-max-eval-None-tolerance-grad-1e-05-tolerance-change-1e-09-history-size-100-line-search-fn-None-source"><a href="#class-torch-optim-LBFGS-params-lr-1-max-iter-20-max-eval-None-tolerance-grad-1e-05-tolerance-change-1e-09-history-size-100-line-search-fn-None-source" class="headerlink" title="class  torch.optim.LBFGS(params, lr=1, max_iter=20, max_eval=None,  tolerance_grad=1e-05, tolerance_change=1e-09, history_size=100,  line_search_fn=None)[source]"></a>class  torch.optim.LBFGS(params, lr=1, max_iter=20, max_eval=None,  tolerance_grad=1e-05, tolerance_change=1e-09, history_size=100,  line_search_fn=None)[source]</h3><p>实现L-BFGS算法。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>这个optimizer不支持为每个参数单独设置选项以及不支持参数组（只能有一个）</p>
+<h4 id="警告-1"><a href="#警告-1" class="headerlink" title="警告"></a>警告</h4><p>目前所有的参数不得不都在同一设备上。在将来这会得到改进。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>这是一个内存高度密集的optimizer（它要求额外的<code>param_bytes * (history_size + 1)</code> 个字节）。如果它不适应内存，尝试减小history size，或者使用不同的算法。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>lr (<code>float</code>) – 学习率（默认：1）</li>
+<li>max_iter (<code>int</code>) – 每一步优化的最大迭代次数（默认：20）)</li>
+<li>max_eval (<code>int</code>) – 每一步优化的最大函数评价次数（默认：max * 1.25）</li>
+<li>tolerance_grad (<code>float</code>) – 一阶最优的终止容忍度（默认：1e-5）</li>
+<li>tolerance_change (<code>float</code>) – 在函数值/参数变化量上的终止容忍度（默认：1e-9）</li>
+<li>history_size (<code>int</code>) – 更新历史的大小（默认：100）</li>
+</ul>
+<h4 id="step-closure-source-6"><a href="#step-closure-source-6" class="headerlink" title="step(closure) [source]"></a>step(closure) [source]</h4><p>进行单次优化 (参数更新).</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>closure (<code>callable</code>) – 一个重新评价模型并返回loss的闭包，对于大多数参数来说是可选的。</li>
+</ul>
+<h4 id="五-、torch-utils-data"><a href="#五-、torch-utils-data" class="headerlink" title="(五)、torch.utils.data"></a>(五)、torch.utils.data</h4><h5 id="torch-utils-data-TensorDataset"><a href="#torch-utils-data-TensorDataset" class="headerlink" title="torch.utils.data.TensorDataset()"></a><strong>torch.utils.data.TensorDataset()</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.utils.data.TensorDataset(data_tensor, target_tensor)</span><br></pre></td></tr></table></figure>
+
+<p>包装数据和目标张量的数据集。</p>
+<p>通过沿着第一个维度索引两个张量来恢复每个样本。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><strong>data_tensor</strong> (<em>Tensor</em>) －　包含样本数据</li>
+<li><strong>target_tensor</strong> (<em>Tensor</em>) －　包含样本目标（标签）</li>
+</ul>
+<h5 id="data-DataLoader"><a href="#data-DataLoader" class="headerlink" title="data.DataLoader()"></a><strong>data.DataLoader()</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, sampler=None, num_workers=0, collate_fn=&lt;function default_collate&gt;, pin_memory=False, drop_last=False)</span><br></pre></td></tr></table></figure>
+
+<p>数据加载器。组合数据集和采样器，并在数据集上提供单进程或多进程迭代器。</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li><strong>dataset</strong> (<em>Dataset</em>) – 加载数据的数据集。</li>
+<li><strong>batch_size</strong> (<em>int</em>, optional) – 每个batch加载多少个样本(默认: 1)。</li>
+<li><strong>shuffle</strong> (<em>bool</em>, optional) – 设置为<code>True</code>时会在每个epoch重新打乱数据(默认: False).</li>
+<li><strong>sampler</strong> (<em>Sampler</em>, optional) – 定义从数据集中提取样本的策略。如果指定，则忽略<code>shuffle</code>参数。</li>
+<li><strong>num_workers</strong> (<em>int</em>, optional) – 用多少个子进程加载数据。0表示数据将在主进程中加载(默认: 0)</li>
+<li><strong>collate_fn</strong> (<em>callable</em>, optional) –</li>
+<li><strong>pin_memory</strong> (<em>bool</em>, optional) –</li>
+<li><strong>drop_last</strong> (<em>bool</em>, optional) – 如果数据集大小不能被batch size整除，则设置为True后可删除最后一个不完整的batch。如果设为False并且数据集的大小不能被batch size整除，则最后一个batch将更小。(默认: False)</li>
+</ul>
+<h1 id="二、莫烦python"><a href="#二、莫烦python" class="headerlink" title="二、莫烦python"></a>二、莫烦python</h1><h3 id="一-、批处理-batch"><a href="#一-、批处理-batch" class="headerlink" title="(一)、批处理(batch)"></a>(一)、批处理(batch)</h3><p>Torch 中提供了一种帮你整理你的数据结构的好东西, 叫做 <code>DataLoader</code>, 我们能用它来包装自己的数据,<br>进行批训练. </p>
+<h4 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h4><p><code>DataLoader</code> 是 torch 给你用来包装你的数据的工具. 所以你要讲自己的 (numpy array 或其他) 数据形式装换成 Tensor, 然后再放进这个包装器中. 使用 <code>DataLoader</code> 有什么好处呢? 就是他们帮你有效地迭代数据, 举例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line">torch.manual_seed(<span class="number">1</span>)    <span class="comment"># reproducible</span></span><br><span class="line"></span><br><span class="line">BATCH_SIZE = <span class="number">5</span>      <span class="comment"># 批训练的数据个数</span></span><br><span class="line"></span><br><span class="line">x = torch.linspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">10</span>)       <span class="comment"># x data (torch tensor)</span></span><br><span class="line">y = torch.linspace(<span class="number">10</span>, <span class="number">1</span>, <span class="number">10</span>)       <span class="comment"># y data (torch tensor)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 先转换成 torch 能识别的 Dataset</span></span><br><span class="line">torch_dataset = Data.TensorDataset(data_tensor=x, target_tensor=y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把 dataset 放入 DataLoader</span></span><br><span class="line">loader = Data.DataLoader(</span><br><span class="line">    dataset=torch_dataset,      <span class="comment"># torch TensorDataset format</span></span><br><span class="line">    batch_size=BATCH_SIZE,      <span class="comment"># mini batch size</span></span><br><span class="line">    shuffle=<span class="literal">True</span>,               <span class="comment"># 要不要打乱数据 (打乱比较好)</span></span><br><span class="line">    num_workers=<span class="number">2</span>,              <span class="comment"># 多线程来读数据</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">3</span>):   <span class="comment"># 训练所有!整套!数据 3 次</span></span><br><span class="line">    <span class="keyword">for</span> step, (batch_x, batch_y) <span class="keyword">in</span> enumerate(loader):  <span class="comment"># 每一步 loader 释放一小批数据用来学习</span></span><br><span class="line">        <span class="comment"># 假设这里就是你训练的地方...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 打出来一些数据</span></span><br><span class="line">        print(<span class="string">'Epoch: '</span>, epoch, <span class="string">'| Step: '</span>, step, <span class="string">'| batch x: '</span>,</span><br><span class="line">              batch_x.numpy(), <span class="string">'| batch y: '</span>, batch_y.numpy())</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Epoch:  0 | Step:  0 | batch x:  [ 6.  7.  2.  3.  1.] | batch y:  [  5.   4.   9.   8.  10.]</span></span><br><span class="line"><span class="string">Epoch:  0 | Step:  1 | batch x:  [  9.  10.   4.   8.   5.] | batch y:  [ 2.  1.  7.  3.  6.]</span></span><br><span class="line"><span class="string">Epoch:  1 | Step:  0 | batch x:  [  3.   4.   2.   9.  10.] | batch y:  [ 8.  7.  9.  2.  1.]</span></span><br><span class="line"><span class="string">Epoch:  1 | Step:  1 | batch x:  [ 1.  7.  8.  5.  6.] | batch y:  [ 10.   4.   3.   6.   5.]</span></span><br><span class="line"><span class="string">Epoch:  2 | Step:  0 | batch x:  [ 3.  9.  2.  6.  7.] | batch y:  [ 8.  2.  9.  5.  4.]</span></span><br><span class="line"><span class="string">Epoch:  2 | Step:  1 | batch x:  [ 10.   4.   8.   1.   5.] | batch y:  [  1.   7.   3.  10.   6.]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出, 每步都导出了5个数据进行学习. 然后每个 epoch 的导出数据都是先打乱了以后再导出.</p>
+<p>真正方便的还不是这点. 如果我们改变一下 <code>BATCH_SIZE = 8</code>, 这样我们就知道, <code>step=0</code> 会导出8个数据, 但是, <code>step=1</code> 时数据库中的数据不够 8个, 这时怎么办呢:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">BATCH_SIZE = <span class="number">8</span>      <span class="comment"># 批训练的数据个数</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ...:</span><br><span class="line">    <span class="keyword">for</span> ...:</span><br><span class="line">        ...</span><br><span class="line">        print(<span class="string">'Epoch: '</span>, epoch, <span class="string">'| Step: '</span>, step, <span class="string">'| batch x: '</span>,</span><br><span class="line">              batch_x.numpy(), <span class="string">'| batch y: '</span>, batch_y.numpy())</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Epoch:  0 | Step:  0 | batch x:  [  6.   7.   2.   3.   1.   9.  10.   4.] | batch y:  [  5.   4.   9.   8.  10.   2.   1.   7.]</span></span><br><span class="line"><span class="string">Epoch:  0 | Step:  1 | batch x:  [ 8.  5.] | batch y:  [ 3.  6.]</span></span><br><span class="line"><span class="string">Epoch:  1 | Step:  0 | batch x:  [  3.   4.   2.   9.  10.   1.   7.   8.] | batch y:  [  8.   7.   9.   2.   1.  10.   4.   3.]</span></span><br><span class="line"><span class="string">Epoch:  1 | Step:  1 | batch x:  [ 5.  6.] | batch y:  [ 6.  5.]</span></span><br><span class="line"><span class="string">Epoch:  2 | Step:  0 | batch x:  [  3.   9.   2.   6.   7.  10.   4.   8.] | batch y:  [ 8.  2.  9.  5.  4.  1.  7.  3.]</span></span><br><span class="line"><span class="string">Epoch:  2 | Step:  1 | batch x:  [ 1.  5.] | batch y:  [ 10.   6.]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>这时, 在 <code>step=1</code> 就只给你返回这个 epoch 中剩下的数据就好了.</p>
+<p>所以这也就是在我 <a href="https://github.com/MorvanZhou/PyTorch-Tutorial/blob/master/tutorial-contents/305_batch_train.py" target="_blank" rel="noopener">github 代码</a> 中的每一步的意义啦.</p>
 
         </div>
 
@@ -388,6 +592,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/08/python-拾遗/">python 拾遗</a>
             
             
             <a class="next" rel="next" href="/2019/10/07/python-数据处理/">python 数据处理</a>
