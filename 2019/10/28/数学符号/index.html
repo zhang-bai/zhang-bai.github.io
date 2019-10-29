@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>数学符号 | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">数学符号</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 28, 2019&nbsp;&nbsp;21:17:48</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>换行 </p>
+<p>​    //</p>
+<h4 id="上下标"><a href="#上下标" class="headerlink" title="上下标:"></a>上下标:</h4><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dp_&#123;i&#125;$</span><br><span class="line">$dp_&#123;ar_&#123;i&#125;&#125;$</span><br><span class="line">$a^&#123;2^2&#125;$</span><br><span class="line">$dp_&#123;i&#125;\;^2$</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果：</strong><br> <em>d<strong>p</strong>i</em></p>
+<p><em>d<strong>p</strong>a<strong>r</strong>i</em><br><em>a</em>22<br><em>d*</em>p*<em>i</em>2</p>
+<h4 id="运算符："><a href="#运算符：" class="headerlink" title="运算符："></a>运算符：</h4><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">乘号: $\times$</span><br><span class="line">$dp_&#123;i&#125; = dp_&#123;i-1&#125; \times (1-p)$</span><br><span class="line">÷: $\div$</span><br><span class="line">加减号: $\pm$</span><br><span class="line">开方：$\sqrt&#123; x &#125;$</span><br><span class="line">开n次方：\sqrt[ n ]&#123; x &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果：</strong><br> ×</p>
+<p><em>d<strong>p</strong>i</em>=<em>d<strong>p</strong>i<em>−1×(1−</em>p</em>)<br>÷<br><em>d<strong>p</strong>i</em>=<em>d<strong>p</strong>i<em>−1÷(1−</em>p</em>)<br>±<br><em>x</em>−−√<br><em>x</em>−−√<em>n</em></p>
+<h4 id="向量："><a href="#向量：" class="headerlink" title="向量："></a>向量：</h4><p><em>a</em>⃗ </p>
+<p> ：<br><em>a</em>⃗ ⋅<em>b</em>⃗ =0</p>
+<h4 id="微积分："><a href="#微积分：" class="headerlink" title="微积分："></a>微积分：</h4><p>∫20<em>x</em>2d<em>x</em></p>
+<p> ：<br>lim<em>n</em>→+∞1<em>n</em>(<em>n</em>+1)</p>
+<h4 id="求和求极限："><a href="#求和求极限：" class="headerlink" title="求和求极限："></a>求和求极限：</h4><p>∑<em>n**i</em>=01<em>i</em>2</p>
+<p> ：<br>∏<em>n**i</em>=01<em>i</em>2</p>
+<h4 id="括号："><a href="#括号：" class="headerlink" title="括号："></a>括号：</h4><p>{ }: <code>$\{ \}$</code><br> (<em>a**b</em>)</p>
+<p> : <code>${a \choose b} $</code></p>
+<p> : <code>$ \frac{ x }{ y } $</code><br> () : <code>$ \left ()\right.$</code></p>
+<h4 id="省略号："><a href="#省略号：" class="headerlink" title="省略号："></a>省略号：</h4><p>…</p>
+<p> ：<br>⋯</p>
+<h4 id="转义字符："><a href="#转义字符：" class="headerlink" title="转义字符："></a>转义字符：</h4><p>#</p>
+<p> % &amp; _ { } $ ：<code>\# \$ \%\&amp;\_\{\}</code></p>
+<h3 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h3><p>∣：<code>\mid</code><br> ∗：<code>\ast</code><br> ≤：<code>\leq</code><br> ≥：<code>\geq</code><br> ≠：<code>\neq</code><br> ≈：<code>\approx</code><br> ≡：<code>\equiv</code><br> ∑：<code>\sum</code><br> ∏：<code>\prod</code><br> ∐：<code>\coprod</code><br> ⨀：<code>\bigodot</code><br> ⨂：<code>\bigotimes</code><br> ⨁：<code>\bigoplus</code></p>
+<h4 id="希腊字母："><a href="#希腊字母：" class="headerlink" title="希腊字母："></a>希腊字母：</h4><p>\alpha \beta \gamma \Gamma \delta \Delta \epsilon \varepsilon \zeta  \eta \theta \Theta \vartheta \iota \kappa \lambda \Lambda \mu \nu \xi  \Xi \pi \Pi \varpi \rho \varrho \sigma \Sigma \varsigma \tau \upsilon  \Upsilon \phi \Phi \varphi \chi \psi \Psi \Omega \omega</p>
+<p><em>α<strong>β</strong>γ<em>Γ</em>δ<em>Δ</em>ϵ<strong>ε</strong>ζ<strong>η</strong>θ<em>Θ</em>ϑ<strong>ι</strong>κ<strong>λ<em>Λ</em>μ</strong>ν<strong>ξ<em>Ξ</em>π<em>Π</em>ϖ</strong>ρ<strong>ϱ</strong>σ<em>Σ</em>ς<strong>τ</strong>υ<em>Υ</em>ϕ<em>Φ</em>φ<strong>χ</strong>ψ<em>ΨΩ</em>ω</em></p>
+<h4 id="集合运算符："><a href="#集合运算符：" class="headerlink" title="集合运算符："></a>集合运算符：</h4><p>∅：<code>\emptyset</code><br> ∈：<code>\in</code><br> ∉：<code>\notin</code><br> ⊂：<code>\subset</code><br> ⊃：<code>\supset</code><br> ⊆：<code>\subseteq</code><br> ⊇：<code>\supseteq</code><br> ⋂：<code>\bigcap</code><br> ⋃：<code>\bigcup</code><br> ⋁：<code>\bigvee</code><br> ⋀：<code>\bigwedge</code><br> ⨄：<code>\biguplus</code><br> ⨆：<code>\bigsqcup</code></p>
+<h4 id="对数符号："><a href="#对数符号：" class="headerlink" title="对数符号："></a>对数符号：</h4><p>log：<code>\log</code><br> lg：<code>\lg</code><br> ln：<code>\ln</code></p>
+<h4 id="箭头符号："><a href="#箭头符号：" class="headerlink" title="箭头符号："></a>箭头符号：</h4><p>↑：<code>\uparrow</code><br> ↓：<code>\downarrow</code><br> ⇑：<code>\Uparrow</code><br> ⇓：<code>\Downarrow</code><br> →：<code>\rightarrow</code><br> ←：<code>\leftarrow</code><br> ⇒：<code>\Rightarrow</code><br> ⇐：<code>\Leftarrow</code><br> ⟶：<code>\longrightarrow</code><br> ⟵：<code>\longleftarrow</code><br> ⟹：<code>\Longrightarrow</code><br> ⟸：<code>\Longleftarrow</code></p>
+<h4 id="三角运算符："><a href="#三角运算符：" class="headerlink" title="三角运算符："></a>三角运算符：</h4><p>⊥：<code>\bot</code><br> ∠：<code>\angle</code><br> 30∘：<code>30^\circ</code><br> sin：<code>\sin</code><br> cos：<code>\cos</code><br> tan：<code>\tan</code><br> cot：<code>\cot</code><br> sec：<code>\sec</code><br> csc：<code>\csc</code></p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/10/18/地震作业/">地震作业</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
