@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>filters | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">filters</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 30, 2019&nbsp;&nbsp;17:29:57</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/signal/">signal</a>
+                            
+                                <a href="/categories/signal/geophysics/">geophysics</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h1><p>[TOC]</p>
+<h4 id="一、FFT对应的频率和相位"><a href="#一、FFT对应的频率和相位" class="headerlink" title="一、FFT对应的频率和相位"></a>一、FFT对应的频率和相位</h4><p> 一个模拟信号，经过ADC采样之后，就变成了数字信号。采样定理告诉我们，采样频率要大于信号频率的两倍</p>
+<p>N个采样点，经过FFT之后，就可以得到N个点的FFT结果。为了方便进行FFT运算，通常N取2的整数次方。 </p>
+<p>假设采样频率为Fs，信号频率F，采样点数为N。那么FFT之后结果就是一个为N点的复数。每一个点就对应着一个频率点。这个点的模值，就是该频率值下的幅度特性。</p>
+<p>假设原始信号的峰值为A，那么FFT的结果的每个点（除了第一个点直流分量之外）的模值就是A的N/2倍。而第一个点就是直流分量，它的模值就是直流分量的N倍。而每个点的相位，就是在该频率下的信号的相位。</p>
+<p>第一个点表示直流分量（即0 Hz），而最后一个点N的再下一个点（实际上这个点是不存在的，这里是假设的第N+1个点，也可以看做是将第一个点分做两半分，另一半移到最后）则表示采样频率Fs，这中间被N-1个点平均分成N等份，每个点的频率依次增加。例如某点n所表示的频率为：<br>$$<br>f(n) = (n-1) \frac{Fs}{N}<br>$$<br>由上面的公式可以看出，Fn所能分辨到频率为Fs/N，如果采样频率Fs为1024 Hz，采样点数N为1024点，则可以分辨到1 Hz。1024 Hz的采样率采样1024点，刚好是1秒，也就是说，采样1秒时间的信号并做FFT，则结果可以分析到1 Hz，如果采样2秒时间的信号并做FFT，则结果可以分析到0.5 Hz。如果要提高频率分辨力，则必须增加采样点数，也即采样时间。频率分辨率和采样时间是倒数关系。 </p>
+<p>假设FFT之后某点n用复数a+bi表示，那么这个复数的模就是<br>$$<br>A(n) = \sqrt{ a^2+b^2}<br>$$<br>相位就是<br>$$<br>\varphi(n)=atan2(b,a)\<br>\<br>$$<br> 其中atan2(b,a)是求坐标为(a,b)点的角度值，范围从-pi到pi</p>
+<p>对于n=1点的信号，是直流分量，幅度即为 A/N。由于FFT结果的对称性，通常我们只使用前半部分的结果，即小于采样频率一半的结果。 </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">t=<span class="number">0</span>:<span class="number">1</span>/<span class="number">256</span>:<span class="number">1</span>;<span class="comment">%采样步长</span></span><br><span class="line">y= <span class="number">2</span>+<span class="number">3</span>*<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*<span class="number">50</span>*t-<span class="built_in">pi</span>*<span class="number">30</span>/<span class="number">180</span>)+<span class="number">1.5</span>*<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*<span class="number">75</span>*t+<span class="built_in">pi</span>*<span class="number">90</span>/<span class="number">180</span>);</span><br><span class="line">N=<span class="built_in">length</span>(t); <span class="comment">%样点个数</span></span><br><span class="line"><span class="built_in">plot</span>(t,y);</span><br><span class="line">fs=<span class="number">256</span>;<span class="comment">%采样频率</span></span><br><span class="line">df=fs/(N<span class="number">-1</span>) ;<span class="comment">%分辨率</span></span><br><span class="line">f=(<span class="number">0</span>:N<span class="number">-1</span>)*df;<span class="comment">%其中每点的频率</span></span><br><span class="line">Y=fft(y)/N*<span class="number">2</span>;<span class="comment">%真实的幅值</span></span><br><span class="line"><span class="comment">%Y=fftshift(Y);</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">plot</span>(f,<span class="built_in">abs</span>(Y));</span><br><span class="line"><span class="comment">%只使用前半部分</span></span><br><span class="line"><span class="comment">%figure(2)</span></span><br><span class="line"><span class="comment">%plot(f(1:N/2),abs(Y(1:N/2)));</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="二、雷克子波实验"><a href="#二、雷克子波实验" class="headerlink" title="二、雷克子波实验"></a>二、雷克子波实验</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">clc,clear</span><br><span class="line"></span><br><span class="line">fm=<span class="number">10</span>;<span class="comment">%主频</span></span><br><span class="line">dt=<span class="number">0.001</span>;<span class="comment">%时间域采样间隔</span></span><br><span class="line">number=<span class="number">1000</span><span class="comment">%采样点数</span></span><br><span class="line"><span class="comment">% t=-number/2+1:number/2;</span></span><br><span class="line">t=<span class="number">1</span>/number:<span class="number">2</span>/number:<span class="number">1</span>;</span><br><span class="line">a=(<span class="number">1</span><span class="number">-2</span>*(<span class="built_in">pi</span>*fm*t).^<span class="number">2</span>).*<span class="built_in">exp</span>(-(<span class="built_in">pi</span>*fm*t).^<span class="number">2</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">plot</span>(t,a);</span><br><span class="line">title(<span class="string">'Ricker-雷克子波'</span>);</span><br><span class="line">xlabel(<span class="string">'时间t（s）'</span>);</span><br><span class="line">ylabel(<span class="string">'幅值A'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(t)</span><br><span class="line">    f(<span class="built_in">i</span>)=<span class="number">1</span>/dt/number*(<span class="built_in">i</span><span class="number">-1</span>);<span class="comment">%计算频率</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">Y=<span class="built_in">abs</span>(fft(a));<span class="comment">%fourier变换，取振幅谱</span></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">% plot(t,Y)</span></span><br><span class="line"><span class="built_in">plot</span>(f(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>),Y(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>));</span><br><span class="line">title(<span class="string">'Ricker子波的振幅谱'</span>);</span><br><span class="line">xlabel(<span class="string">'频率f（hz）'</span>);</span><br><span class="line">ylabel(<span class="string">'振幅谱'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">%注：时间域采样间隔为0.001s，采样点数为100点，总的时间长度为0.1s，则频率域采样间隔为10hz。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line">noise = <span class="number">0.2</span>*<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*<span class="number">200</span>*t  + <span class="built_in">pi</span>*<span class="number">45</span>/<span class="number">180</span>);  <span class="comment">%频率给定180</span></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(t)</span><br><span class="line">f_noise(<span class="built_in">i</span>) = (<span class="built_in">i</span><span class="number">-1</span>)*<span class="number">1</span>/dt/number;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">Y_noise  = <span class="built_in">abs</span>(fft(noise));</span><br><span class="line"><span class="built_in">plot</span>(f_noise(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>),Y_noise(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">212</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,noise)</span><br><span class="line"></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line">b = a + noise ;</span><br><span class="line">Y_b = <span class="built_in">abs</span>(fft(b));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(t)</span><br><span class="line">    f_b (<span class="built_in">i</span> ) = (<span class="built_in">i</span><span class="number">-1</span>) * (<span class="number">1</span>/dt)/number;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">subplot(<span class="number">211</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,b)</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">212</span>)</span><br><span class="line"><span class="built_in">plot</span>(f_b(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>),Y_b(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">%% </span></span><br><span class="line">fc  = <span class="number">10</span>;</span><br><span class="line"><span class="comment">% t=1/number:2/number:2;</span></span><br><span class="line">h = <span class="built_in">sin</span>(<span class="number">2</span>*<span class="built_in">pi</span>*fc.*t)./(<span class="built_in">pi</span>.*t) ;</span><br><span class="line">Y_cc = conv(b,h) ;</span><br><span class="line"></span><br><span class="line">Y_c = Y_cc(<span class="number">250</span>:<span class="number">749</span>);</span><br><span class="line">Y_d = <span class="built_in">abs</span>(fft(Y_c)) ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(Y_d)</span><br><span class="line">    f_c(<span class="built_in">i</span>) = (<span class="built_in">i</span><span class="number">-1</span>)*(<span class="number">1</span>/dt)/number;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line"></span><br><span class="line">subplot(<span class="number">223</span>)</span><br><span class="line"><span class="built_in">plot</span>( Y_cc)</span><br><span class="line">title(<span class="string">'conv'</span>)</span><br><span class="line">subplot(<span class="number">221</span>)</span><br><span class="line"><span class="built_in">plot</span>(t,b)</span><br><span class="line">title(<span class="string">'b'</span>)</span><br><span class="line">subplot(<span class="number">224</span>)</span><br><span class="line"><span class="built_in">plot</span>(f_c(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>),Y_d(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>))</span><br><span class="line">title(<span class="string">'frequence filter'</span>)</span><br><span class="line">subplot(<span class="number">222</span>)</span><br><span class="line"><span class="built_in">plot</span>(f_b(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>),Y_b(<span class="number">1</span>:<span class="built_in">length</span>(t)/<span class="number">2</span>))</span><br><span class="line">title(<span class="string">'frequence noise'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/zhang-bai/PictureSource/master/filter.jpg" alt="结果图"></p>
+<p>结果存在由于截断导致的信号抖动（吉普斯现象），以及离散采样导致的伪门现象（途中180Hz噪声应该滤除但没有）</p>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/10/28/数学符号/">数学符号</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
