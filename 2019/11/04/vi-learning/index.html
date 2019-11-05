@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>vi learning | Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bai&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bai&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">vi learning</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 4, 2019&nbsp;&nbsp;23:22:17</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h2><p>在使用清华镜像源时，需要修改pip文档</p>
+<blockquote>
+<p>临时使用<br>可以在使用pip的时候加参数-i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br>例如：pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a> gevent，这样就会从清华这边的镜像去安装gevent库。</p>
+<p>永久修改<br>Linux下，修改 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：</p>
+<p>[global]<br>index-url = <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+<p>windows下，直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini，内容如下</p>
+<p>[global]<br>index-url = <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+</blockquote>
+<h2 id="二、用法"><a href="#二、用法" class="headerlink" title="二、用法"></a>二、用法</h2><h4 id="1、vi的基本操作"><a href="#1、vi的基本操作" class="headerlink" title="1、vi的基本操作"></a>1、vi的基本操作</h4><h5 id="a-进入vi"><a href="#a-进入vi" class="headerlink" title="a) 进入vi"></a>a) 进入vi</h5><p>  　在系统提示符号输入vi及文件名称后，就进入vi全屏幕编辑画面：</p>
+<p>　　　$ vi myfile<br> 　不过有一点要特别注意，就是您进入vi之后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert  mode）」才能够输入文字。初次使用vi的人都会想先用上下左右键移动光标，结果电脑一直哔哔叫，把自己气个半死，所以进入vi后，先不要乱动，转换到「插入模式（Insert mode）」再说吧！</p>
+<h5 id="b-切换至插入模式（Insert-mode）编辑文件"><a href="#b-切换至插入模式（Insert-mode）编辑文件" class="headerlink" title="b) 切换至插入模式（Insert mode）编辑文件"></a>b) 切换至插入模式（Insert mode）编辑文件</h5><p>　　在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。</p>
+<h5 id="c-Insert-的切换"><a href="#c-Insert-的切换" class="headerlink" title="c) Insert 的切换"></a>c) Insert 的切换</h5><p>　　您目前处于「插入模式（Insert mode）」，您就只能一直输入文字，如果您发现输错了字！想用光标键往回移动，将该字删除，就要先按一下「ESC」键转到「命令行模式（command mode）」再删除文字。</p>
+<h5 id="d-退出vi及保存文件"><a href="#d-退出vi及保存文件" class="headerlink" title="d) 退出vi及保存文件"></a>d) 退出vi及保存文件</h5><p>　　在「命令行模式（command mode）」下，按一下「：」冒号键进入「Last line mode」，例如：</p>
+<p>: w filename （输入 「w filename」将文章以指定的文件名filename保存）</p>
+<p>: wq (输入「wq」，存盘并退出vi)</p>
+<p>: q! (输入q!， 不存盘强制退出vi)</p>
+<h4 id="2、命令行模式（command-mode）功能键"><a href="#2、命令行模式（command-mode）功能键" class="headerlink" title="2、命令行模式（command mode）功能键"></a>2、命令行模式（command mode）功能键</h4><h5 id="1）-插入模式"><a href="#1）-插入模式" class="headerlink" title="1）. 插入模式"></a>1）. 插入模式</h5><p>​    按「i」切换进入插入模式「insert mode」，按”i”进入插入模式后是从光标当前位置开始输入文件；</p>
+<p>　　按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字；</p>
+<p>　　按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。</p>
+<h5 id="2）-从插入模式切换为命令行模式"><a href="#2）-从插入模式切换为命令行模式" class="headerlink" title="2）. 从插入模式切换为命令行模式"></a>2）. 从插入模式切换为命令行模式</h5><p>   按「ESC」键。</p>
+<h5 id="3）-移动光标"><a href="#3）-移动光标" class="headerlink" title="3）. 移动光标"></a>3）. 移动光标</h5><p>　　vi可以直接用键盘上的光标来上下左右移动，但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格。</p>
+<p>　　按「ctrl」+「b」：屏幕往”后”移动一页。</p>
+<p>　　按「ctrl」+「f」：屏幕往”前”移动一页。</p>
+<p>　　按「ctrl」+「u」：屏幕往”后”移动半页。</p>
+<p>　　按「ctrl」+「d」：屏幕往”前”移动半页。</p>
+<p>　　按数字「0」：移到文章的开头。</p>
+<p>　　按「G」：移动到文章的最后。</p>
+<p>　　按「$」：移动到光标所在行的”行尾”。</p>
+<p>　　按「^」：移动到光标所在行的”行首”</p>
+<p>　　按「w」：光标跳到下个字的开头</p>
+<p>　　按「e」：光标跳到下个字的字尾</p>
+<p>　　按「b」：光标回到上个字的开头</p>
+<p>　　按「#l」：光标移到该行的第#个位置，如：5l,56l。</p>
+<h5 id="4）-删除文字"><a href="#4）-删除文字" class="headerlink" title="4）. 删除文字"></a>4）. 删除文字</h5><p>　　「x」：每按一次，删除光标所在位置的”后面”一个字符。</p>
+<p>　　「#x」：例如，「6x」表示删除光标所在位置的”后面”6个字符。</p>
+<p>　　「X」：大写的X，每按一次，删除光标所在位置的”前面”一个字符。</p>
+<p>　　「#X」：例如，「20X」表示删除光标所在位置的”前面”20个字符。</p>
+<p>　　「dd」：删除光标所在行。</p>
+<p>　　「#dd」：从光标所在行开始删除#行</p>
+<h5 id="5）-复制"><a href="#5）-复制" class="headerlink" title="5）. 复制"></a>5）. 复制</h5><p>　　「yw」：将光标所在之处到字尾的字符复制到缓冲区中。</p>
+<p>　　「#yw」：复制#个字到缓冲区</p>
+<p>　　「yy」：复制光标所在行到缓冲区。</p>
+<p>　　「#yy」：例如，「6yy」表示拷贝从光标所在的该行”往下数”6行文字。</p>
+<p>　　「p」：将缓冲区内的字符贴到光标所在位置。注意：所有与”y”有关的复制命令都必须与”p”配合才能完成复制与粘贴功能。</p>
+<h5 id="6）-替换"><a href="#6）-替换" class="headerlink" title="6）. 替换"></a>6）. 替换</h5><p>　　「r」：替换光标所在处的字符。</p>
+<p>　　「R」：替换光标所到之处的字符，直到按下「ESC」键为止。</p>
+<h5 id="7）-回复上一次操作"><a href="#7）-回复上一次操作" class="headerlink" title="7）. 回复上一次操作"></a>7）. 回复上一次操作</h5><p>　　「u」：如果您误执行一个命令，可以马上按下「u」，回到上一个操作。按多次”u”可以执行多次回复。</p>
+<h5 id="8）-更改"><a href="#8）-更改" class="headerlink" title="8）. 更改"></a>8）. 更改</h5><p>　　「cw」：更改光标所在处的字到字尾处</p>
+<p>　　「c#w」：例如，「c3w」表示更改3个字</p>
+<h5 id="9）-跳至指定的行"><a href="#9）-跳至指定的行" class="headerlink" title="9）. 跳至指定的行"></a>9）. 跳至指定的行</h5><p>　　「ctrl」+「g」列出光标所在行的行号。</p>
+<p>　　「#G」：例如，「15G」，表示移动光标至文章的第15行行首。</p>
+<h4 id="3、Last-line-mode下命令简介"><a href="#3、Last-line-mode下命令简介" class="headerlink" title="3、Last line mode下命令简介"></a>3、Last line mode下命令简介</h4><p> 　在使用「last line mode」之前，请记住先按「ESC」键确定您已经处于「command mode」下后，再按「：」冒号即可进入「last line mode」。</p>
+<h5 id="A-列出行号"><a href="#A-列出行号" class="headerlink" title="A) 列出行号"></a>A) 列出行号</h5><p>　「set nu」：输入「set nu」后，会在文件中的每一行前面列出行号。</p>
+<h5 id="B-跳到文件中的某一行"><a href="#B-跳到文件中的某一行" class="headerlink" title="B) 跳到文件中的某一行"></a>B) 跳到文件中的某一行</h5><p>　「#」：「#」号表示一个数字，在冒号后输入一个数字，再按回车键就会跳到该行了，如输入数字15，再回车，就会跳到文章的第15行。</p>
+<h5 id="C-查找字符"><a href="#C-查找字符" class="headerlink" title="C) 查找字符"></a>C) 查找字符</h5><p>　「/关键字」：先按「/」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往后寻找到您要的关键字为止。</p>
+<p>　「?关键字」：先按「?」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往前寻找到您要的关键字为止。</p>
+<h5 id="D-保存文件"><a href="#D-保存文件" class="headerlink" title="D) 保存文件"></a>D) 保存文件</h5><p>　「w」：在冒号输入字母「w」就可以将文件保存起来。</p>
+<h5 id="E-离开vi"><a href="#E-离开vi" class="headerlink" title="E) 离开vi"></a>E) 离开vi</h5><p>　「q」：按「q」就是退出，如果无法离开vi，可以在「q」后跟一个「!」强制离开vi。</p>
+<p>　「qw」：一般建议离开时，搭配「w」一起使用，这样在退出的时候还可以保存文件。</p>
+<h4 id="4、vi命令列表"><a href="#4、vi命令列表" class="headerlink" title="4、vi命令列表"></a>4、vi命令列表</h4><h5 id="1、下表列出命令模式下的一些键的功能："><a href="#1、下表列出命令模式下的一些键的功能：" class="headerlink" title="1、下表列出命令模式下的一些键的功能："></a>1、下表列出命令模式下的一些键的功能：</h5><p>h<br> 左移光标一个字符</p>
+<p>l<br> 右移光标一个字符</p>
+<p>k<br> 光标上移一行</p>
+<p>j<br> 光标下移一行</p>
+<p>^<br> 光标移动至行首</p>
+<p>0<br> 数字”0”，光标移至文章的开头</p>
+<p>G<br> 光标移至文章的最后</p>
+<p>$<br> 光标移动至行尾</p>
+<p>Ctrl+f<br> 向前翻屏</p>
+<p>Ctrl+b<br> 向后翻屏</p>
+<p>Ctrl+d<br> 向前翻半屏</p>
+<p>Ctrl+u<br> 向后翻半屏</p>
+<p>i<br> 在光标位置前插入字符</p>
+<p>a<br> 在光标所在位置的后一个字符开始增加</p>
+<p>o<br> 插入新的一行，从行首开始输入</p>
+<p>ESC<br> 从输入状态退至命令状态</p>
+<p>x<br> 删除光标后面的字符</p>
+<p>#x<br> 删除光标后的＃个字符</p>
+<p>X<br> (大写X)，删除光标前面的字符</p>
+<p>#X<br> 删除光标前面的#个字符</p>
+<p>dd<br> 删除光标所在的行</p>
+<p>#dd<br> 删除从光标所在行数的#行</p>
+<p>yw<br> 复制光标所在位置的一个字</p>
+<p>#yw<br> 复制光标所在位置的#个字</p>
+<p>yy<br> 复制光标所在位置的一行</p>
+<p>#yy<br> 复制从光标所在行数的#行</p>
+<p>p<br> 粘贴</p>
+<p>u<br> 取消操作</p>
+<p>cw<br> 更改光标所在位置的一个字</p>
+<p>#cw<br> 更改光标所在位置的#个字</p>
+<p> 2、下表列出行命令模式下的一些指令<br> w filename<br> 储存正在编辑的文件为filename</p>
+<p>wq filename<br> 储存正在编辑的文件为filename，并退出vi</p>
+<p>q!<br> 放弃所有修改，退出vi</p>
+<p>set nu<br> 显示行号</p>
+<p>/或?<br> 查找，在/后输入要查找的内容</p>
+<p>n<br> 与/或?一起使用，如果查找的内容不是想要找的关键字，按n或向后（与/联用）或向前（与?联用）继续查找，直到找到为止。</p>
+<blockquote>
+<p>对于第一次用vi，有几点注意要提醒一下：<br> 1、用vi打开文件后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert  mode）」才能够输入文字。切换方法：在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert  mode）」，这时候你就可以开始输入文字了。<br> 2、编辑好后，需从插入模式切换为命令行模式才能对文件进行保存，切换方法：按「ESC」键。<br> 3、保存并退出文件：在命令模式下输入:wq即可！（别忘了wq前面的:） linux-Vi使用方法(备查)</p>
+</blockquote>
+
+        </div>
+
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/04/Ubuntu下安装python2.7遇到的一些坑/">Ubuntu下安装python2.7遇到的一些坑</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/30/filters/">filters</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Zhang Bai | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

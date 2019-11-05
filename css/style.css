@@ -1290,18 +1290,3 @@ header label {
 .highlight .code .emphasis {
   font-style: italic;
 }
-body {
-  background: url("https://link.zhihu.com/?target=http%3A//area.sinaapp.com/bingImg/");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  -ms-background-size: cover;
-/*�������õײ�����, ��������Ҫ�޸�*/
-}
-body #footer > div > div {
-  color: #eee;
-}
