@@ -183,9 +183,18 @@
         <div class="post-content">
             <p>使用清华镜像</p>
 <p>临时使用<br> 可以在使用pip的时候加参数-i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br> 例如：pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a> gevent，这样就会从清华这边的镜像去安装gevent库。</p>
-<p>永久修改<br> Linux下，修改 ~/.pip/pip.conf (没有就创建一个)， 修改 index-url至tuna，内容如下：</p>
-<p>[global]<br> index-url = <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
-<p>windows下，直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini，内容如下</p>
+<p>永久修改</p>
+<p> Linux下:</p>
+<pre><code>1、在用户目录下（/home/XXX）创建.pip文件夹，并创建pip.conf文件 ($mkdir .pip    $touch pip.conf)
+2、在pip.conf下输入：（注意：这里更换的是阿里云镜像源）   (vi pip.conf)
+
+ [global]
+
+# trusted-host = mirrors.aliyun.com
+
+ index-url = http://mirrors.aliyun.com/pypi/simple
+
+3、 sudo apt-get  update</code></pre><p>windows下，直接在user目录中创建一个pip目录，如：C:\Users\xx\pip，新建文件pip.ini，内容如下</p>
 <p>[global]<br> index-url = <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
 <h1 id="坑1-numpy安装"><a href="#坑1-numpy安装" class="headerlink" title="坑1    numpy安装"></a>坑1    numpy安装</h1><h4 id="1-numpy-版本不支持"><a href="#1-numpy-版本不支持" class="headerlink" title="1.numpy 版本不支持"></a>1.numpy 版本不支持</h4><p> NumPy社区决定取消对<a href="https://www.linuxidc.com/topicnews.aspx?tid=17" target="_blank" rel="noopener">Python</a> 2.7的支持。Python 3.4支持也将随这个pull请求一起删除。所以现在，要使用NumPy 1.17和更新的版本，您需要Python 3.5或更高版本 </p>
 <p><strong>解决方案</strong></p>
@@ -198,6 +207,15 @@
 <h1 id="坑2-Matplotlib-安装"><a href="#坑2-Matplotlib-安装" class="headerlink" title="坑2 Matplotlib 安装"></a>坑2 Matplotlib 安装</h1><h4 id="1-版本不支持"><a href="#1-版本不支持" class="headerlink" title="1.版本不支持"></a>1.版本不支持</h4><p>The upcoming version Matplotlib 3.0 will be Python 3 only.</p>
 <p>For Python 2 support, Matplotlib 2.2.x will be continued as a LTS release and updated with bugfixes until January 1, 2020.</p>
 <h4 id="2-依赖关系"><a href="#2-依赖关系" class="headerlink" title="2.依赖关系"></a>2.依赖关系</h4><p>依赖关系不好找，freetype,安装时需要sudo 权限，安装提示安装sudo apt-get install即可</p>
+<h1 id="坑3-Scipy-安装"><a href="#坑3-Scipy-安装" class="headerlink" title="坑3 Scipy 安装"></a>坑3 Scipy 安装</h1><p>版本需要scipy 最新为 1.2.2</p>
+<p>$ sudo pip install “scipy &lt; 2.0”</p>
+<p>安装pip3</p>
+<p>sudo apt-get install python3-pip</p>
+<p>升级pip3</p>
+<p>sudo pip3 install –upgrade pip</p>
+<p>卸载pip3</p>
+<p>sudo apt-get remove python3-pip</p>
+<h1 id="anaconda-安装"><a href="#anaconda-安装" class="headerlink" title="anaconda 安装"></a>anaconda 安装</h1><p>$sudo sh Anaconda3-5.2.0-Linux-x86_64.sh</p>
 
         </div>
 
