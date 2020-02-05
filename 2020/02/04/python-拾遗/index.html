@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">python 拾遗 | sakura</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "一直在减肥的Bai";
+  mashiro_option.author_name = "Bai";
+  mashiro_option.site_url = "https://zhang-bai.github.io";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(2).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(3).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(4).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(5).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(7).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://zhang-bai.github.io">
+          <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Stay with you !</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/zhang-bai" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1https://raw.githubusercontent.com/zhang-bai/picture/master/github.svg">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">一直在减肥的</span>
+            <span class="shironeko">Bai</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/AI/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          人工学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Geophysics/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          皇家地探
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Coding/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          快乐码畜
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Fun/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          自娱自乐
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">python 拾遗</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2020-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <p>[TOC]</p>
+<h2 id="1-super函数与子类继承父类构造函数"><a href="#1-super函数与子类继承父类构造函数" class="headerlink" title="1. super函数与子类继承父类构造函数"></a><strong>1. super函数与子类继承父类构造函数</strong></h2><p>情况一：<strong>子类需要自动调用父类的方法：</strong>子类不重写<strong>init</strong>()方法，实例化子类后，会自动调用父类的<strong>init</strong>()的方法。</p>
+<p>情况二：<strong>子类不需要自动调用父类的方法：</strong>子类重写<strong>init</strong>()方法，实例化子类后，将不会自动调用父类的<strong>init</strong>()的方法。</p>
+<p>情况三：<strong>子类重写<strong>init</strong>()方法又需要调用父类的方法：</strong>使用<strong>super</strong>关键词：</p>
+<pre><code class="super(子类，self).__init__(参数1，参数2，....)```">
+例子:
+
+```python
+class Father(object):
+    def __init__(self, name):
+        self.name=name
+        print ( &quot;name: %s&quot; %( self.name) )
+    def getName(self):
+        return &#39;Father &#39; + self.name
+
+class Son(Father):
+    def __init__(self, name):
+        print ( &quot;hi&quot; )
+        self.name =  name
+    def getName(self):
+        return &#39;Son &#39;+self.name
+
+if __name__==&#39;__main__&#39;:
+    son=Son(&#39;runoob&#39;)
+    print ( son.getName() )
+
+&quot;&quot;&quot;
+hi
+Son runoob
+&quot;&quot;&quot;
+</code></pre>
+<pre><code class="python">class Father(object):
+    def __init__(self, name):
+        self.name=name
+        print ( &quot;name: %s&quot; %( self.name))
+    def getName(self):
+        return &#39;Father &#39; + self.name
+
+class Son(Father):
+    def __init__(self, name):
+        super(Son, self).__init__(name)
+        print (&quot;hi&quot;)
+        self.name =  name
+    def getName(self):
+        return &#39;Son &#39;+self.name
+
+if __name__==&#39;__main__&#39;:
+    son=Son(&#39;runoob&#39;)
+    print ( son.getName() )
+
+&quot;&quot;&quot;
+name: runoob
+hi
+Son runoob
+&quot;&quot;&quot;
+</code></pre>
+<p>在类的继承里面super()非常常用， 它解决了子类调用父类方法的一些问题， 父类多次被调用时只执行一次， 优化了执行逻辑，下面我们就来详细看一下。</p>
+<p> 举一个例子：</p>
+<pre><code class="python">class Foo: 
+    def bar(self, message):  
+        print(message)
+&gt;&gt;&gt; Foo().bar(&quot;Hello, Python.&quot;)
+Hello, Python.
+</code></pre>
+<p>当存在继承关系的时候，有时候需要在子类中调用父类的方法，此时最简单的方法是把对象调用转换成类调用，需要注意的是这时self参数需要显式传递，例如：</p>
+<pre><code class="python">class FooParent: 
+    def bar(self, message):   
+        print(message)
+class FooChild(FooParent):
+    def bar(self, message): 
+        FooParent.bar(self, message)
+&gt;&gt;&gt; FooChild().bar(&quot;Hello, Python.&quot;)
+Hello, Python.
+</code></pre>
+<p>这样做有一些缺点，比如说如果<strong>修改了父类名称，那么在子类中会涉及多处修改</strong>，另外，Python是允许多继承的语言，如上所示的方法在多继承时就需要重复写多次，显得累赘。为了解决这些问题，Python引入了super()机制，例子代码如下：</p>
+<pre><code class="python">class FooParent: 
+    def bar(self, message):  
+        print(message)
+class FooChild(FooParent):  
+    def bar(self, message):  
+        super(FooChild, self).bar(message) 
+&gt;&gt;&gt; FooChild().bar(&quot;Hello, Python.&quot;)
+Hello, Python
+</code></pre>
+<p>表面上看 super(FooChild, self).bar(message)方法和FooParent.bar(self, message)方法的结果是一致的，实际上这两种方法的内部处理机制大大不同，当涉及多继承情况时，就会表现出明显的差异来，直接给例子：<br>代码一：</p>
+<pre><code class="python">class A: 
+    def __init__(self):  
+        print(&quot;Enter A&quot;)    
+        print(&quot;Leave A&quot;)
+class B(A):  
+    def __init__(self):   
+        print(&quot;Enter B&quot;) 
+        A.__init__(self)  
+        print(&quot;Leave B&quot;)
+class C(A): 
+    def __init__(self): 
+        print(&quot;Enter C&quot;)   
+        A.__init__(self)   
+        print(&quot;Leave C&quot;)
+class D(A):
+    def __init__(self):  
+        print(&quot;Enter D&quot;)   
+        A.__init__(self)  
+        print(&quot;Leave D&quot;)
+class E(B, C, D):  
+    def __init__(self):  
+        print(&quot;Enter E&quot;)   
+        B.__init__(self)   
+        C.__init__(self)  
+        D.__init__(self)   
+        print(&quot;Leave E&quot;)E()
+</code></pre>
+<blockquote>
+<p>结果：<br>Enter E<br>Enter B<br>Enter A<br>Leave A<br>Leave B<br>Enter C<br>Enter A<br>Leave A<br>Leave C<br>Enter D<br>Enter A<br>Leave A<br>Leave D<br>Leave E</p>
+</blockquote>
+<p>执行顺序很好理解，唯一需要注意的是公共父类A被执行了多次。</p>
+<p>代码二：</p>
+<pre><code class="python">class A:  
+    def __init__(self): 
+        print(&quot;Enter A&quot;)  
+        print(&quot;Leave A&quot;)
+class B(A):  def __init__(self):  
+        print(&quot;Enter B&quot;)   
+        super(B, self).__init__()  
+        print(&quot;Leave B&quot;)
+class C(A):  def __init__(self): 
+        print(&quot;Enter C&quot;)  
+        super(C, self).__init__()  
+        print(&quot;Leave C&quot;)
+class D(A):  def __init__(self): 
+        print(&quot;Enter D&quot;)  
+        super(D, self).__init__()   
+        print(&quot;Leave D&quot;)
+class E(B, C, D):  
+    def __init__(self):  
+        print(&quot;Enter E&quot;)  
+        super(E, self).__init__()
+        print(&quot;Leave E&quot;)E()
+
+</code></pre>
+<blockquote>
+<p>结果：</p>
+<p>Enter E</p>
+<p>Enter B</p>
+<p>Enter C</p>
+<p>Enter D</p>
+<p>Enter A</p>
+<p>Leave A</p>
+<p>Leave D</p>
+<p>Leave C</p>
+<p>Leave B</p>
+<p>Leave E</p>
+</blockquote>
+<p><strong>在super机制里可以保证公共父类仅被执行一次</strong>，至于执行的顺序，是按照MRO（Method Resolution Order）：方法解析顺序 进行的。</p>
+<h2 id="2-enumerate"><a href="#2-enumerate" class="headerlink" title="2. enumerate()"></a><strong>2. enumerate()</strong></h2><p>enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，<strong>同时列出数据和数据下标</strong>，一般用在 for 循环当中。</p>
+<p>以下是 enumerate() 方法的语法:</p>
+<pre><code>enumerate(sequence, [start=0])
+</code></pre><h4 id="（1）参数"><a href="#（1）参数" class="headerlink" title="（1）参数"></a>（1）参数</h4><ul>
+<li><p>sequence – 一个序列、迭代器或其他支持迭代对象。</p>
+</li>
+<li><p>start – 下标起始位置。</p>
+</li>
+</ul>
+<h4 id="（2）返回值"><a href="#（2）返回值" class="headerlink" title="（2）返回值"></a>（2）返回值</h4><p>  返回 enumerate(枚举) 对象。</p>
+<p>实例</p>
+<p>以下展示了使用 enumerate() 方法的实例： </p>
+<pre><code class="python">&gt;&gt;&gt;seasons = [&#39;Spring&#39;, &#39;Summer&#39;, &#39;Fall&#39;, &#39;Winter&#39;]
+&gt;&gt;&gt; list(enumerate(seasons))
+[(0, &#39;Spring&#39;), (1, &#39;Summer&#39;), (2, &#39;Fall&#39;), (3, &#39;Winter&#39;)]
+&gt;&gt;&gt; list(enumerate(seasons, start=1))       # 下标从 1 开始
+[(1, &#39;Spring&#39;), (2, &#39;Summer&#39;), (3, &#39;Fall&#39;), (4, &#39;Winter&#39;)]
+</code></pre>
+<h4 id="（3）for-循环使用-enumerate"><a href="#（3）for-循环使用-enumerate" class="headerlink" title="（3）for 循环使用 enumerate"></a>（3）for 循环使用 enumerate</h4><pre><code class="python">seq = [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;] 
+for i, element in enumerate(seq): 
+        print i, element 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;    
+    0 one 
+    1 two 
+    2 three
+</code></pre>
+<h2 id="3-zip"><a href="#3-zip" class="headerlink" title="3.zip()"></a>3.zip()</h2><p><strong>zip()</strong> 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。</p>
+<p> 我们可以使用 list() 转换来输出列表。</p>
+<p>如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同，利用 * 号操作符，可以将元组解压为列表。</p>
+<ul>
+<li>list(zip(a,b)与*zip(a,b) 效果等价</li>
+</ul>
+<p>zip 语法：</p>
+<pre><code>zip([iterable, ...])
+</code></pre><p> 参数说明：</p>
+<ul>
+<li>iterabl – 一个或多个迭代器;</li>
+</ul>
+<p>以下实例展示了 zip 的使用方法：</p>
+<pre><code class="python">&gt;&gt;&gt;a = [1,2,3]
+&gt;&gt;&gt; b = [4,5,6]
+&gt;&gt;&gt; c = [4,5,6,7,8]
+&gt;&gt;&gt; zipped = zip(a,b)     # 返回一个对象
+&gt;&gt;&gt; zipped
+&lt;zip object at 0x103abc288&gt;
+&gt;&gt;&gt; list(zipped)  # list() 转换为列表
+[(1, 4), (2, 5), (3, 6)]
+&gt;&gt;&gt; list(zip(a,c))              # 元素个数与最短的列表一致
+[(1, 4), (2, 5), (3, 6)]
+
+&gt;&gt;&gt; a1, a2 = zip(*zip(a,b))          # 与 zip 相反，zip(*) 可理解为解压，返回二维矩阵式
+&gt;&gt;&gt; list(a1)
+[1, 2, 3]
+&gt;&gt;&gt; list(a2)
+[4, 5, 6]
+</code></pre>
+<blockquote>
+<p>将x个y维列表打包变成一个zip对象，将zip对象拆包可以发现它变成了y个x维元组。我们还可以将这个对象变成一个元组或列表。 </p>
+<p>如果是两个列表的zip，我们还可以将其变成字典形式。</p>
+<p>下面是一个小实例：</p>
+<pre><code class="python">name = [&#39;wl&#39;,&#39;lyf&#39;,&#39;hg&#39;]
+old = [22,33,35]
+for i,j in zip(name,old):
+   print(&quot;他叫{},今年{}岁&quot;.format(i,j))
+他叫wl,今年22岁
+他叫lyf,今年33岁
+他叫hg,今年35岁
+</code></pre>
+<p>要注意的是，如果使用zip函数，一定要确保多个列表的元素数是相同的，不然对于多出的部分因无法匹配会自动丢弃掉</p>
+</blockquote>
+<h2 id="4-字典"><a href="#4-字典" class="headerlink" title="4.字典"></a>4.字典</h2><h4 id="（1）items"><a href="#（1）items" class="headerlink" title="（1）items()"></a>（1）items()</h4><p>items()方法语法：</p>
+<pre><code class="dict.items()```">
+返回值:
+
+返回可遍历的(键, 值) 元组数组。
+
+```python
+
+dict = {&#39;Google&#39;: &#39;www.google.com&#39;, &#39;Runoob&#39;: &#39;www.runoob.com&#39;, &#39;taobao&#39;: &#39;www.taobao.com&#39;}
+
+print &quot;字典值 : %s&quot; %  dict.items()
+
+# 遍历字典列表
+for key,values in  dict.items():
+    print key,values
+
+# 输出结果
+#    字典值 : [(&#39;Google&#39;, &#39;www.google.com&#39;), (&#39;taobao&#39;, &#39;www.taobao.com&#39;), (&#39;Runoob&#39;, &#39;www.runoob.com&#39;)]
+#   Google www.google.com
+#   taobao www.taobao.com
+#   Runoob www.runoob.com
+</code></pre>
+<h4 id="（2）基本概念"><a href="#（2）基本概念" class="headerlink" title="（2）基本概念"></a>（2）基本概念</h4><p>字典是另一种可变容器模型，且可存储任意类型对象。</p>
+<p>字典的每个键值 <strong>key=&gt;value</strong> 对用冒号 <strong>:</strong> 分割，每个键值对之间用逗号 <strong>,</strong> 分割，整个字典包括在花括号 <strong>{}</strong> 中 ,格式如下所示</p>
+<p>值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。</p>
+<p>把相应的键放入熟悉的方括弧</p>
+<pre><code class="python">dict = {&#39;Name&#39;: &#39;Zara&#39;, &#39;Age&#39;: 7, &#39;Class&#39;: &#39;First&#39;}
+
+print &quot;dict[&#39;Name&#39;]: &quot;, dict[&#39;Name&#39;]
+print &quot;dict[&#39;Age&#39;]: &quot;, dict[&#39;Age&#39;]
+</code></pre>
+<p>能删单一的元素也能清空字典，清空只需一项操作。</p>
+<p>显示删除一个字典用del命令，如下实例：</p>
+<pre><code class="python">
+dict = {&#39;Name&#39;: &#39;Zara&#39;, &#39;Age&#39;: 7, &#39;Class&#39;: &#39;First&#39;}
+
+del dict[&#39;Name&#39;]  # 删除键是&#39;Name&#39;的条目
+dict.clear()      # 清空字典所有条目
+del dict          # 删除字典
+
+print &quot;dict[&#39;Age&#39;]: &quot;, dict[&#39;Age&#39;] 
+print &quot;dict[&#39;School&#39;]: &quot;, dict[&#39;School&#39;]
+</code></pre>
+<h4 id="（3）内置函数及方法"><a href="#（3）内置函数及方法" class="headerlink" title="（3）内置函数及方法"></a>（3）内置函数及方法</h4><p>Python字典包含了以下内置函数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:left">函数及描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-cmp.html" target="_blank" rel="noopener">cmp(dict1, dict2)</a> 比较两个字典元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-len.html" target="_blank" rel="noopener">len(dict)</a> 计算字典元素个数，即键的总数。</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-str.html" target="_blank" rel="noopener">str(dict)</a> 输出字典可打印的字符串表示。</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-type.html" target="_blank" rel="noopener">type(variable)</a> 返回输入的变量类型，如果变量是字典就返回字典类型。</td>
+</tr>
+</tbody>
+</table>
+<p>Python字典包含了以下内置方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:left">函数及描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-clear.html" target="_blank" rel="noopener">dict.clear()</a> 删除字典内所有元素</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-copy.html" target="_blank" rel="noopener">dict.copy()</a> 返回一个字典的浅复制</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-fromkeys.html" target="_blank" rel="noopener">dict.fromkeys(seq[, val])</a> 创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-get.html" target="_blank" rel="noopener">dict.get(key, default=None)</a> 返回指定键的值，如果值不在字典中返回default值</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-has_key.html" target="_blank" rel="noopener">dict.has_key(key)</a> 如果键在字典dict里返回true，否则返回false</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-items.html" target="_blank" rel="noopener">dict.items()</a> 以列表返回可遍历的(键, 值) 元组数组</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-keys.html" target="_blank" rel="noopener">dict.keys()</a> 以列表返回一个字典所有的键</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-setdefault.html" target="_blank" rel="noopener">dict.setdefault(key, default=None)</a> 和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-update.html" target="_blank" rel="noopener">dict.update(dict2)</a> 把字典dict2的键/值对更新到dict里</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/att-dictionary-values.html" target="_blank" rel="noopener">dict.values()</a> 以列表返回字典中的所有值</td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/python-att-dictionary-pop.html" target="_blank" rel="noopener">pop(key[,default])</a> 删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left"><a href="https://www.runoob.com/python/python-att-dictionary-popitem.html" target="_blank" rel="noopener">popitem()</a> 返回并删除字典中的最后一对键和值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-文件-I-O"><a href="#5-文件-I-O" class="headerlink" title="5. 文件 I/O"></a>5. 文件 I/O</h2><h4 id="1-input-与raw-input"><a href="#1-input-与raw-input" class="headerlink" title="1. input()与raw_input()"></a>1. input()与raw_input()</h4><p>1、在 Python2.x 中 raw_input( ) 和 input( )，两个函数都存在，其中区别为:</p>
+<ul>
+<li>raw_input( ) 将所有输入作为字符串看待，返回字符串类型。 </li>
+<li>input( ) 只能接收”数字”的输入，在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）。</li>
+</ul>
+<p>2、在 Python3.x 中 <strong>raw_input( )</strong> 和 <strong>input( )</strong> 进行了整合，去除了 <strong>raw_input( )</strong>，仅保留了 <strong>input( )</strong> 函数，其接收任意任性输入，将所有输入默认为字符串处理，并返回字符串类型。</p>
+<p>当需要输入数值时，需要将输入的变量进行int()操作,进行变量类型转换。</p>
+<p>在string类型下，‘+’操作为拼接两个字符串</p>
+<pre><code class="python">a = input(&quot;input numbers: \n&quot;)
+a = int(a)
+</code></pre>
+<h4 id="2-保存变量-pickle"><a href="#2-保存变量-pickle" class="headerlink" title="2. 保存变量 pickle"></a>2. 保存变量 pickle</h4><pre><code class="matlab">import pickle
+
+# 存储变量的文件的名字
+filename = &#39;shoplist.data&#39;
+# 初始化变量
+shoplist = [&#39;apple&#39;, &#39;mango&#39;, &#39;carrot&#39;]
+# 以二进制写模式打开目标文件
+f = open(filename, &#39;wb&#39;)
+# 将变量存储到目标文件中区
+pickle.dump(shoplist, f)
+# 关闭文件
+f.close()
+# 删除变量
+del shoplist
+# 以二进制读模式打开目标文件
+f = open(filename, &#39;rb&#39;)
+# 将文件中的变量加载到当前工作区
+storedlist = pickle.load(f)
+print(storedlist)
+
+</code></pre>
+<h4 id="3-打开和关闭文件"><a href="#3-打开和关闭文件" class="headerlink" title="3. 打开和关闭文件"></a>3. 打开和关闭文件</h4><p>现在，您已经可以向标准输入和输出进行读写。现在，来看看怎么读写实际的数据文件。</p>
+<p>Python 提供了必要的函数和方法进行默认情况下的文件基本操作。你可以用 <strong>file</strong> 对象做大部分的文件操作。</p>
+<h5 id="open-函数"><a href="#open-函数" class="headerlink" title="open 函数"></a>open 函数</h5><p>你必须先用Python内置的open()函数打开一个文件，创建一个file对象，相关的方法才可以调用它进行读写。</p>
+<p>语法：</p>
+<pre><code class="python">file object = open(file_name [, access_mode][, buffering])
+</code></pre>
+<p>各个参数的细节如下：</p>
+<ul>
+<li>file_name：file_name变量是一个包含了你要访问的文件名称的字符串值。</li>
+<li>access_mode：access_mode决定了打开文件的模式：只读，写入，追加等。所有可取值见如下的完全列表。这个参数是非强制的，默认文件访问模式为只读(r)。</li>
+<li>buffering:如果buffering的值被设为0，就不会有寄存。如果buffering的值取1，访问文件时会寄存行。如果将buffering的值设为大于1的整数，表明了这就是的寄存区的缓冲大小。如果取负值，寄存区的缓冲大小则为系统默认。</li>
+</ul>
+<p>不同模式打开文件的完全列表：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t</td>
+<td>文本模式 (默认)。</td>
+</tr>
+<tr>
+<td>x</td>
+<td>写模式，新建一个文件，如果该文件已存在则会报错。</td>
+</tr>
+<tr>
+<td>b</td>
+<td>二进制模式。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>打开一个文件进行更新(可读可写)。</td>
+</tr>
+<tr>
+<td>U</td>
+<td>通用换行模式（不推荐）。</td>
+</tr>
+<tr>
+<td>r</td>
+<td>以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td>rb</td>
+<td>以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td>以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://www.runoob.com/wp-content/uploads/2013/11/2112205-861c05b2bdbc9c28.png" alt="1"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模式</th>
+<th style="text-align:center">r</th>
+<th style="text-align:center">r+</th>
+<th style="text-align:center">w</th>
+<th style="text-align:center">w+</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">a+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">读</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">写</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">创建</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">覆盖</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">指针在开始</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">指针在结尾</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+</tr>
+</tbody>
+</table>
+<h5 id="File对象的属性"><a href="#File对象的属性" class="headerlink" title="File对象的属性"></a>File对象的属性</h5><p>一个文件被打开后，你有一个file对象，你可以得到有关该文件的各种信息。</p>
+<p>以下是和file对象相关的所有属性的列表：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file.closed</td>
+<td>返回true如果文件已被关闭，否则返回false。</td>
+</tr>
+<tr>
+<td>file.mode</td>
+<td>返回被打开文件的访问模式。</td>
+</tr>
+<tr>
+<td>file.name</td>
+<td>返回文件的名称。</td>
+</tr>
+<tr>
+<td>file.softspace</td>
+<td>如果用print输出后，必须跟一个空格符，则返回false。否则返回true。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="write-方法"><a href="#write-方法" class="headerlink" title="write()方法"></a>write()方法</h5><p>write()方法可将任何字符串写入一个打开的文件。需要重点注意的是，Python字符串可以是二进制数据，而不是仅仅是文字。</p>
+<p>write()方法不会在字符串的结尾添加换行符(‘\n’)：</p>
+<p>语法：</p>
+<pre><code>fileObject.write(string)
+</code></pre><p>在这里，被传递的参数是要写入到已打开文件的内容。</p>
+<p>例子：</p>
+<pre><code class="python">#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+# 打开一个文件
+fo = open(&quot;foo.txt&quot;, &quot;w&quot;)
+fo.write( &quot;www.runoob.com!\nVery good site!\n&quot;)
+
+# 关闭打开的文件
+fo.close()
+</code></pre>
+<h4 id="4-写入txt-数据"><a href="#4-写入txt-数据" class="headerlink" title="4. 写入txt 数据"></a>4. 写入txt 数据</h4><p>写数据有几种不同的模式，最常用的是w’, ‘a’, 分别表示擦除原有数据再写入和将数据写到原数据之后：</p>
+<pre><code class="python">filename = &#39;write_data.txt&#39;
+with open(filename,&#39;w&#39;) as f: # 如果filename不存在会自动创建， &#39;w&#39;表示写数据，写之前会清空文件中的原有数据！
+    f.write(&quot;I am Meringue.\n&quot;)
+    f.write(&quot;I am now studying in NJTECH.\n&quot;)
+    f.write(str(i) + &quot;d&quot; + &quot; &quot;+&quot;\n&quot;)
+</code></pre>
+<h2 id="6-assert-断言"><a href="#6-assert-断言" class="headerlink" title="6.assert 断言"></a>6.assert 断言</h2><p>Python assert（断言）用于判断一个表达式，在表达式条件为 false 的时候触发异常。</p>
+<p>断言可以在条件不满足程序运行的情况下直接返回错误，而不必等待程序运行后出现崩溃的情况，例如我们的代码只能在 Linux 系统下运行，可以先判断当前系统是否符合条件。</p>
+<pre><code class="python">import sys
+assert (&#39;linux&#39; in sys.platform), &quot;该代码只能在 Linux 下执行&quot;
+
+
+assert 1==2, &#39;1 不等于 2&#39;
+
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AssertionError: 1 不等于 2
+</code></pre>
+<p>assert 后面也可以紧跟参数:</p>
+<pre><code class="python">assert expression [, arguments]
+</code></pre>
+<p>等价于：</p>
+<pre><code class="python">if not expression:
+    raise AssertionError(arguments)
+</code></pre>
+<h2 id="7-卷积"><a href="#7-卷积" class="headerlink" title="7.卷积"></a>7.卷积</h2><h4 id="1-定义"><a href="#1-定义" class="headerlink" title="(1)定义"></a>(1)定义</h4><blockquote>
+<p>设:<em>f</em>(<em>x</em>),<em>g</em>(<em>x</em>)是R1上的两个可积函数，作积分：<br>$$<br>\int ^{+\infty} _{-\infty} f(\tau) g(x-\tau)d\tau=f(x)*g(x)<br>$$</p>
+<p>可以证明，关于几乎所有的实数<em>x</em>，上述积分是存在的。这样，随着<em>x</em>的不同取值，这个积分就定义了一个新函数<em>h(x)</em>，称为函数<em>f</em>与<em>g</em>的卷积，记为<em>h(x)=(f\</em>g)(x)*。</p>
+<p>在离散情况下，有<br>$$<br>y(n)=\sum _{i=-\infty} ^{\infty}x(i)h(n-i)=x(n)<em>h(n)<br>$$<br>其中星号</em>表示卷积。当时序n=0时，序列h(-i)是h(i)的时序i取反的结果；时序取反使得h(i)以纵轴为中心翻转180度，所以这种相乘后求和的计算法称为卷积和，简称卷积。另外，n是使h(-i)位移的量，不同的n对应不同的卷积结果。</p>
+</blockquote>
+<p>知乎上在信号系统中的某种理解：</p>
+<blockquote>
+<p>一个函数（如：单位响应）在另一个函数（如：输入信号）上的加权叠加。</p>
+<p>重复一遍，这就是卷积的意义：加权叠加。</p>
+<p>对于线性时不变系统，如果知道该系统的单位响应，那么将单位响应和输入信号求卷积，就相当于把输入信号的各个时间点的单位响应 加权叠加，就直接得到了输出信号。</p>
+<p>书上先反褶再平移，把输入信号当作一个整体，一次算出一个时间点的响应值；而楼主把信号拆开，一次算出一个信号在所有时间的响应值，再把各个信号相加。两者本质上是相同的。  </p>
+</blockquote>
+<p>理解一：</p>
+<p>先将输入信号180°翻转，时间变为负值，再由 n 作为对应的每个时刻的时间点，每次将翻转后的信号右移1个单位，此时与输入信号与系统x(i)<strong>所有重叠部分相乘后求和</strong>的结果，即为该时间点的响应值，直至移动 n 个时刻为止，形成响应序列 y(n)。</p>
+<p>理解二：</p>
+<p>将输入信号序列拆开，分别计算每个时间点的信号在系统中对应的响应序列，将输入序列各个时间点产生的的响应序列叠加求和，即得到整个输入信号的综合响应，最终得到输入信号的响应序列。</p>
+<h4 id="2-numpy中的卷积"><a href="#2-numpy中的卷积" class="headerlink" title="(2)numpy中的卷积"></a>(2)numpy中的卷积</h4><p>卷积的概念还可以推广到<a href="https://baike.baidu.com/item/数列" target="_blank" rel="noopener">数列</a>、<a href="https://baike.baidu.com/item/测度" target="_blank" rel="noopener">测度</a>以及<a href="https://baike.baidu.com/item/广义函数" target="_blank" rel="noopener">广义函数</a>上去。</p>
+<p>numpy.convolve(a, v, mode=‘full’)，这是numpy函数中的卷积函数库<br>　　参数：<br>　　　　a:(N,)输入的一维数组<br>　　　　b:(M,)输入的第二个一维数组<br>　　　　mode:{‘full’, ‘valid’, ‘same’}参数可选<br>　　　　　　‘full’　默认值，返回每一个卷积值，长度是N+M-1,在卷积的边缘处，信号不重叠，存在边际效应。<br>　　　　　　‘same’　返回的数组长度为max(M, N),边际效应依旧存在。<br>　　　　　　‘valid’ 　返回的数组长度为max(M,N)-min(M,N)+1,此时返回的是完全重叠的点。边缘的点无效。</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+import numpy as np
+plt.plot([1,2,3,4])
+plt.plot([1,1,3]) # 倒过来成为卷积核，然后在上述的数组中滑动，得到结果
+end_1=np.convolve([1,2,3,4],[1,1,3],&#39;full&#39;)
+end_2=np.convolve([1,2,3,4],[1,1,3],&#39;same&#39;)
+end_3=np.convolve([1,2,3,4],[1,1,3],&#39;valid&#39;)
+plt.plot(end_1)
+print(end_1)
+print(end_2)
+print(end_3)
+plt.show()
+</code></pre>
+<p>’full‘ 结果 [ 1  3  8 13 13 12]<br>        ’same‘结果[ 3  8 13 13]<br>        ’valid‘结果[ 8 13] </p>
+<h2 id="8-yield-函数返回"><a href="#8-yield-函数返回" class="headerlink" title="8.yield 函数返回"></a>8.yield 函数返回</h2><pre><code class="python">def foo():
+    print(&quot;starting...&quot;)
+    while True:
+        res = yield 4
+        print(&quot;res:&quot;,res)
+
+g = foo()
+print(&#39;waiting next function&#39;)
+print(&quot;*&quot;*20)
+print(next(g))
+print(&quot;*&quot;*20)
+print(next(g))
+print(&quot;*&quot;*20)
+print(next(g))
+
+</code></pre>
+<blockquote>
+<pre><code>waiting next function
+********************
+starting...
+4
+********************
+res: None
+4
+********************
+res: None
+4
+</code></pre></blockquote>
+<p>1.程序开始执行以后，因为foo函数中有yield关键字，所以foo函数并不会真的执行，而是先得到一个生成器g(相当于一个对象)</p>
+<p>2.直到调用next方法，foo函数正式开始执行，先执行foo函数中的print方法，然后进入while循环</p>
+<p>3.程序遇到yield关键字，然后把yield想想成return,return了一个4之后，程序停止，并没有执行赋值给res操作，此时next(g)语句执行完成，所以输出的前两行（第一个是while上面的print的结果,第二个是return出的结果）是执行print(next(g))的结果，</p>
+<p>4.程序执行print(“<em>“</em>20)，输出20个*</p>
+<p>5.又开始执行下面的print(next(g)),这个时候和上面那个差不多，不过不同的是，这个时候是从刚才那个next程序停止的地方开始执行的，也就是要执行res的赋值操作，这时候要注意，这个时候赋值操作的右边是没有值的（因为刚才那个是return出去了，并没有给赋值操作的左边传参数），所以这个时候res赋值是None,所以接着下面的输出就是res:None,</p>
+<p>6.程序会继续在while里执行，又一次碰到yield,这个时候同样return 出4，然后程序停止，print函数输出的4就是这次return出的4.</p>
+<p>带yield的函数是一个生成器，而不是一个函数了，这个生成器有一个函数就是next函数，next就相当于“下一步”生成哪个数，这一次的next开始的地方是接着上一次的next停止的地方执行的，所以调用next的时候，生成器并不会从foo函数的开始执行，只是接着上一步停止的地方开始，然后遇到yield后，return出要生成的数，此步就结束</p>
+<pre><code class="python">def foo():
+    print(&quot;starting...&quot;)
+    while True:
+        res = yield 4
+        print(&quot;res:&quot;,res)
+g = foo()
+print(next(g))
+print(&quot;*&quot;*20)
+print(g.send(7))
+
+</code></pre>
+<blockquote>
+<pre><code>starting...
+4
+********************
+res: 7
+4
+</code></pre></blockquote>
+<p>send是发送一个参数给res的，因为上面讲到，return的时候，并没有把4赋值给res，下次执行的时候只好继续执行赋值操作，只好赋值为None了，而如果用send的话，开始执行的时候，先接着上一次（return 4之后）执行，先把7赋值给了res,然后执行next的作用，遇见下一回的yield，return出结果后结束。</p>
+<p>5.程序执行g.send(7)，程序会从yield关键字那一行继续向下运行，send会把7这个值赋值给res变量</p>
+<p>6.由于send方法中包含next()方法，所以程序会继续向下运行执行print方法，然后再次进入while循环</p>
+<p>7.程序执行再次遇到yield关键字，yield会返回后面的值后，程序再次暂停，直到再次调用next方法或send方法。</p>
+<h2 id="9-jupyter-notebook"><a href="#9-jupyter-notebook" class="headerlink" title="9.jupyter notebook"></a>9.jupyter notebook</h2><p>1) Jupyter notebook 中的nbagg提供了交互式图像的操作，能够实现图片的放大与缩小操作 </p>
+<pre><code> %matplotlib nbagg
+</code></pre><p>2)Linux下，nohup 命令 ,不挂断地运行命令。可以将terminal中的log导出，不在terminal中显示。</p>
+<pre><code class="shell">nohup  jupyter notebook &amp;
+#退出时，使用
+# $ exit
+</code></pre>
+<h2 id="10-一些常用库"><a href="#10-一些常用库" class="headerlink" title="10. 一些常用库"></a>10. 一些常用库</h2><h4 id="（1）argparse库"><a href="#（1）argparse库" class="headerlink" title="（1）argparse库"></a>（1）argparse库</h4><p>命令行解析模块，使用步骤：</p>
+<p>​     1：import argparse</p>
+<p>​     2：parser = argparse.ArgumentParser()</p>
+<blockquote>
+<p>参数：</p>
+<p> prog：程序的名字<br> usage：默认情况下，ArgumentParser依据它包含的参数计算出帮助信息<br> description：这个参数给出程序做什么以及如何工作的简短描述<br> epilog：显示额外的关于程序的描述<br> parents：有时候，几个解析器会共享一个共同的参数集。可以使用一个带有所有共享参数的解析器传递给ArgumentParser的parents=参数，而不用重复定义这些参数<br>   formatter_class：ArgumentParser对象允许通过指定一个格式化类来定制帮助信息的格式（argparse.RawDescriptionHelpFormatter、argparse.RawTextHelpFormatter、argparse.ArgumentDefaultsHelpFormatter、argparse.MetavarTypeHelpFormatter）<br> prefix_chars：修改前缀符<br> fromfile_prefix_chars：以任意一个给定字符开始的参数将被当做文件，并且将被这些文件包含的参数替换<br> argument_default：指定一个解析器范围的参数默认值<br> allow_abbrev：允许使用缩写（默认）<br> conflict_handler：关于设置同一个选项具有两个动作<br> add_help </p>
+</blockquote>
+<p>​     3：parser.add_argument()</p>
+<blockquote>
+<p>参数</p>
+<p> name or flags：传递给add_argument() 的第一个参数因此必须是一个标记序列或者一个简单的参数名字<br>  action：指出应该如何处理命令行参数（支持的操作：’store’  ，’store_const’，’store_true’，’store_false’，’append’，’append_const’，’count’，’help’，’version’）<br> nargs：将一个动作与不同数目的命令行参数关联在一起（支持的值：N,’?’,’*’,’+’）<br> const：用于保存常量值，它们不是从命令行读入但是是ArgumentParser 的动作所要求的<br> default：其默认值为None，指出如果命令行参数没有出现时它们应该是什么值<br> type：允许任意必要的类型检查并作类型转换<br> choices：某些命令行参数应该从一个受限的集合中选择<br> required：如果要使得选项是必需的，可以指定True作为required=关键字参数的值给add_argument()<br> help：包含参数简短描述的字符串<br> metavar：默认情况下，对于位置参数直接使用dest的值，对于可选参数则将dest的值变为大写。注意metavar只会改变显示出来的名字parse_args() 对象中属性的名字仍然由dest的值决定。<br>  dest：对于位置参数的动作，dest  通常作为第一个参数提供给add_argument()，对于可选参数的动作，dest的动作通常从选项字符串推导出来，如：ArgumentParser生成的dest的值是将第一个长的选项字符串前面的–字符串去掉。如果没有提供长选项字符串，dest的获得则是将第一个短选项字符串前面的-字符去掉。任何内部的-将被转换为字符以确保字符串是合法的属性名字。（即对于可选参数，先找长的选项字符串，再找短选项字符串，并且内部的-会被转换为字符。） </p>
+</blockquote>
+<p>​     4：parser.parse_args()</p>
+<p> 解释：首先导入该模块；创建一个解析对象；向该对象中添加你要关注的命令行参数和选项，每一个add_argument方法对应一个你要关注的参数或选项；最后调用parse_args()方法进行解析； </p>
+<p><strong>add_argument</strong>(name or flags…[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])</p>
+<p> 其中：</p>
+<p> name or flags：命令行参数名或者选项，如上面的address或者-p,–port.其中命令行参数如果没给定，且没有设置defualt，则出错。但是如果是选项的话，则设置为None</p>
+<p> nargs：命令行参数的个数，一般使用通配符表示，其中，’?’表示只用一个，’*’表示0到多个，’+’表示至少一个</p>
+<p> default：默认值</p>
+<p> type：参数的类型，默认是字符串string类型，还有float、int等类型</p>
+<p> help：和ArgumentParser方法中的参数作用相似，出现的场合也一致</p>
+<p> <code>--help</code>参数可简写成<code>-h</code>,是唯一预设的(不需要指定)。 </p>
+<p>例子：</p>
+<pre><code class="python">    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;echo&quot;)
+    args = parser.parse_args()
+    print args.echo
+</code></pre>
+<p>方法<code>parse_args()</code>通过分析指定的参数返回一些数据，如本例中的<code>echo</code>。</p>
+<p>像魔法一样，<code>argparse</code>自动生成这些变量，你可能已经注意到变量<code>echo</code>和我们指定的参数相同。</p>
+<p> 如果不指定参数类型，<code>argparse</code>默认它是字符串。因此我们需要告诉<code>argparse</code>该参数的整型。 </p>
+<p>”-xxx”  可选参数。这个参数事实上是可选的，不指定它也不会出错。如果不指定可选的参数，对应的变量就被设置为None </p>
+<p>其他命令见官方文档 ： <a href="https://docs.python.org/3/library/argparse.html#prog" target="_blank" rel="noopener">https://docs.python.org/3/library/argparse.html#prog</a></p>
+<h4 id="（2）wget库"><a href="#（2）wget库" class="headerlink" title="（2）wget库"></a>（2）wget库</h4><p>下载链接</p>
+<blockquote>
+<p>python -m wget [options] <url></url></p>
+<ul>
+<li><p>options:</p>
+<p>-o –output FILE|DIR   output filename or directory</p>
+</li>
+</ul>
+</blockquote>
+<pre><code class="python">import wget
+url=&quot;http://www.da.ga.gasg.gsa.&quot;
+file_path=&quot;./&quot;  #可以指定下载文件的路径和名称，默认不更改文件名
+wget.download(url, file_path)
+</code></pre>
+<h4 id="（3）hashlib-库"><a href="#（3）hashlib-库" class="headerlink" title="（3）hashlib 库"></a>（3）hashlib 库</h4><p> 摘要算法库，包括MD5，SHA1等等 。</p>
+<p> 摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。 </p>
+<p> 通过摘要函数f（）对任意长度的数据data计算出固定长度的摘要digest，目的是为了发现原始数据是否被人篡改过。 </p>
+<p>因为摘要函数是一个单向函数，计算f（data）很容易，但通过digest反推却非常困难。而且，对原始数据做一个bit的修改，都会导致计算的摘要完全不同。</p>
+<p>我们以常见的摘要算法MD5为例，计算处一个字符串的MD5值：</p>
+<pre><code class="python">import hashlib
+
+md5=hashlib.md5()
+md5.update(&#39;how to use md5 in python hashlib?&#39;.encode(&#39;utf-8&#39;))
+print(md5.hexdigest())
+</code></pre>
+<p>计算结果如下：</p>
+<p>d26a53750bc40b38b65a520292f69306</p>
+<p>如果数据量很大，可以分块多次调用update（），最后计算的结果是一样的.</p>
+<p> MD5是常见的摘要算法，速度很快，生成结果是固定的128bit字节，通常用一个32位的16进制字符串表示。</p>
+<p>另一种常见的摘要算法是SHA1，调用SHA1和调用MD5完全类似.</p>
+<p>SHA1的结果是160bit字节，通常用一个40位的16进制字符串表示。</p>
+<p>比SHA1更安全的算法是SHA256和SHA512，不过越安全的算法不仅越慢，而且摘要长度更长。</p>
+<p> <strong>摘要算法应用</strong> </p>
+<p>摘要算法能应用到什么地方？举个常用例子：</p>
+<p>任何允许用户登录的网站都会存储用户登录的用户名和口令。如何存储用户名和口令呢？方法是存到数据库表中.</p>
+<p>如果以明文保存用户口令，如果数据库泄露，所有用户的口令就落入黑客的手里。此外，网站运维人员是可以访问数据库的，也就是能获取到所有用户的口令。</p>
+<p>正确保存口令的方式是不存储用户的明文口令，而是存储用户口令的摘要，比如MD5.</p>
+<p> 当用户登录时，首先计算用户输入的明文口令的MD5，然后和数据库存储的MD5对比，如果一致，说明口令输入正确，如果不一致，口令肯定错误。 </p>
+<p> 存储MD5的好处是即使运维人员能访问数据库，也无法获知用户的明文口令。 </p>
+<p> 对于常用口令的MD5值很容易被计算出来，所以，要确保存储的用户口令不是那些已经被计算出来的常用口令的MD5，这一方法通过对原始口令加一个复杂字符串来实现，俗称”加盐“.</p>
+<p> 要注意摘要算法不是加密算法，不能用于加密（因为无法通过摘要反推明文），只能用于防篡改，但是它的单向计算特性决定了可以在不存储明文口令的情况下验证用户口令。 </p>
+<h4 id="（4）datetime-库"><a href="#（4）datetime-库" class="headerlink" title="（4）datetime 库"></a>（4）datetime 库</h4><p><strong>1</strong>、<strong>获取当前时间</strong>：</p>
+<pre><code class="python">print datetime.datetime.now()
+</code></pre>
+<p><strong>2、获取当前日期</strong></p>
+<pre><code class="python">print datetime.datetime.now().date()
+</code></pre>
+<p><strong>3、获取当前时间tuple</strong></p>
+<pre><code class="python">datetime.datetime.now().timetuple()
+</code></pre>
+<p><strong>4、时间移动（几天、几小时前后…）</strong></p>
+<p> 使用datetime.timedelta这个方法来前后移动时间，可用的参数有weeks，days，hours，minutes，seconds，microseconds等。 </p>
+<pre><code class="python">print datetime.datetime.now() + datetime.timedelta(days=1)
+</code></pre>
+<p><strong>5、获取两个时间的时间差(now是本地时间，可以认为是你电脑现在的时间；utcnow是世界时间&lt;时区不同，所以这两个时间也是有所不同&gt;)</strong></p>
+<p><strong>6、时间格式转化</strong></p>
+<p>datetime转str格式：</p>
+<pre><code class="python"> datetime.datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
+ #其中，&#39;-，：&#39;等字符可以自由替换
+</code></pre>
+<p>str格式转datetime格式：</p>
+<pre><code class="python">print datetime.datetime.strptime(&quot;2018-06-18 16:58:46&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;)
+#需要将%Y,%m等，分别替换掉前一个式子中的相应数字，其他符号不变，最终输出如上所示的默认格式
+</code></pre>
+<p> <strong>7、date.isocalendar()</strong>  </p>
+<p>  #返回结果是三元组(年号，第几周，第几天)</p>
+<pre><code class="python">print(&#39;isocalendar():&#39;, datetime.datetime.now().isocalendar())
+</code></pre>
+<p> <strong>8、date.strftime(“%j”)</strong>  </p>
+<p>  #计算输入的日期是一年中的第几天</p>
+<pre><code class="python">days=int(input_date.strftime(&quot;%j&quot;))
+</code></pre>
+<h4 id="（5）tqdm-进度模块"><a href="#（5）tqdm-进度模块" class="headerlink" title="（5）tqdm 进度模块"></a>（5）tqdm 进度模块</h4><p>  Tqdm 是一个快速，<strong>可扩展的Python进度条</strong>，可以在 Python 长循环中添加一个进度提示信息，用户只需要封装任意的迭代器 tqdm(iterator)。 </p>
+<pre><code class="python">import time
+from tqdm import tqdm
+from tqdm._tqdm import trange
+
+for i in tqdm(range(100)):
+    time.sleep(0.01)
+
+alist = list(&#39;letters&#39;)
+bar = tqdm(alist)
+for letter in bar:   
+    bar.set_description(f&quot;Now get {letter}&quot;)
+</code></pre>
+<h2 id="11-字符串中引用变量"><a href="#11-字符串中引用变量" class="headerlink" title="11.字符串中引用变量"></a>11.字符串中引用变量</h2><h4 id="（1）-连字符"><a href="#（1）-连字符" class="headerlink" title="（1）+ 连字符"></a>（1）+ 连字符</h4><pre><code>
+name = &#39;zhangsan&#39; 
+print(&#39;my name is &#39;+name) 
+
+\#结果为 my name is zhangsan 
+</code></pre><h4 id="（2）-字符"><a href="#（2）-字符" class="headerlink" title="（2）% 字符"></a>（2）% 字符</h4><pre><code class="python">name = &#39;zhangsan&#39; 
+age = 25 
+price = 4500.225 
+print(&#39;my name is %s&#39;%(name)) 
+print(&#39;i am %d&#39;%(age)+&#39; years old&#39;) 
+print(&#39;my price is %f&#39;%(price)) 
+\# 保留指定位数小数(四舍五入) 
+print(&#39;my price is %.2f&#39;%(price)) 
+</code></pre>
+<p>结果为<br>my name is zhangsan<br>i am 25 years old<br>my price is 4500.225000<br>my price is 4500.23 </p>
+<h4 id="（3）format-函数"><a href="#（3）format-函数" class="headerlink" title="（3）format()函数"></a>（3）format()函数</h4><p>对于变量较多的情况，加入加’+’或者’%’相对比较麻烦，这种情况下可以使用format函数</p>
+<pre><code class="python"> name = &#39;zhangsan&#39; 
+ age = 25 
+ price = 4500.225 
+ info = &#39;my name is {my_name},i am {my_age} years old,my price is {my_price}&#39;\ 
+ .format(my_name=name,my_age=age,my_price=price) 
+ print(info) 
+
+ 结果为： 
+# my name is zhangsan,i am 25 years old,my price is 4500.225
+</code></pre>
+<h2 id="12-args-和-kwargs"><a href="#12-args-和-kwargs" class="headerlink" title="12. *args 和 **kwargs"></a>12. *args 和 **kwargs</h2><blockquote>
+<p><code>*</code>和<code>**</code>主要用在参数定义和参数传递的时候。对于参数传递来说，<code>*</code>和<code>**</code>都是用来解包的，对于参数定义的时候，<code>*</code>和<code>**</code>都是用来打包的。两者应用在对于参数个数不确定的情况下。<code>*</code>主要是用来对<code>tuple</code>型参数打包或解包，对应的是函数的位置参数。而<code>**kwargs</code>则是主要用来对<code>dict</code>型参数，对应的是函数的关键字参数</p>
+</blockquote>
+<h4 id="1-在定义函数当中"><a href="#1-在定义函数当中" class="headerlink" title="(1)在定义函数当中"></a>(1)在定义函数当中</h4><pre><code class="python">
+def fun_var_args(farg, *args):
+    print &quot;arg:&quot;, farg
+    for value in args:
+        print &quot;another arg:&quot;, value
+
+fun_var_args(1, &quot;two&quot;, 3) # *args可以当作可容纳多个变量组成的list
+
+
+
+def fun_var_kwargs(farg, **kwargs):
+    print &quot;arg:&quot;, farg
+    for key in kwargs:
+        print &quot;another keyword arg: %s: %s&quot; % (key, kwargs[key])
+
+fun_var_kwargs(farg=1, myarg2=&quot;two&quot;, myarg3=3) # myarg2和myarg3被视为key， 
+                                               #**kwargs可以当作容纳多个key和value的字典
+
+</code></pre>
+<pre><code>RESULT:
+
+arg: 1
+another arg: two
+another arg: 3
+
+arg: 1
+another keyword arg: myarg2: two
+another keyword arg: myarg3: 3
+
+</code></pre><h4 id="2-在函数使用中"><a href="#2-在函数使用中" class="headerlink" title="(2)在函数使用中"></a>(2)在函数使用中</h4><pre><code class="python">args = [&quot;two&quot;, 3] #list 
+fun_var_args_call(1, *args)
+
+
+kwargs = {&quot;arg3&quot;: 3, &quot;arg2&quot;: &quot;two&quot;} # dictionary
+fun_var_args_call(1, **kwargs)
+</code></pre>
+<pre><code>RESULT:
+
+arg1: 1
+arg2: two
+arg3: 3
+
+
+arg1: 1
+arg2:&quot;two&quot;
+arg3:3
+</code></pre><h2 id="13-OS-库"><a href="#13-OS-库" class="headerlink" title="13.OS 库"></a>13.OS 库</h2><h5 id="os-mkdir"><a href="#os-mkdir" class="headerlink" title="os.mkdir"></a><strong>os.mkdir</strong></h5><p>os.mkdir() 方法用于以数字权限模式创建目录。默认的模式为 0777 (八进制)。</p>
+<p>语法:</p>
+<p><strong>mkdir()</strong>方法语法格式如下：</p>
+<pre><code>os.mkdir(path[, mode])
+</code></pre><p>参数</p>
+<ul>
+<li><p><strong>path</strong> –  要创建的目录</p>
+</li>
+<li><p><strong>mode</strong> –  要为目录设置的权限数字模式</p>
+<blockquote>
+<p>linux系统文件夹644、755、777权限设置详解 ，左至右，</p>
+<p>第一位数字代表文件所有者的权限，</p>
+<p>第二位数字代表同组用户的权限，</p>
+<p>第三位数字代表其他用户的权限。</p>
+<p>而具体的权限是由数字来表示的，读取的权限等于4，用r表示；写入的权限等于2，用w表示；执行的权限等于1，用x表示；</p>
+<p>通过4、2、1的组合，得到以下几种权限：0（没有权限）；4（读取权限）；5（4+1 | 读取+执行）；6（4+2 | 读取+写入）；7（4+2+1 | 读取+写入+执行）</p>
+</blockquote>
+</li>
+</ul>
+<p>该方法没有返回值。</p>
+<h5 id="os-listdir"><a href="#os-listdir" class="headerlink" title="os.listdir()"></a><strong>os.listdir()</strong></h5><p>用于返回一个由文件名和目录名组成的列表，</p>
+<p>需要注意的是它接收的参数需要是一个绝对的路径</p>
+<p>例如：</p>
+<p>已知路径path = r’C:\Users\zhang-bai\Desktop’</p>
+<p>请输出该路径下的所有<strong>文件</strong>和<strong>目录</strong>名称</p>
+<pre><code class="python">import os
+path = r&#39;C:\Users\zhang-bai\Desktop&#39;
+#不加r会报错
+#:(unicode error) ‘unicodeescape’ codec can’t decode bytes in position 2-3: truncated \UXXXXXXXX escape
+#在Python中\是转义符，\u表示其后是UNICODE编码，因此\User在这里会报错，在字符串前面加个r表示就可以了 
+for i in os.listdir(path):
+    print(i)
+</code></pre>
+<h5 id="os-path-isdir"><a href="#os-path-isdir" class="headerlink" title="os.path.isdir()"></a><strong>os.path.isdir</strong>()</h5><p>用于判断对象是否为一个目录，返回 True / False</p>
+<p>例如：</p>
+<pre><code class="python">import os
+path = r&#39;C:\Users&#39;
+os.path.isdir(path)
+</code></pre>
+<h5 id="os-path-isfile"><a href="#os-path-isfile" class="headerlink" title="os.path.isfile()"></a><strong>os.path.isfile()</strong></h5><p>用于判断对象是否为一个文件 </p>
+<p>例如：</p>
+<p>已知路径path = /home/python/Desktop/</p>
+<p>请输出该目录下包含的文件名称</p>
+<pre><code class="python">import os
+path = r&#39;C:\Users\zhang-bai\Desktop&#39;
+
+for i in os.listdir(path):
+    if os.path.isfile(i):
+        print(i,&#39;\n \n&#39;)
+    print(i)
+</code></pre>
+<h5 id="os-path-join"><a href="#os-path-join" class="headerlink" title="os.path.join()"></a>os.path.join()</h5><p>连接两个或更多的路径名组件</p>
+<p>1.如果各组件名首字母不包含’/’，则函数会自动加上</p>
+<p>2.如果有一个组件是一个绝对路径，则在它之前的所有组件均会被舍弃</p>
+<p>3.如果最后一个组件为空，则生成的路径以一个’/’分隔符结尾</p>
+<pre><code class="python">configs_EN = &quot;AE-MSEloss_batch{}_epoch{}_RMSprop_scheduler-step{}-gamma{}_lr{}_EN&quot;.format(BATCH_SIZE, EPOCH, STEP_SIZE, GAMMA, LR)
+
+model_dir = &quot;models&quot;
+
+model_path_EN = os.path.join(model_dir,configs_EN) 
+</code></pre>
+<h5 id="os-root-dir"><a href="#os-root-dir" class="headerlink" title="os_root_dir"></a>os_root_dir</h5><pre><code class="python">root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+train_file = os.path.join(root_dir,&quot;train.csv&quot;)
+</code></pre>
+<h2 id="14-迭代-iter"><a href="#14-迭代-iter" class="headerlink" title="14.迭代 iter"></a>14.迭代 iter</h2><p><strong>next()</strong> 返回迭代器的下一个项目。</p>
+<p>next 语法：</p>
+<pre><code>next(iterator[, default])
+</code></pre><p>参数说明：</p>
+<ul>
+<li>iterator – 可迭代对象</li>
+<li>default – 可选，用于设置在没有下一个元素时返回该默认值，如果不设置，又没有下一个元素则会触发 StopIteration 异常。</li>
+</ul>
+<p>返回对象帮助信息。</p>
+<pre><code class="python">#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+# 首先获得Iterator对象:
+it = iter([1, 2, 3, 4, 5])
+# 循环:
+while True:
+    try:
+        # 获得下一个值:
+        x = next(it)
+        print(x)
+    except StopIteration:
+        # 遇到StopIteration就退出循环
+        break
+</code></pre>
+<h2 id="15-创建空列表、字典"><a href="#15-创建空列表、字典" class="headerlink" title="15.创建空列表、字典"></a>15.创建空列表、字典</h2><p>创建空列表： a=list()   /   a=[]</p>
+<p>创建空元组：tuple = ()  /  a=()</p>
+<p>创建单个元素的元组：tuple_single = (‘1’,)</p>
+<p>创建空字典： dict = ()   /   a={}</p>
+<p>创建空集合：a = set()</p>
+<blockquote>
+<p>集合（set）是一个无序的不重复元素序列。</p>
+<p>可以使用大括号 { } 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。 </p>
+<p>创建格式：</p>
+<pre><code class="python">parame = {value01,value02,...}
+或者
+set(value)
+</code></pre>
+<p>其中，value值为一个字符串，set将字符串每个字符都当作一个元素存储</p>
+<p>如：a=set(‘abcab’)</p>
+<p>则 a = {‘a’, ‘b’, ‘c’}</p>
+</blockquote>
+<h2 id="16-python-切片"><a href="#16-python-切片" class="headerlink" title="16.python 切片"></a>16.python 切片</h2><p>1.负号问题</p>
+<pre><code class="python">x[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+x[-3:]
+# [8, 9, 10]
+x[:-3]
+# [1, 2, 3, 4, 5, 6, 7]
+</code></pre>
+<p>负数在左侧，则从后往前数n个</p>
+<p>负数在右侧，则是排除了后n个</p>
+<p>2.冒号问题</p>
+<ul>
+<li><p>a = [0,1,2,3,4,5,6,7,8,9]<br>b = a[i:j] 表示复制a[i]到a[j-1]，以生成新的list对象<br>b = a[1:3] 那么，b的内容是 [1,2]<br>当i缺省时，默认为0，即 a[:3]相当于 a[0:3]<br>当j缺省时，默认为len(alist), 即a[1:]相当于a[1:10]<br>当i,j都缺省时，a[:]就相当于完整复制一份a了</p>
+</li>
+<li><p>b = a[i:j:s]这种格式</p>
+<p>i,j与上面的一样，但s表示步进，缺省为1.<br>所以a[i:j:1]相当于a[i:j]<br>当s&lt;0时，i缺省时，默认为-1. j缺省时，默认为-len(a)-1<br>所以a[::-1]相当于 a[-1:-len(a)-1:-1]，也就是从最后一个元素到第一个元素复制一遍</p>
+</li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1undefined"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1undefined"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/02/04/python-数据处理/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                python 数据处理</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/02/04/Fortran-教程/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                Fortran 教程</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 baizhang<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">一直在减肥的Bai</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/zhang-bai" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/AI/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  人工学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Geophysics/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  皇家地探
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Coding/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  快乐码畜
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Fun/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  自娱自乐
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

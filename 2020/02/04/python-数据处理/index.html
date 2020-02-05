@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">python 数据处理 | sakura</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "一直在减肥的Bai";
+  mashiro_option.author_name = "Bai";
+  mashiro_option.site_url = "https://zhang-bai.github.io";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(1).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(2).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(3).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(4).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(5).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(6).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(7).jpg.webp,https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cover/(8).jpg.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://zhang-bai.github.io">
+          <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Stay with you !</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/zhang-bai" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1https://raw.githubusercontent.com/zhang-bai/picture/master/github.svg">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">一直在减肥的</span>
+            <span class="shironeko">Bai</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/AI/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          人工学习
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Geophysics/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          皇家地探
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Coding/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          快乐码畜
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/Fun/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          自娱自乐
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">python 数据处理</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2020-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <p>[TOC]</p>
+<h1 id="一、matplotlib"><a href="#一、matplotlib" class="headerlink" title="一、matplotlib"></a>一、matplotlib</h1><h3 id="1-ion-和ioff"><a href="#1-ion-和ioff" class="headerlink" title="1. ion()和ioff()"></a>1. ion()和ioff()</h3><p><strong>python可视化库matplotlib有两种显示模式：</strong></p>
+<ol>
+<li><p>阻塞（block）模式（脚本中默认）</p>
+</li>
+<li><p>交互（interactive）模式（命令行中默认）</p>
+</li>
+</ol>
+<p><strong>在交互模式下：</strong></p>
+<ul>
+<li><p>plt.plot(x)或plt.imshow(x)是直接出图像，不需要plt.show()</p>
+</li>
+<li><p>如果在<strong>脚本中</strong>使用ion()命令开启了交互模式，没有使用ioff()关闭的话，则图像会一闪而过，并不会常留。要想防止这种情况，需要在plt.show()之前加上ioff()命令。</p>
+</li>
+</ul>
+<p><strong>在阻塞模式下：</strong></p>
+<ul>
+<li>打开一个窗口以后必须关掉才能打开下一个新的窗口。这种情况下，默认是不能像Matlab一样同时开很多窗口进行对比的。</li>
+<li>plt.plot(x)或plt.imshow(x)是直接出图像，需要plt.show()后才能显示图像</li>
+</ul>
+<h3 id="2-imshow"><a href="#2-imshow" class="headerlink" title="2. imshow()"></a>2. imshow()</h3><p><code>matplotlib.pyplot.imshow</code> (<em>X</em>, <em>cmap=None</em>, <em>norm=None</em>, <em>aspect=None</em>, <em>interpolation=None</em>, <em>alpha=None</em>, <em>vmin=None</em>, <em>vmax=None</em>, <em>origin=None</em>, <em>extent=None</em>, <em>shape=</em>, <em>filternorm=1</em>, <em>filterrad=4.0</em>, <em>imlim=</em>, <em>resample=None</em>, <em>url=None</em>, <strong><em>, </em>data=None<em>, </em></strong>kwargs*)</p>
+<h4 id="1-cmap"><a href="#1-cmap" class="headerlink" title="(1)cmap"></a>(1)cmap</h4><p>设置 cmap 的几种方式：</p>
+<pre><code>plt.imshow(image, cmap=plt.get_cmap(&#39;gray_r&#39;))
+plt.imshow(image, cmap=&#39;gray_r&#39;)
+plt.imshow(image, cmap=plt.cm.binary)
+</code></pre><p>cmap的候选值：</p>
+<pre><code class="python">&#39;Accent&#39;, &#39;Accent_r&#39;, &#39;Blues&#39;, &#39;Blues_r&#39;, &#39;BrBG&#39;, &#39;BrBG_r&#39;, &#39;BuGn&#39;, &#39;BuGn_r&#39;, &#39;BuPu&#39;, &#39;BuPu_r&#39;, &#39;CMRmap&#39;, &#39;CMRmap_r&#39;, &#39;Dark2&#39;, &#39;Dark2_r&#39;, &#39;GnBu&#39;, &#39;GnBu_r&#39;, &#39;Greens&#39;, &#39;Greens_r&#39;, &#39;Greys&#39;, &#39;Greys_r&#39;, &#39;OrRd&#39;, &#39;OrRd_r&#39;, &#39;Oranges&#39;, &#39;Oranges_r&#39;, &#39;PRGn&#39;, &#39;PRGn_r&#39;, &#39;Paired&#39;, &#39;Paired_r&#39;, &#39;Pastel1&#39;, &#39;Pastel1_r&#39;, &#39;Pastel2&#39;, &#39;Pastel2_r&#39;, &#39;PiYG&#39;, &#39;PiYG_r&#39;, &#39;PuBu&#39;, &#39;PuBuGn&#39;, &#39;PuBuGn_r&#39;, &#39;PuBu_r&#39;, &#39;PuOr&#39;, &#39;PuOr_r&#39;, &#39;PuRd&#39;, &#39;PuRd_r&#39;, &#39;Purples&#39;, &#39;Purples_r&#39;, &#39;RdBu&#39;, &#39;RdBu_r&#39;, &#39;RdGy&#39;, &#39;RdGy_r&#39;, &#39;RdPu&#39;, &#39;RdPu_r&#39;, &#39;RdYlBu&#39;, &#39;RdYlBu_r&#39;, &#39;RdYlGn&#39;, &#39;RdYlGn_r&#39;, &#39;Reds&#39;, &#39;Reds_r&#39;, &#39;Set1&#39;, &#39;Set1_r&#39;, &#39;Set2&#39;, &#39;Set2_r&#39;, &#39;Set3&#39;, &#39;Set3_r&#39;, &#39;Spectral&#39;, &#39;Spectral_r&#39;, &#39;Vega10&#39;, &#39;Vega10_r&#39;, &#39;Vega20&#39;, &#39;Vega20_r&#39;, &#39;Vega20b&#39;, &#39;Vega20b_r&#39;, &#39;Vega20c&#39;, &#39;Vega20c_r&#39;, &#39;Wistia&#39;, &#39;Wistia_r&#39;, &#39;YlGn&#39;, &#39;YlGnBu&#39;, &#39;YlGnBu_r&#39;, &#39;YlGn_r&#39;, &#39;YlOrBr&#39;, &#39;YlOrBr_r&#39;, &#39;YlOrRd&#39;, &#39;YlOrRd_r&#39;, &#39;afmhot&#39;, &#39;afmhot_r&#39;, &#39;autumn&#39;, &#39;autumn_r&#39;, &#39;binary&#39;, &#39;binary_r&#39;, &#39;bone&#39;, &#39;bone_r&#39;, &#39;brg&#39;, &#39;brg_r&#39;, &#39;bwr&#39;, &#39;bwr_r&#39;, &#39;cool&#39;, &#39;cool_r&#39;, &#39;coolwarm&#39;, &#39;coolwarm_r&#39;, &#39;copper&#39;, &#39;copper_r&#39;, &#39;cubehelix&#39;, &#39;cubehelix_r&#39;, &#39;flag&#39;, &#39;flag_r&#39;, &#39;gist_earth&#39;, &#39;gist_earth_r&#39;, &#39;gist_gray&#39;, &#39;gist_gray_r&#39;, &#39;gist_heat&#39;, &#39;gist_heat_r&#39;, &#39;gist_ncar&#39;, &#39;gist_ncar_r&#39;, &#39;gist_rainbow&#39;, &#39;gist_rainbow_r&#39;, &#39;gist_stern&#39;, &#39;gist_stern_r&#39;, &#39;gist_yarg&#39;, &#39;gist_yarg_r&#39;, &#39;gnuplot&#39;, &#39;gnuplot2&#39;, &#39;gnuplot2_r&#39;, &#39;gnuplot_r&#39;, &#39;gray&#39;, &#39;gray_r&#39;, &#39;hot&#39;, &#39;hot_r&#39;, &#39;hsv&#39;, &#39;hsv_r&#39;, &#39;inferno&#39;, &#39;inferno_r&#39;, &#39;jet&#39;, &#39;jet_r&#39;, &#39;magma&#39;, &#39;magma_r&#39;, &#39;nipy_spectral&#39;, &#39;nipy_spectral_r&#39;, &#39;ocean&#39;, &#39;ocean_r&#39;, &#39;pink&#39;, &#39;pink_r&#39;, &#39;plasma&#39;, &#39;plasma_r&#39;, &#39;prism&#39;, &#39;prism_r&#39;, &#39;rainbow&#39;, &#39;rainbow_r&#39;, &#39;seismic&#39;, &#39;seismic_r&#39;, &#39;spectral&#39;, &#39;spectral_r&#39;, &#39;spring&#39;, &#39;spring_r&#39;, &#39;summer&#39;, &#39;summer_r&#39;, &#39;tab10&#39;, &#39;tab10_r&#39;, &#39;tab20&#39;, &#39;tab20_r&#39;, &#39;tab20b&#39;, &#39;tab20b_r&#39;, &#39;tab20c&#39;, &#39;tab20c_r&#39;, &#39;terrain&#39;, &#39;terrain_r&#39;, &#39;viridis&#39;, &#39;viridis_r&#39;, &#39;winter&#39;, &#39;winter_r&#39;
+</code></pre>
+<p> 如果 gray 将图像显示为黑底白字，gray_r 会将其显示为白底黑字； </p>
+<h4 id="2-aspect-vmin-true-impedance-min-vmax"><a href="#2-aspect-vmin-true-impedance-min-vmax" class="headerlink" title="(2)aspect, vmin=true_impedance.min(), vmax"></a>(2)aspect, vmin=true_impedance.min(), vmax</h4><p><strong>aspect</strong> : {‘equal’, ‘auto’} or float, optional</p>
+<p>更改纵横比（aspect ratio）</p>
+<p>Controls the aspect ratio of the axes. The aspect is of particular relevance for images since it may distort the image, i.e. pixel will not be square.</p>
+<p>This parameter is a shortcut for explicitly calling <a href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect" target="_blank" rel="noopener"><code>Axes.set_aspect</code></a>. See there for further details.</p>
+<ul>
+<li>‘equal’: Ensures an aspect ratio of 1. Pixels will be square (unless pixel sizes are explicitly made non-square in data coordinates using <em>extent</em>).</li>
+<li>‘auto’: The axes is kept fixed and the aspect is adjusted so that the data fit in the axes. In general, this will result in non-square pixels.</li>
+</ul>
+<p>If not given, use <code>rcParams[&quot;image.aspect&quot;] = &#39;equal&#39;</code> (default: ‘equal’).</p>
+<h4 id="3-vmin-vmax"><a href="#3-vmin-vmax" class="headerlink" title="(3)vmin,vmax"></a>(3)vmin,vmax</h4><p><strong>vmin, vmax</strong> : scalar, optional</p>
+<p>When using scalar data and no explicit <em>norm</em>, <em>vmin</em> and <em>vmax</em> define the data range that the colormap covers. By default, the colormap covers the complete value range of the supplied data. <em>vmin</em>, <em>vmax</em> are ignored if the <em>norm</em> parameter is used.</p>
+<h3 id="3-matplotlib-pyplot"><a href="#3-matplotlib-pyplot" class="headerlink" title="3.matplotlib.pyplot"></a>3.matplotlib.pyplot</h3><p><code>plt.scatter(x,y,1)</code></p>
+<blockquote>
+<p>1 表示散点的粗细大小</p>
+</blockquote>
+<h4 id="（1）坐标轴翻转"><a href="#（1）坐标轴翻转" class="headerlink" title="（1）坐标轴翻转"></a>（1）坐标轴翻转</h4><pre><code class="python">import matplotlib.pyplot as plt
+ax = plt.gca()
+ax.invert_xaxis()
+plt.plot(range(10),range(10))
+plt.show()
+</code></pre>
+<h4 id="（2）更改坐标轴位置及不显示某个坐标轴"><a href="#（2）更改坐标轴位置及不显示某个坐标轴" class="headerlink" title="（2）更改坐标轴位置及不显示某个坐标轴"></a>（2）更改坐标轴位置及不显示某个坐标轴</h4><p>由于axes会获取到四个轴，而我们只需要两个轴，所以我们需要把另外两个轴隐藏，把顶部和右边轴的颜色设置为none，将不会显示。</p>
+<pre><code class="python">ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+ax.spines[&#39;top&#39;].set_color(&#39;none&#39;) # 使顶部坐标轴不显示
+</code></pre>
+<p> ax.spines[‘bottom’]获取底部的轴，通过set_position方法，设置底部轴的位置，例如：ax.spines[‘bottom’].set_position((‘data’,0))表示设置底部轴移动到竖轴的0坐标位置，设置left的方法相同 .</p>
+<pre><code class="python"># 设置底边的移动范围，移动到y轴的0位置
+# data:移动轴的位置到交叉轴的指定坐标  outward:不太懂  axes:0.0 - 1.0之间的值，整个轴上的比例  
+# center:(&#39;axes&#39;,0.5) zero:(&#39;data&#39;,0.0)
+ax.spines[&#39;bottom&#39;].set_position((&#39;data&#39;, 0))
+ax.spines[&#39;left&#39;].set_position((&#39;data&#39;,0))
+</code></pre>
+<h4 id="（3）设置坐标轴显示范围及修改label"><a href="#（3）设置坐标轴显示范围及修改label" class="headerlink" title="（3）设置坐标轴显示范围及修改label"></a>（3）设置坐标轴显示范围及修改label</h4><pre><code class="python"># 利用axes对象设置轴线的显示范围，与plt.xlim(-1,2)和plt.ylim(-2,3)的作用相同
+ax.set_xlim(-1,2)
+ax.set_ylim(-2,3)
+# 利用axes对象设置坐标轴的标签
+ax.set_xlabel(&#39;x data&#39;)
+ax.set_ylabel(&#39;y data&#39;)
+</code></pre>
+<h4 id="（4）ticks显示问题"><a href="#（4）ticks显示问题" class="headerlink" title="（4）ticks显示问题"></a>（4）ticks显示问题</h4><p>数字和小tick 共同改变至所在坐标轴位置</p>
+<pre><code class="python"># 设置坐标轴上的数字显示的位置，top:显示在顶部  bottom:显示在底部,默认是none
+ax.xaxis.set_ticks_position(&#39;top&#39;)
+ax.yaxis.set_ticks_position(&#39;none&#39;)
+</code></pre>
+<p> Tick的方向有三种，一种为in，另外一种为out，还有一种是inout。 </p>
+<p>更改Tick的朝向：</p>
+<pre><code class="python"># 设置xtick和ytick的方向：in、out、inout
+plt.rcParams[&#39;xtick.direction&#39;] = &#39;in&#39;
+plt.rcParams[&#39;ytick.direction&#39;] = &#39;in&#39;
+
+#以下代码起作用
+ax1.tick_params(direction=&#39;in&#39;,width=2,length=4,colors=&#39;gold&#39;)
+</code></pre>
+<p>使 x,y 坐标不显示</p>
+<pre><code class="python">plt.plot(x,y)
+ax = plt.gca()
+ax.set_xticks([])
+</code></pre>
+<h4 id="（5）不显示坐标的值"><a href="#（5）不显示坐标的值" class="headerlink" title="（5）不显示坐标的值"></a>（5）不显示坐标的值</h4><pre><code class="python"># 生成网格
+ax.grid(True)
+# 取消标签的数字显示
+ax.tick_params(&#39;y&#39;, labelleft=False) # 取消left即可（top，bottom，right）
+plt.show()
+</code></pre>
+<h4 id="（6）绘制等高线"><a href="#（6）绘制等高线" class="headerlink" title="（6）绘制等高线"></a>（6）绘制等高线</h4><pre><code class="python"># -*- coding:utf-8 -*-
+#引入numpy库和matplotlib库
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 定义等高线图的横纵坐标x，y
+#从左边取值为从 -3 到 3 ，各取5个点，一共取 5*5 = 25 个点
+x = np.linspace(-3, 3, 5)
+y = np.linspace(-3, 3, 5)
+# 将原始数据变成网格数据
+X, Y = np.meshgrid(x, y)
+
+# 各地点对应的高度数据
+#Height是个 5*5 的数组，记录地图上 25 个点的高度汇总
+Height = [[0,0,1,2,2],[0,-2,-2,1,5],[4,2,6,8,1],[3,-3,-3,0,5],[1,-5,-2,0,3]]
+
+# 填充颜色
+plt.contourf(X, Y, Height, 10, alpha = 0.6, cmap = plt.cm.hot)
+# 绘制等高线
+C = plt.contour(X, Y, Height, 10, colors = &#39;black&#39;, linewidth = 0.5)
+# 显示各等高线的数据标签
+plt.clabel(C, inline = True, fontsize = 10)
+plt.show()
+</code></pre>
+<p><strong>contourf 填充颜色函数</strong></p>
+<ul>
+<li>前三个参数 X, Y, Height 用来引进点的位置和对应的高度数据；</li>
+<li>数字 10 代表将等高线图分成10块（这里不是硬性要求，但数值过小会造成部分分区颜色区分度不高）；</li>
+<li>alpha = 0.6 用来设置填充颜色的范围，alpha取值为 [0,1) 。alpha=0时，画出的是无色图，alpha越接近1，颜色的搭配就越向深色风格过渡</li>
+</ul>
+<pre><code class="python">#只画z=20和40的线，并将颜色设置为黑色
+contour = plt.contour(X,Y,Z,[20,40],colors=&#39;k&#39;)
+#等高线上标明z（即高度）的值，字体大小是10，颜色分别是黑色和红色
+plt.clabel(contour,fontsize=10,colors=(&#39;k&#39;,&#39;r&#39;))
+
+</code></pre>
+<h4 id="（7）显示title"><a href="#（7）显示title" class="headerlink" title="（7）显示title"></a>（7）显示title</h4><pre><code class="python">ax.set_title(&#39;name&#39;)
+</code></pre>
+<h3 id="4-pyplot-subplots"><a href="#4-pyplot-subplots" class="headerlink" title="4.pyplot.subplots"></a>4.pyplot.subplots</h3><p> 在matplotlib中，<code>整个图像</code>为一个<code>Figure</code>对象。在Figure对象中可以包含一个或者多个<code>Axes</code>对象。每个Axes(ax)对象都是一个拥有自己坐标系统的绘图区域。</p>
+<p><strong>参数</strong></p>
+<p>nrows，ncols：</p>
+<ul>
+<li>子图的行列数。</li>
+</ul>
+<p>sharex, sharey：</p>
+<ul>
+<li>设置为 True 或者 ‘all’ 时，所有子图共享 x 轴或者 y 轴，</li>
+<li>设置为 False or ‘none’ 时，所有子图的 x，y 轴均为独立，</li>
+<li>设置为 ‘row’ 时，每一行的子图会共享 x 或者 y 轴，</li>
+<li>设置为 ‘col’ 时，每一列的子图会共享 x 或者 y 轴。</li>
+</ul>
+<h4 id="ax-flatten"><a href="#ax-flatten" class="headerlink" title="ax.flatten()"></a>ax.flatten()</h4><ul>
+<li><p>例如:</p>
+<pre><code class="python">fig,ax = plt.subplots(nrows=2, ncols=2)
+axes = ax.flatten()
+</code></pre>
+</li>
+<li><p>把子图展开赋值给axes,axes[0]便是第一个子图，axes[1]是第二个… …</p>
+</li>
+</ul>
+<p>应用实例:</p>
+<pre><code class="python">import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(
+    nrows=2,
+    ncols=5,
+    sharex=True,
+    sharey=True, )
+
+ax = ax.flatten()
+for i in range(10):
+    img = X_train[y_train == i][0].reshape(28, 28)
+    ax[i].imshow(img, cmap=&#39;Greys&#39;, interpolation=&#39;nearest&#39;)
+
+ax[0].set_xticks([])
+ax[0].set_yticks([])
+plt.tight_layout()
+plt.show()
+</code></pre>
+<h4 id="fig-tight-layout"><a href="#fig-tight-layout" class="headerlink" title="fig.tight_layout()"></a>fig.tight_layout()</h4><p>有多个plots的时候，会出现重叠的现象，通过tight_layout可以解决</p>
+<p>tight_layout可以通过参数pad, w_pad, h_pad来设置一些布局的细节</p>
+<h3 id="5-annotate"><a href="#5-annotate" class="headerlink" title="5. annotate()"></a>5. annotate()</h3><p> ax.annotate(row,xy=(0,0.5), xytext=(-pad,0), xycoords=’axes fraction’, textcoords=’offset points’, ha=’right’, va=’center’)</p>
+<p>当图线中某些特殊地方需要标注时，我们可以使用 <code>annotation</code>. matplotlib 中的 <code>annotation</code> 有两种方法， 一种是用 plt 里面的 <code>annotate</code>，一种是直接用 plt 里面的 <code>text</code> 来写标注.</p>
+<p>然后标注出点<code>(x0, y0)</code>的位置信息. 用<code>plt.plot([x0, x0,], [0, y0,], &#39;k--&#39;, linewidth=2.5)</code> 画出一条垂直于x轴的虚线.</p>
+<p>接下来我们就对<code>(x0, y0)</code>这个点进行标注.</p>
+<pre><code class="python">plt.annotate(r&#39;$2x+1=%s$&#39; % y0, xy=(x0, y0), xycoords=&#39;data&#39;, xytext=(+30, -30),
+             textcoords=&#39;offset points&#39;, fontsize=16,
+             arrowprops=dict(arrowstyle=&#39;-&gt;&#39;, connectionstyle=&quot;arc3,rad=.2&quot;))
+</code></pre>
+<p>其中参数<code>xycoords=&#39;data&#39;</code> 是说基于数据的值来选位置, <code>xytext=(+30, -30)</code> 和 <code>textcoords=&#39;offset points&#39;</code> 对于标注位置的描述 和 xy 偏差值, <code>arrowprops</code>是对图中箭头类型的一些设置.</p>
+<p><strong>添加注释 text</strong> </p>
+<pre><code class="pythons">plt.text(-3.7, 3, r&#39;$This\ is\ the\ some\ text. \mu\ \sigma_i\ \alpha_t$&#39;,
+         fontdict={&#39;size&#39;: 16, &#39;color&#39;: &#39;r&#39;})
+</code></pre>
+<p>其中<code>-3.7, 3,</code>是选取text的位置, 空格需要用到转字符<code>\</code>,<code>fontdict</code>设置文本字体.</p>
+<h3 id="6-violinplot"><a href="#6-violinplot" class="headerlink" title="6.violinplot"></a>6.violinplot</h3><pre><code class="python">np.random.seed(1)
+
+plt.violinplot(dataset=np.random.randn(200,10) + np.random.randn(10))
+</code></pre>
+<h1 id="二、numpy"><a href="#二、numpy" class="headerlink" title="二、numpy"></a>二、numpy</h1><h3 id="1-运算符号"><a href="#1-运算符号" class="headerlink" title="1. 运算符号"></a>1. 运算符号</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dot</code></td>
+<td>两个数组的点积，即元素对应相乘。</td>
+</tr>
+<tr>
+<td><code>vdot</code></td>
+<td>两个向量的点积</td>
+</tr>
+<tr>
+<td><code>inner</code></td>
+<td>两个数组的内积</td>
+</tr>
+<tr>
+<td><code>matmul</code></td>
+<td>两个数组的矩阵积</td>
+</tr>
+<tr>
+<td><code>determinant</code></td>
+<td>数组的行列式</td>
+</tr>
+<tr>
+<td><code>solve</code></td>
+<td>求解线性矩阵方程</td>
+</tr>
+<tr>
+<td><code>inv</code></td>
+<td>计算矩阵的乘法逆矩阵</td>
+</tr>
+</tbody>
+</table>
+<h5 id="1）向量、矩阵叉乘"><a href="#1）向量、矩阵叉乘" class="headerlink" title="1）向量、矩阵叉乘"></a>1）向量、矩阵叉乘</h5><pre><code class="python">numpy.dot()
+</code></pre>
+<blockquote>
+<p> numpy.dot()   对于两个一维的数组，计算的是这两个数组对应下标元素的乘积和(数学上称之为内积)；对于二维数组，计算的是两个数组的矩阵乘积；对于多维数组，它的通用计算公式如下，即结果数组中的每个元素都是：数组a的最后一维上的所有元素与数组b的倒数第二位上的所有元素的乘积和： dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])。 </p>
+<pre><code> numpy.dot(a, b, out=None) 
+</code></pre><p> <strong>参数说明：</strong> </p>
+<ul>
+<li><strong>a</strong> : ndarray 数组 </li>
+<li><strong>b</strong> : ndarray 数组 </li>
+<li><strong>out</strong> : ndarray, 可选，用来保存dot()的计算结果</li>
+</ul>
+</blockquote>
+<h5 id="2-二维矩阵对应元素相乘（-乘）"><a href="#2-二维矩阵对应元素相乘（-乘）" class="headerlink" title="2)二维矩阵对应元素相乘（*乘）"></a>2)二维矩阵对应元素相乘（*乘）</h5><p> 有2种方式，一个是np.multiply(a,b)，另外一个是* 。</p>
+<blockquote>
+<pre><code class="python">import numpy
+a = numpy.array([[1,2],
+           [3,4]])
+b = numpy.array([[5,6],
+           [7,8]])
+
+a*b
+&gt;&gt;&gt;array([[ 5, 12],
+    [21, 32]])
+
+a.dot(b)
+&gt;&gt;&gt;array([[19, 22],
+    [43, 50]])
+
+numpy.dot(a,b)
+&gt;&gt;&gt;array([[19, 22],
+    [43, 50]])
+</code></pre>
+</blockquote>
+<h5 id="3）计算平方，乘方，平方根"><a href="#3）计算平方，乘方，平方根" class="headerlink" title="3）计算平方，乘方，平方根"></a>3）计算平方，乘方，平方根</h5><pre><code class="python"># 计算乘方
+pow(4,3)
+
+# 计算平方
+pow(5,2)
+
+import numpy
+numpy.square(5)
+
+# 计算平方根
+pow(25,0.5)
+
+import numpy
+numpy.sqrt(25)
+
+import math
+math.sqrt(25)
+</code></pre>
+<p>对于numpy定义的向量array变量，如果求其exp，需要使用np.exp()，不能使用 math.exp() ，否则报错。</p>
+<h3 id="2-矩阵拼接"><a href="#2-矩阵拼接" class="headerlink" title="2. 矩阵拼接"></a>2. 矩阵拼接</h3><pre><code class="python">import numpy as np
+a=np.array([[1,2,3],[4,5,6]])
+b=np.array([[11,12,31],[14,15,16]])
+
+#方法1
+c=np.r_[a,b]  #沿着矩阵行拼接
+print(&#39;c=&#39;,c)
+d=np.c_[a,b]  #沿着矩阵列拼接
+print(&#39;d=&#39;,d)
+
+#方法2
+e=np.vstack((a,b))  #沿着矩阵行拼接
+print(&#39;e=&#39;,e)
+f=np.hstack((a,b))  #沿着矩阵列拼接
+print(&#39;f=&#39;,f)
+
+
+#out
+
+c= [[ 1  2  3]
+ [ 4  5  6]
+ [11 12 31]
+ [14 15 16]]
+d= [[ 1  2  3 11 12 31]
+ [ 4  5  6 14 15 16]]
+e= [[ 1  2  3]
+ [ 4  5  6]
+ [11 12 31]
+ [14 15 16]]
+f= [[ 1  2  3 11 12 31]
+ [ 4  5  6 14 15 16]]
+
+</code></pre>
+<p>在使用numpy进行矩阵拼接之时，由于 numpy会申请连续的内存，如果频繁改变大小，他就要频繁申请新的内存  <strong>numpy的数组一旦变动大小就会像搬家一样大包小包的带着自己的全部数据，拉家带口的搬到新家，所以，才需要你一开始就将numpy数组的大小设定好</strong>。 </p>
+<p> NumPy数组与列表是一个非常不同的数据结构，它被设计用于不同的方式。 你对 <code>hstack</code>的使用可能非常低效。 每次调用它时，现有数组中的所有数据都将复制到新数组中。 (<code>append</code> 函数会有同样的问题。) 因此，最好把它放在一个列表中，直到它完成，然后将它转换成数组。 </p>
+<pre><code class="python">import numpy as np
+a=[]
+a.append(2)
+b=np.array(a)
+</code></pre>
+<p>可以直接使用 <strong>list</strong> 进行拼接之后再抓换位numpy中的变量.</p>
+<pre><code class="python">a = [1,2,3]
+b = [4,5,6]
+d = np.array([a,b])
+d.shape   #d为2x3的数组,d=[[1,2,3],
+         #                [4,5,6]]
+</code></pre>
+<p>3）</p>
+<h3 id="3-创建矩阵"><a href="#3-创建矩阵" class="headerlink" title="3. 创建矩阵"></a>3. 创建矩阵</h3><p>创建的数据默认是<strong>float</strong>类型<br> np.zeros中第一个参数是<strong>shape=XX</strong>，代表创建的是几维的数组，第二个参数代表的是数据类型，<strong>dtype=int</strong>代表的是传入整数类型。</p>
+<p><strong>np.ones</strong>代表里面的数值全为1</p>
+<p> <strong>np.full</strong>代表的是数值全为指定数的值</p>
+<p> <strong>numpy中arange的使用</strong></p>
+<p><code>numpy.arrange(0:20:2)</code>步长为2，前闭后开区间，所以不包含20</p>
+<p> arange和range的最大不同是range不能传入小数 </p>
+<pre><code class="python">np.zeros((2,2))
+</code></pre>
+<h5 id="矩阵加法"><a href="#矩阵加法" class="headerlink" title="矩阵加法"></a>矩阵加法</h5><p>np 的矩阵，可以（3，4）+（3，4）即同等大小直接对应元素相加；也可以（3，4）+（4，），即列数对应相同，每一列相加同样的元素；或者（3，4）+ （1），给每个元素增加同样的元素</p>
+<pre><code class="python">np.ones((3,5))+np.random.randn(3,5)
+np.ones((3,5))+np.random.randn(5)
+np.ones((3,5))+np.random.randn(1)
+
+
+np.random.seed(1)
+
+print(&quot;+(3,5)\n&quot;,np.ones((3,5))+np.random.randn(3,5))
+print(&quot;+(5,)\n&quot;,np.ones((3,5))+np.random.randn(5))
+print(&quot;+(1，)\n&quot;,np.ones((3,5))+np.random.randn(1))
+&quot;&quot;&quot;
++(3,5)
+ [[ 2.62434536  0.38824359  0.47182825 -0.07296862  1.86540763]
+ [-1.3015387   2.74481176  0.2387931   1.3190391   0.75062962]
+ [ 2.46210794 -1.06014071  0.6775828   0.61594565  2.13376944]]
++(5,)
+ [[-0.09989127  0.82757179  0.12214158  1.04221375  1.58281521]
+ [-0.09989127  0.82757179  0.12214158  1.04221375  1.58281521]
+ [-0.09989127  0.82757179  0.12214158  1.04221375  1.58281521]]
++(1，)
+ [[-0.10061918 -0.10061918 -0.10061918 -0.10061918 -0.10061918]
+ [-0.10061918 -0.10061918 -0.10061918 -0.10061918 -0.10061918]
+ [-0.10061918 -0.10061918 -0.10061918 -0.10061918 -0.10061918]]
+ &quot;&quot;&quot;
+</code></pre>
+<h3 id="4-np-random-随机"><a href="#4-np-random-随机" class="headerlink" title="4. np.random 随机"></a>4. np.random 随机</h3><ol>
+<li>简单随机数： 产生简单的随机数据，可以是任何维度 </li>
+<li>排列：将所给对象随机排列 </li>
+<li>分布：产生指定分布的数据，如高斯分布等 </li>
+<li>生成器：种随机数种子，根据同一种子产生的随机数是相同的  </li>
+</ol>
+<h5 id="1-生成器"><a href="#1-生成器" class="headerlink" title="1)生成器"></a>1)生成器</h5><p>电脑产生随机数需要明白以下几点：<br>（1）随机数是由随机种子根据一定的计算方法计算出来的数值。所以，只要计算方法一定，随机种子一定，那么产生的随机数就不会变。<br>（2）只要用户不设置随机种子，那么在默认情况下随机种子来自系统时钟（即定时/计数器的值）<br>（3）随机数产生的算法与系统有关，Windows和Linux是不同的，也就是说，即便是随机种子一样，不同系统产生的随机数也不一样。<br>numpy.random 设置种子的方法有：</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RandomState</td>
+<td>定义种子类</td>
+<td>RandomState是一个种子类，提供了各种种子方法，最常用seed</td>
+</tr>
+<tr>
+<td>seed([seed])</td>
+<td>定义全局种子</td>
+<td>参数为整数或者矩阵</td>
+</tr>
+</tbody>
+</table>
+<p>代码示例：</p>
+<pre><code class="python">np.random.seed(1234) #设置随机种子为1234
+</code></pre>
+<h5 id="2-简单随机"><a href="#2-简单随机" class="headerlink" title="2)简单随机"></a>2)简单随机</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rand(d0, d1, …, dn)</td>
+<td>产生均匀分布的随机数</td>
+<td>dn为第n维数据的维度</td>
+</tr>
+<tr>
+<td>randn(d0, d1, …, dn)</td>
+<td>产生标准正态分布随机数</td>
+<td>dn为第n维数据的维度</td>
+</tr>
+<tr>
+<td>randint(low[, high, size, dtype])</td>
+<td>产生随机整数</td>
+<td>low：最小值；high：最大值；size：数据个数</td>
+</tr>
+<tr>
+<td>random_sample([size])</td>
+<td>在[0,1）内产生随机数</td>
+<td>size：随机数的shape，可以为元祖或者列表，[2,3]表示2维随机数，维度为（2,3）</td>
+</tr>
+<tr>
+<td>random([size])</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>ranf([size])</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>sample([size]))</td>
+<td>同random_sample([size])</td>
+<td>同random_sample([size])</td>
+</tr>
+<tr>
+<td>choice(a[, size, replace, p])</td>
+<td>从a中随机选择指定数据</td>
+<td>a：1维数组 size：返回数据形状</td>
+</tr>
+<tr>
+<td>bytes(length)</td>
+<td>返回随机位</td>
+<td>length：位的长度</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3-分布-经典概率分布"><a href="#3-分布-经典概率分布" class="headerlink" title="3)分布 (经典概率分布)"></a>3)分布 (经典概率分布)</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beta(a, b[, size])</td>
+<td>贝塔分布样本，在 [0, 1]内。</td>
+<td></td>
+</tr>
+<tr>
+<td>binomial(n, p[, size])</td>
+<td>二项分布的样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>chisquare(df[, size])</td>
+<td>卡方分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>dirichlet(alpha[, size])</td>
+<td>狄利克雷分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>exponential([scale, size])</td>
+<td>指数分布</td>
+<td></td>
+</tr>
+<tr>
+<td>f(dfnum, dfden[, size])</td>
+<td>F分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>gamma(shape[, scale, size])</td>
+<td>伽马分布</td>
+<td></td>
+</tr>
+<tr>
+<td>geometric(p[, size])</td>
+<td>几何分布</td>
+<td></td>
+</tr>
+<tr>
+<td>gumbel([loc, scale, size])</td>
+<td>耿贝尔分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>hypergeometric(ngood, nbad, nsample[, size])</td>
+<td>超几何分布样本。</td>
+<td></td>
+</tr>
+<tr>
+<td>laplace([loc, scale, size])</td>
+<td>拉普拉斯或双指数分布样本</td>
+<td></td>
+</tr>
+<tr>
+<td>logistic([loc, scale, size])</td>
+<td>Logistic分布样本</td>
+<td></td>
+</tr>
+<tr>
+<td>lognormal([mean, sigma, size])</td>
+<td>对数正态分布</td>
+<td></td>
+</tr>
+<tr>
+<td>logseries(p[, size])</td>
+<td>对数级数分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>multinomial(n, pvals[, size])</td>
+<td>多项分布</td>
+<td></td>
+</tr>
+<tr>
+<td>multivariate_normal(mean, cov[, size])</td>
+<td>多元正态分布。</td>
+<td></td>
+</tr>
+<tr>
+<td>negative_binomial(n, p[, size])</td>
+<td>负二项分布</td>
+<td></td>
+</tr>
+<tr>
+<td>noncentral_chisquare(df, nonc[, size])</td>
+<td>非中心卡方分布</td>
+<td></td>
+</tr>
+<tr>
+<td>noncentral_f(dfnum, dfden, nonc[, size])</td>
+<td>非中心F分布</td>
+<td></td>
+</tr>
+<tr>
+<td>normal([loc, scale, size])</td>
+<td>正态(高斯)分布</td>
+<td></td>
+</tr>
+<tr>
+<td>pareto(a[, size])</td>
+<td>帕累托（Lomax）分布</td>
+<td></td>
+</tr>
+<tr>
+<td>poisson([lam, size])</td>
+<td>泊松分布</td>
+<td></td>
+</tr>
+<tr>
+<td>power(a[, size])</td>
+<td>Draws samples in [0, 1] from a power distribution with positive exponent a - 1.</td>
+<td></td>
+</tr>
+<tr>
+<td>rayleigh([scale, size])</td>
+<td>Rayleigh 分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_cauchy([size])</td>
+<td>标准柯西分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_exponential([size])</td>
+<td>标准的指数分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_gamma(shape[, size])</td>
+<td>标准伽马分布</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_normal([size])</td>
+<td>标准正态分布 (mean=0, stdev=1).</td>
+<td></td>
+</tr>
+<tr>
+<td>standard_t(df[, size])</td>
+<td>Standard Student’s t distribution with df degrees of freedom.</td>
+<td></td>
+</tr>
+<tr>
+<td>triangular(left, mode, right[, size])</td>
+<td>三角形分布</td>
+<td></td>
+</tr>
+<tr>
+<td>uniform([low, high, size])</td>
+<td>均匀分布</td>
+<td></td>
+</tr>
+<tr>
+<td>vonmises(mu, kappa[, size])</td>
+<td>von Mises分布</td>
+<td></td>
+</tr>
+<tr>
+<td>wald(mean, scale[, size])</td>
+<td>瓦尔德（逆高斯）分布</td>
+<td></td>
+</tr>
+<tr>
+<td>weibull(a[, size])</td>
+<td>Weibull 分布</td>
+<td></td>
+</tr>
+<tr>
+<td>zipf(a[, size])</td>
+<td>齐普夫分布</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4-排列-打乱对象"><a href="#4-排列-打乱对象" class="headerlink" title="4)排列 (打乱对象)"></a>4)排列 (打乱对象)</h5><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>函数功能</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shuffle(x)</td>
+<td>打乱对象x（多维矩阵按照第一维打乱）</td>
+<td>矩阵或者列表</td>
+</tr>
+<tr>
+<td>permutation(x)</td>
+<td>打乱并返回该对象（多维矩阵按照第一维打乱）</td>
+<td>整数或者矩阵</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-FFT"><a href="#5-FFT" class="headerlink" title="5. FFT"></a>5. FFT</h3><h3 id="6-np-newaxis"><a href="#6-np-newaxis" class="headerlink" title="6. np.newaxis"></a>6. np.newaxis</h3><p>np.newaxis的功能是插入新维度，例如：b=x_np[np.newaxis, :, np.newaxis]</p>
+<p>输出结果  ([1, 10, 1])</p>
+<h3 id="7-np-flatten"><a href="#7-np-flatten" class="headerlink" title="7. np.flatten"></a>7. np.flatten</h3><p><code>ndarray.flatten</code>(<em>order=’C’</em>)</p>
+<p>Return a copy of the array collapsed into one dimension.</p>
+<p>将矩阵压扁成一维</p>
+<h3 id="8-numpy-load-存取"><a href="#8-numpy-load-存取" class="headerlink" title="8. numpy.load() 存取"></a>8. numpy.load() 存取</h3><p><code>data  = numpy.load (&quot;path&quot;)</code> data 一般为 numpy.ndarray 形式的数据，若要将其转变为字典形式，则应为 <code>data = numpy.load(&quot;path&quot;).item()</code> </p>
+<h3 id="9-numpy-中的常数"><a href="#9-numpy-中的常数" class="headerlink" title="9.numpy 中的常数"></a>9.numpy 中的常数</h3><h4 id="（1）inf"><a href="#（1）inf" class="headerlink" title="（1）inf"></a>（1）inf</h4><p>numpy中的inf表示一个无限大的正数</p>
+<pre><code>import numpy
+x =  numpy.inf
+x&gt;9999999999999999999
+</code></pre><h3 id="10-求均值等"><a href="#10-求均值等" class="headerlink" title="10. 求均值等"></a>10. 求均值等</h3><p><code>np.mean(a ,axis=(0,-1),keepdims = True)</code> 其中，a 为求均值的 ndarray ,axis 表示需要求均值的坐标维度，默认将所有维度flatten 后求和， keepdims 表示将各维度保持原样求均值。</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1undefined"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1undefined"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/02/04/Ubuntu下安装python2.7遇到的一些坑/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                Ubuntu下安装python2.7遇到的一些坑</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/02/04/python-拾遗/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                python 拾遗</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 baizhang<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.1/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">一直在减肥的Bai</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/zhang-bai" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/AI/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  人工学习
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Geophysics/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  皇家地探
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Coding/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  快乐码畜
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/Fun/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  自娱自乐
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

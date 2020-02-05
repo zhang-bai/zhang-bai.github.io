@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>sakura</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="/"/>
+  <updated>2020-02-04T13:57:05.663Z</updated>
+  <id>/</id>
+  
+  <author>
+    <name>baizhang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计学习方法（笔记）</title>
+    <link href="/2020/02/04/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    <id>/2020/02/04/统计学习方法/</id>
+    <published>2020-02-04T07:04:03.035Z</published>
+    <updated>2020-02-04T13:57:05.663Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;第一章-统计学习及监督学习理论&quot;&gt;&lt;a href=&quot;#第一章-统计学习及监督学习理论&quot; class=&quot;headerlink&quot; title=&quot;第一章 统计学习及监督学习理论&quot;&gt;&lt;/a&gt;第一章 统计学习及监督学习理论&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="AI" scheme="/categories/AI/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>地震作业</title>
+    <link href="/2020/02/04/%E5%9C%B0%E9%9C%87%E4%BD%9C%E4%B8%9A/"/>
+    <id>/2020/02/04/地震作业/</id>
+    <published>2020-02-04T07:04:03.033Z</published>
+    <updated>2020-02-04T13:04:00.960Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[toc]&lt;/p&gt;
+&lt;h2 id=&quot;一、设置模型&quot;&gt;&lt;a href=&quot;#一、设置模型&quot; class=&quot;headerlink&quot; title=&quot;一、设置模型&quot;&gt;&lt;/a&gt;一、设置模型&lt;/h2&gt;&lt;p&gt;网格大小设置为 $$ 200\times300 $$
+        
+      
+    
+    </summary>
+    
+      <category term="Geophysics" scheme="/categories/Geophysics/"/>
+    
+    
+      <category term="python" scheme="/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大创软件设计</title>
+    <link href="/2020/02/04/%E5%A4%A7%E5%88%9B%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
+    <id>/2020/02/04/大创软件设计/</id>
+    <published>2020-02-04T07:04:03.021Z</published>
+    <updated>2020-02-04T13:03:45.045Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[toc]&lt;/p&gt;
+&lt;h1 id=&quot;一、设计背景&quot;&gt;&lt;a href=&quot;#一、设计背景&quot; class=&quot;headerlink&quot; title=&quot;一、设计背景&quot;&gt;&lt;/a&gt;一、设计背景&lt;/h1&gt;&lt;h1 id=&quot;二、各模块设计&quot;&gt;&lt;a href=&quot;#二、各模块设计&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Geophysics" scheme="/categories/Geophysics/"/>
+    
+    
+      <category term="MATLAB" scheme="/tags/MATLAB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vi learning</title>
+    <link href="/2020/02/04/vi-learning/"/>
+    <id>/2020/02/04/vi-learning/</id>
+    <published>2020-02-04T07:04:03.019Z</published>
+    <updated>2020-02-04T13:03:34.677Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、起因&quot;&gt;&lt;a href=&quot;#一、起因&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu下安装python2.7遇到的一些坑</title>
+    <link href="/2020/02/04/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85python2.7%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/"/>
+    <id>/2020/02/04/Ubuntu下安装python2.7遇到的一些坑/</id>
+    <published>2020-02-04T07:04:03.017Z</published>
+    <updated>2020-02-04T13:03:23.878Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;使用清华镜像&lt;/p&gt;
+&lt;p&gt;临时使用&lt;br&gt; 可以在使用pip的时候加参数-i &lt;a href=&quot;https://pypi.tuna.tsinghua.edu.cn/simple&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+      <category term="python" scheme="/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 数据处理</title>
+    <link href="/2020/02/04/python-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
+    <id>/2020/02/04/python-数据处理/</id>
+    <published>2020-02-04T07:01:00.313Z</published>
+    <updated>2020-02-04T13:03:06.529Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;一、matplotlib&quot;&gt;&lt;a href=&quot;#一、matplotlib&quot; class=&quot;headerlink&quot; title=&quot;一、matplotlib&quot;&gt;&lt;/a&gt;一、matplotlib&lt;/h1&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+      <category term="python" scheme="/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 拾遗</title>
+    <link href="/2020/02/04/python-%E6%8B%BE%E9%81%97/"/>
+    <id>/2020/02/04/python-拾遗/</id>
+    <published>2020-02-04T07:00:25.249Z</published>
+    <updated>2020-02-04T13:02:57.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;1-super函数与子类继承父类构造函数&quot;&gt;&lt;a href=&quot;#1-super函数与子类继承父类构造函数&quot; class=&quot;headerlink&quot; title=&quot;1. super函数与子类继承父类构造函数&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+      <category term="python" scheme="/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fortran 教程</title>
+    <link href="/2020/02/04/Fortran-%E6%95%99%E7%A8%8B/"/>
+    <id>/2020/02/04/Fortran-教程/</id>
+    <published>2020-02-04T07:00:25.246Z</published>
+    <updated>2020-02-04T13:02:46.387Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、基础知识&quot;&gt;&lt;a href=&quot;#一、基础知识&quot; class=&quot;headerlink&quot; title=&quot;一、基础知识&quot;&gt;&lt;/a&gt;一、基础知识&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>filters</title>
+    <link href="/2020/02/04/filters/"/>
+    <id>/2020/02/04/filters/</id>
+    <published>2020-02-04T07:00:25.244Z</published>
+    <updated>2020-02-04T13:02:33.203Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;滤波器&quot;&gt;&lt;a href=&quot;#滤波器&quot; class=&quot;headerlink&quot; title=&quot;滤波器&quot;&gt;&lt;/a&gt;滤波器&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h4 id=&quot;一、FFT对应的频率和相位&quot;&gt;&lt;a href=&quot;#一、FFT对应的频率和相位&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Geophysics" scheme="/categories/Geophysics/"/>
+    
+    
+      <category term="python" scheme="/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Conda基本语法</title>
+    <link href="/2020/02/04/conda%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>/2020/02/04/conda基本使用方法/</id>
+    <published>2020-02-04T07:00:25.241Z</published>
+    <updated>2020-02-04T13:11:20.336Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;conda基本使用方法&quot;&gt;&lt;a href=&quot;#conda基本使用方法&quot; class=&quot;headerlink&quot; title=&quot;conda基本使用方法&quot;&gt;&lt;/a&gt;conda基本使用方法&lt;/h2&gt;&lt;p&gt;conda
+        
+      
+    
+    </summary>
+    
+      <category term="Fun" scheme="/categories/Fun/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>bicubic interpolati</title>
+    <link href="/2020/02/04/bicubic-interpolati/"/>
+    <id>/2020/02/04/bicubic-interpolati/</id>
+    <published>2020-02-04T06:59:56.633Z</published>
+    <updated>2020-02-04T13:01:51.276Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;源于科学计算课程作业，现将代码整理如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;c&quot;&gt;/*******2019.03.31**********
+双三次多项式插值 Bi-cubic
+        
+      
+    
+    </summary>
+    
+      <category term="Geophysics" scheme="/categories/Geophysics/"/>
+    
+    
+      <category term="c/c++" scheme="/tags/c-c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2D wave function</title>
+    <link href="/2020/02/04/2D-wave-function/"/>
+    <id>/2020/02/04/2D-wave-function/</id>
+    <published>2020-02-04T06:59:56.624Z</published>
+    <updated>2020-02-04T12:59:59.393Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;地震波正演程序，采用marmousi模型进行地震波模拟，边界进行了PCL吸收处理。&lt;/p&gt;
+&lt;p&gt;主函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+      <category term="Geophysics" scheme="/categories/Geophysics/"/>
+    
+    
+      <category term="MATLAB" scheme="/tags/MATLAB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习笔记（一）</title>
+    <link href="/2019/10/05/2019-10-5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>/2019/10/05/2019-10-5-机器学习笔记（一）/</id>
+    <published>2019-10-05T13:59:00.000Z</published>
+    <updated>2020-02-04T13:01:39.656Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;第三章-线性模型&quot;&gt;&lt;a href=&quot;#第三章-线性模型&quot; class=&quot;headerlink&quot; title=&quot;第三章 线性模型&quot;&gt;&lt;/a&gt;第三章 线性模型&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;1.
+        
+      
+    
+    </summary>
+    
+      <category term="course" scheme="/categories/course/"/>
+    
+    
+      <category term="AI" scheme="/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win 10 快捷操作</title>
+    <link href="/2019/10/04/2019-10-4-win-10-%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/"/>
+    <id>/2019/10/04/2019-10-4-win-10-快捷操作/</id>
+    <published>2019-10-04T14:38:10.000Z</published>
+    <updated>2020-02-04T13:01:29.854Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、WIN-R&quot;&gt;&lt;a href=&quot;#一、WIN-R&quot; class=&quot;headerlink&quot; title=&quot;一、WIN + R&quot;&gt;&lt;/a&gt;一、WIN +
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Fun" scheme="/tags/Fun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ 异常处理</title>
+    <link href="/2019/09/27/C++%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    <id>/2019/09/27/C++ 异常处理/</id>
+    <published>2019-09-27T14:26:04.000Z</published>
+    <updated>2020-02-04T13:02:02.673Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;C-异常处理&quot;&gt;&lt;a href=&quot;#C-异常处理&quot; class=&quot;headerlink&quot; title=&quot;C++ 异常处理&quot;&gt;&lt;/a&gt;C++ 异常处理&lt;/h1&gt;&lt;p&gt;异常是程序在执行期间产生的问题。C++
+        
+      
+    
+    </summary>
+    
+      <category term="Coding" scheme="/categories/Coding/"/>
+    
+    
+      <category term="c/c++" scheme="/tags/c-c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>8-queen</title>
+    <link href="/2019/09/25/8queen/"/>
+    <id>/2019/09/25/8queen/</id>
+    <published>2019-09-25T14:06:41.000Z</published>
+    <updated>2020-02-04T13:00:22.493Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;八皇后问题&quot;&gt;&lt;a href=&quot;#八皇后问题&quot; class=&quot;headerlink&quot; title=&quot;八皇后问题&quot;&gt;&lt;/a&gt;八皇后问题&lt;/h2&gt;&lt;p&gt;​    
+        
+      
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="/categories/Algorithm/"/>
+    
+    
+      <category term="Coding" scheme="/tags/Coding/"/>
+    
+  </entry>
+  
+</feed>
