@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-02-04T13:57:05.663Z</updated>
+  <updated>2020-02-11T05:04:55.578Z</updated>
   <id>/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="/2020/02/04/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     <id>/2020/02/04/统计学习方法/</id>
     <published>2020-02-04T07:04:03.035Z</published>
-    <updated>2020-02-04T13:57:05.663Z</updated>
+    <updated>2020-02-11T05:04:55.578Z</updated>
     
     <summary type="html">
     
@@ -336,7 +336,7 @@
     <link href="/2019/10/05/2019-10-5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>/2019/10/05/2019-10-5-机器学习笔记（一）/</id>
     <published>2019-10-05T13:59:00.000Z</published>
-    <updated>2020-02-04T13:01:39.656Z</updated>
+    <updated>2020-02-11T05:03:41.649Z</updated>
     
     <summary type="html">
     
@@ -350,7 +350,7 @@
     
     </summary>
     
-      <category term="course" scheme="/categories/course/"/>
+      <category term="AI" scheme="/categories/AI/"/>
     
     
       <category term="AI" scheme="/tags/AI/"/>
@@ -412,7 +412,7 @@
     <link href="/2019/09/25/8queen/"/>
     <id>/2019/09/25/8queen/</id>
     <published>2019-09-25T14:06:41.000Z</published>
-    <updated>2020-02-11T04:47:33.751Z</updated>
+    <updated>2020-02-11T05:03:02.500Z</updated>
     
     <summary type="html">
     
@@ -427,10 +427,10 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="/categories/Algorithm/"/>
+      <category term="Coding" scheme="/categories/Coding/"/>
     
     
-      <category term="Coding" scheme="/tags/Coding/"/>
+      <category term="C" scheme="/tags/C/"/>
     
   </entry>
   
