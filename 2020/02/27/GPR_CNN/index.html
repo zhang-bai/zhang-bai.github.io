@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">地震作业 | sakura</title>
+  <title itemprop="name">GPR_CNN-Undergraduate graduation design | sakura</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -218,196 +218,346 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">地震作业</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2020-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">GPR_CNN-Undergraduate graduation design</h1>
+            <p class="entry-census">&nbsp;·&nbsp;2020-2-27&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <p>[toc]</p>
-<h2 id="一、设置模型"><a href="#一、设置模型" class="headerlink" title="一、设置模型"></a>一、设置模型</h2><p>网格大小设置为 $$ 200\times300 $$ ,均匀划分三层，层速度为2500 m/s , 4000 m/s , 5000 m/s</p>
-<p>CMP道集： （ Common Middle Point ）共中心点道集</p>
-<p>速度分析原理：</p>
-<p>​    由于<strong>$$t_0$$</strong>未知，均方根速度v 未知，因此采用穷举法，遍历每一个$$t_0$$时刻对应的每一个可能的均方根速度 v</p>
-<p>​    根据假设的$$t_0$$和 v ，将所有CMP道的地震记录振幅求取平均值，当$$t_0$$与均方根速度v 都和实际地层吻合时，振幅达到最大。</p>
-<p>​    绘制振幅的 v - $$t_0$$ 等值线图，等值线最为密集处即为振幅最大值点，即所求的参数，再依据迪克斯公式，即可反演出相应的层速度，进而可求出地层厚度</p>
-<pre><code class="python">import numpy as np
-# import numpy.matlib
-import matplotlib.pyplot as plt
-import math
+          <p>本程序为本科毕设部分内容，参考其他作者的matlab程序。</p>
+<p>输入数据为经过处理的雷达数据，其通道数为1（即非RGB三通道），设定 ntrain 点数，在雷达数据的 imagesc 图中选取裂缝分界面的点，共ntrain 个，即 CNN 所需要的训练数据。</p>
+<p>验证集使用二维插值 interp2(train_slice,Xq,Zq) 生成。</p>
+<p>输出结果为 [0,1] ，即层界面与非层界面。在CNN训练完成后，输入实测数据时，为防止内存爆炸，将图片切割，一部分一部分输入</p>
+<p>关于误差：</p>
+<p>关于迁移学习：</p>
+<h1 id="一、CNN-结构"><a href="#一、CNN-结构" class="headerlink" title="一、CNN 结构"></a>一、CNN 结构</h1><p>设置网络参数，Learning Rate = 0.1 , Batch Size = 2 , Iterattion 300 epochs</p>
+<p>网络结构： 输入特征数为1，第一层输出神经元 6 ，卷积核大小 5 ， 平均池化 ，</p>
+<p>​                    输入神经元 6 ，输出神经元 12 ，卷积核 5  ，子采样池化层</p>
+<p>​                    输出预测结果</p>
+<h1 id="二、训练集"><a href="#二、训练集" class="headerlink" title="二、训练集"></a>二、训练集</h1><p>在输入数据（imagesc 图像）中，选择 60 个裂缝点，标记为1，60 个非裂缝点，标记为0</p>
+<p>对标记的点进行扩边，dx = dz = 8 , 即构造成边长为 $(2\times dx+1)\times(2\times dz +1)$ 的图像，image_x_new 设置为 32 </p>
+<p>使用鼠标点击图中的点，保存每个点的横纵坐标值、该点的 value 值，将保存的数据存入结构体变量中，并将 label 属性标注好</p>
+<p>将输入的 imagesc 整张图片扩边，填充的数据为最外层的数值，扩边大小为 dx ， dz  ，</p>
+<p>将每个点做成一个切片 slice ， 切片大小为 $(2\times dx+1)\times(2\times dz +1)$ ，切片的中心数值为原始 imagesc 中的点及其一周 $(2\times dx)\times(2\times dz )$ 的点  ，对其进行二维插值，使得插值后大小为32 x 32 ，即 image_slice_new , 以此作为测试集 (test)</p>
+<p>将每个提取的坐标点的位置前后 dx dz 个点组成一个训练数据 slice ，插值后得到 train_slice_new ,32 x 32</p>
+<p> 开始将每个点构成的 slice 扔入网络中训练。</p>
+<p>向训练好的网络扔数据时，由于待分类的数据集（test）过大，很容易导致内存爆炸，因此一般将 test 数据分成100 份，一份一份输入。</p>
+<p>在输出的对应 label 的概率，选择概率大的那一个作为预测标签，将输出结果重新拼接</p>
+<h1 id="三、matlab代码"><a href="#三、matlab代码" class="headerlink" title="三、matlab代码"></a>三、matlab代码</h1><pre><code class="matlab">clear all,close all
 
-#######
-# Three layers model
+addpath ./CNN
+addpath ./util
+addpath ./data/
 
-# set parameters
-X = 100; Y = 30
-v1 = 2500; v2 = 4000; v3 = 5000
-dx = 20; dz = 20; dt = 0.001
-rou = [1.0]*3
-t1 = 2*dz*Y/3/v1 ; t2 = 2*dz*Y/3/v2
-t0 = np.array([t1, t1 + t2])
-v = np.array([v1, np.sqrt((np.power(v1, 2)*t1+np.power(v2, 2)*t2)/(t1+t2))])
-
-print(&#39;True velocity :\n&#39;,&#39;v1 = &#39;,v1,&#39; m / s\nv2 = &#39;,v2,&#39; m / s&#39;)
-
-# calculate times
-temp1 = []; temp2 = []
-x = np.linspace(dx,X*dx,X)
-for xx in x:   # record times
-    # temp = [[2*np.sqrt(np.power(xx*dx,2)/np.power(v[0],2)+np.power(t0[0],2))],[2*np.sqrt(np.power(xx*dx,2)/np.power(v[1],2)+np.power(t0[1],2))]]
-    temp1.append(round(np.sqrt(np.power(xx,2)/np.power(v[0],2)+np.power(t0[0],2)),3))
-    temp2.append(round(np.sqrt(np.power(xx,2)/np.power(v[1],2)+np.power(t0[1],2)),3))
-T = np.array([temp1, temp2]).T
-max_t = max([max(temp1),max(temp2)]) +0.2
-# print(&#39;The total time is :&#39;,max_t,&#39; s&#39;)
-# print(T.shape)
-
-# calculate parameters
-Z1 = rou[0]*v1; Z2 = rou[1]*v2; Z3 = rou[2]*v3
-R = (Z2 - Z1)/(Z2 + Z1)
-Tou = 4*rou[0]*rou[1]*v1*v2*(Z3-Z2)/(np.power(Z1+Z2,2)*(Z3+Z2))
-
-# plot cmp
-Z = np.linspace(0, max_t, max_t*(1/dt) + 1)  # 此时，Z[1]即为0.001
-cmp_1 = np.zeros((int(max_t*(1/dt))+1,X))
-for xx in range(X):
-    cmp_1[int(T[xx,0]*int(1/dt))][xx] = R*35
-    cmp_1[int(T[xx,1]*int(1/dt))][xx] = Tou*35
-    plt.plot(cmp_1[:,xx]+dx*(xx+1),Z,&#39;k&#39;)
-ax = plt.gca()
-ax.invert_yaxis()
-ax.spines[&#39;bottom&#39;].set_color(&#39;none&#39;); ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
-ax.xaxis.set_ticks_position(&#39;top&#39;)
-ax.set_title(&#39;offset-t cmp&#39;)
-ax.tick_params(direction=&#39;in&#39;)
-plt.show()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        Inputs                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ntrain=100; % The number of training set
+ntrain1=100; % 
+wdx=8; 
+wdz=8;
+image_x=wdx*2+1; % Original Image Patch Size X
+image_z=wdz*2+1; % Original Image Patch Size Z
+% Intepolate image to make sure size before pooling is even
+image_x_new=32;  % Intepolated Image Patch Size X
+image_z_new=32;  % Intepolated Image Patch Size Z
 
 
-# ricker subwave
-def ricker(t,fm):
-    a = 1-2*np.square(math.pi*fm*t)*np.exp(-np.square(math.pi*fm*t))
-    return a
+
+opts.alpha = 1;   % Learning Rate
+opts.batchsize = 2;  % Minibatch Size
+opts.numepochs = 30;  % Iteration Number
+
+%%%%  CNN structure %%%%%%%
+cnn.layers = {
+    struct(&#39;type&#39;, &#39;i&#39;) %input layer
+    struct(&#39;type&#39;, &#39;c&#39;, &#39;outputmaps&#39;, 6, &#39;kernelsize&#39;, 5) %convolution layer
+    struct(&#39;type&#39;, &#39;s&#39;, &#39;scale&#39;, 2) %sub sampling layer   
+    struct(&#39;type&#39;, &#39;c&#39;, &#39;outputmaps&#39;, 12, &#39;kernelsize&#39;, 5) %convolution layer
+    struct(&#39;type&#39;, &#39;s&#39;, &#39;scale&#39;, 2) %sub sampling layer   
+
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              Step 1 Prepare test and training set            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+load real.mat
+image_input=data;
+
+    figure(2)
+    imagesc(image_input);
+    colorbar
+    colormap(jet)
+
+a = questdlg(&#39;是否导入已有坐标？&#39;,&#39;问题提示&#39;,&#39;Yes&#39;,&#39;No&#39;,&#39;Yes&#39;);
+
+    % %%%%%%%%%%% Load Prepared training set%%%%%%%%%%%%% 
+    % Pick Train Examples
+    % Pick Crack points
+
+if a == &quot;Yes&quot; 
+
+    %Crack Points
+    [file_name,path_name] = uigetfile({&#39;*.mat&#39;;&#39;*.dat&#39;;&#39;*.txt&#39;},&#39;Crack Points&#39;);
+    file_path = [path_name file_name] ;
+    data = cell2mat(struct2cell(load(file_path))) ;
+    [ntrain,col]= size(data);
+
+    train.label(1:ntrain)=1;
+    train.label(2,1:ntrain)=0;
 
 
-# convolve
-x_ = np.linspace(-0.01, 0.01, 21)
-y_ = ricker(x_,30)*100
-# lenth = int(max_t*(1/dt))+21
-cmp_1 = cmp_1/35
-# cmp_2 = np.zeros((lenth,X))
-cmp_2 = cmp_1
-for xx in range(X) :
-    # cmp_2[:, xx] = np.convolve(cmp_1[:,xx], y_, mode=&#39;full&#39;)
-    cmp_2[:, xx] = np.convolve(cmp_1[:,xx], y_, mode=&#39;same&#39;)
-    # plt.plot(cmp_2[:,xx]+dx*(xx+1),range(lenth),&#39;k&#39;)
-    plt.plot(cmp_2[:,xx]+dx*(xx+1),Z,&#39;k&#39;)
+    train.trainx(1:ntrain) = data(:,1)&#39;;
+    train.trainz(1:ntrain) = data(:,2)&#39;;
 
-ax1 = plt.gca()
-ax1.invert_yaxis()
-ax1.spines[&#39;bottom&#39;].set_color(&#39;none&#39;); ax1.spines[&#39;right&#39;].set_color(&#39;none&#39;)
-ax1.xaxis.set_ticks_position(&#39;top&#39;)
-ax1.set_title(&#39;cmp convolve ricker&#39;)
-ax1.tick_params(direction=&#39;in&#39;)
-plt.show()
+    hold on 
+    scatter(data(:,1),data(:,2),18,&#39;or&#39;,&#39;filled&#39;)
+    clear data
+    %Non-Crack Points
+    [file_name,path_name] = uigetfile({&#39;*.mat&#39;;&#39;*.dat&#39;;&#39;*.txt&#39;},&#39;Non-Crack Points&#39;);
+    file_path = [path_name file_name] ;
+    data = cell2mat(struct2cell(load(file_path))) ;
+%     [ntrain,col]= size(data);
+    train.label(ntrain+1:2*ntrain)=0;
+    train.label(2,ntrain+1:2*ntrain)=1;
+    train.trainx(ntrain+1:2*ntrain) = data(:,1)&#39;;
+    train.trainz(ntrain+1:2*ntrain) = data(:,2)&#39;;
 
-# add noise
-for xx in range(X) :
-    cmp_2[:, xx] = cmp_2[:, xx] + np.random.randn(int(max_t*(1/dt)) + 1)
-    plt.plot(cmp_2[:,xx]+dx*(xx+1),Z,&#39;k&#39;)
-ax2 = plt.gca()
-ax2.invert_yaxis()
-ax2.spines[&#39;bottom&#39;].set_color(&#39;none&#39;); ax1.spines[&#39;right&#39;].set_color(&#39;none&#39;)
-ax2.xaxis.set_ticks_position(&#39;top&#39;)
-ax2.set_title(&#39;cmp add noise&#39;)
-ax2.tick_params(direction=&#39;in&#39;)
-plt.show()
-plt.show()
+    hold on 
+    scatter(data(:,1),data(:,2),18,&#39;ok&#39;,&#39;filled&#39;)
 
-# velocity spectrum
-M = 40
-start_1 = round(T[X-1, 0] - M*dt, 3); end_1 = T[X-1, 0] + M*dt
-start_2 = round(T[X-1, 1] - M*dt, 3); end_2 = T[X-1, 1] + M*dt
-# t_min ~ t_max
-tn_1 = np.linspace(start_1,end_1,2*M+1) - t0[0]
-tn_2 = np.linspace(start_2,end_2,2*M+1) - t0[1]
-# print(&#39;dfsadgadsg&#39;,start_1,end_1,start_1-end_1,start_1+end_1)
-v_s1 = dx*X/np.sqrt(2*t0[0]*tn_1 + np.square(tn_1))
-v_s2 = dx*X/np.sqrt(2*t0[1]*tn_2 + np.square(tn_2))
-# print(tn_1)
 
-# print(end_1,start_1,int((end_1-start_1)/dt))
-# 这样计算时，由于小数浮点型十进制转二进制舍入误差造成0.16-0.015！= 0.145，计算结果为0.145000000000002
-A_1 = np.zeros((2*M+1, 1))
-A_2 = np.zeros((2*M+1, 1))
-for zz in range(2*M + 1):
-    for xx in range(X):
-        A_1[zz] = A_1[zz] + cmp_2[int(T[xx, 0]/dt) - M + zz, xx]
-        A_2[zz] = A_2[zz] + cmp_2[int(T[xx, 1]/dt) - M + zz, xx]
-    A_1[zz] = A_1[zz]/X
-    A_2[zz] = A_2[zz]/X
-        # a=float(max(A_2))
-        # b=float(min(A_2))
-        # print(max(A_2),min(A_2),round(a,1),round(b,1))
-# print(A_2)
-plt.plot(np.array(v_s1),np.array(A_1) + t0[1]/dt -60,&#39;k&#39;)
-plt.plot(np.array(v_s2),np.array(A_2) + t0[0]/dt,&#39;k&#39;)
-ax4 = plt.gca()
-# ax4.invert_yaxis()
-ax4.spines[&#39;bottom&#39;].set_color(&#39;none&#39;); ax4.spines[&#39;right&#39;].set_color(&#39;none&#39;)
-ax4.xaxis.set_ticks_position(&#39;top&#39;)
-ax4.yaxis.set_ticks_position(&#39;none&#39;)
-ax4.set_title(&#39;velocity spectrum&#39;)
-ax4.tick_params(direction=&#39;in&#39;)
-ax4.tick_params(&#39;y&#39;, labelleft=False)
-ax4.grid(True)
-plt.show()
+%     clear data
+else    
+    title(&#39;Pick Crack Points&#39;,&#39;fontsize&#39;,22);
+    train.label(1:ntrain)=1;
+    train.label(2,1:ntrain)=0;
+    for i = 1:ntrain
+    [train.trainx(i),train.trainz(i)]=ginput(1);
+    hold on
+    scatter(train.trainx(i),train.trainz(i),18,&#39;or&#39;,&#39;filled&#39;)
+    title([&#39;Pick Crack Points&#39;,num2str(i),&#39;/&#39;,num2str(ntrain)],&#39;fontsize&#39;,22);
+    end
 
-# contour
-temp_c = 0
-V_c = np.linspace(2000,4500,51)
-cmp_3 = np.zeros((int(max_t*(1/dt) )+ 1,51))
-for tt in Z:  # 小窗口时间
-    for vv in V_c:
-        for xx in x:
-            TT = round(np.sqrt(np.square(xx)/np.square(vv)+np.square(tt)),3)
-            if TT &gt; max_t :
-                continue
-            else:
-                temp_c = temp_c + round(cmp_2[int(TT/dt), int(xx/dx)-1])
-        # print((vv-1500/5))
-        cmp_3[int(tt/dt),int((vv-2000)/50)] = temp_c/X
+    %save label 0
+    ax1=[train.trainx(1:ntrain)&#39;, train.trainz(1:ntrain)&#39;];
+    [filename,pathname] = uiputfile({&#39;*.mat&#39;}, &#39;保存坐标&#39;);
+    str=[pathname filename];
+    save(str,&#39;ax1&#39;)
+    aa = msgbox(&#39;文件已保存&#39;,&#39;OK&#39;,&#39;help&#39;);
+    pause(1)
+    delete(aa)
 
-        temp_c = 0
-    # print(tt)
+    %save label 1
+%     pause(1)
+%     figure(2)
+     hold on
+%     imagesc(image_input);
+%     caxis ([0 0.8])
+%     colormap(jet)
+    % Pick No-crack points
+    title(&#39;Pick Non-Crack Points&#39;,&#39;fontsize&#39;,22);
+    train.label(ntrain+1:2*ntrain)=0;
+    train.label(2,ntrain+1:2*ntrain)=1;
 
-v_c,z = np.meshgrid(V_c,Z)
-C = plt.contour(v_c,z,cmp_3,[6,8,9,11,15],colors = &#39;black&#39;)
-# plt.clabel(C,inline = True)
-ax5 = plt.gca()
-ax5.grid(True)
-ax5.invert_yaxis()
-ax5.spines[&#39;bottom&#39;].set_color(&#39;none&#39;); ax5.spines[&#39;right&#39;].set_color(&#39;none&#39;)
-ax5.xaxis.set_ticks_position(&#39;top&#39;)
-ax5.yaxis.set_ticks_position(&#39;none&#39;)
-ax5.set_title(&#39;velocity spectrum&#39;)
-ax5.set_xlabel(&#39;V (m/s)&#39;)
-ax5.set_ylabel(&#39;T (s)&#39;)
-plt.show()
+    hold on
+    for i = ntrain+1:2*ntrain
+    [train.trainx(i),train.trainz(i)]=ginput(1);
+    hold on
+    scatter(train.trainx(i),train.trainz(i),18,&#39;ok&#39;,&#39;filled&#39;)
+    title([&#39;Pick Non-Crack Points&#39;,num2str(i-ntrain),&#39;/&#39;,num2str(ntrain)],&#39;fontsize&#39;,22);
+    end
+%     [train.trainx(ntrain+1:2*ntrain),train.trainz(ntrain+1:2*ntrain)]=ginput(ntrain);
 
-# # layer velocity
-#  理论均方根速度V2 = 3162.2776601683795 m/s
-import numpy as np
-v_rms = [2500, 3152]
-t_rms = [0.16, 0.2595]
-print(type(v_rms[0]))
-v_inverse = []
-v_inverse.append(v_rms[0])
-v_inverse.append(np.sqrt((np.square(v_rms[1])*t_rms[1] - np.square(v_rms[0])*t_rms[0])/(t_rms[1]-t_rms[0])))
-print(&#39;The velocity of first layer is &#39;, v_inverse[0], &#39;m/s&#39; ,&#39;\nThe velocity of second layer is &#39;,v_inverse[1],&#39; m/s&#39;)
+    ax2=[train.trainx(ntrain+1:2*ntrain)&#39;,train.trainz(ntrain+1:2*ntrain)&#39;];
+    [filename,pathname] = uiputfile({&#39;*.mat&#39;}, &#39;保存坐标&#39;);
+    str=[pathname filename];
+    save(str,&#39;ax2&#39;)
+    aa = msgbox(&#39;文件已保存&#39;,&#39;OK&#39;,&#39;help&#39;);
+    pause(1)
+    delete(aa)
+
+end
+pause(1)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Step 2 Convert Image into Image patches             % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+[nz,nx]=size(image_input);
+image_pad=padimage(image_input,wdz,wdx);
+%%% Obtain image batches from full image
+image_slice=zeros(image_z,image_x,nz*nx);
+image_slice_new=zeros(image_z_new,image_x_new,nz*nx);
+[Xq,Zq]=meshgrid(1:(image_x-1)/(image_x_new-1):image_x,1:(image_z-1)/(image_z_new-1):image_z);
+ii=1;
+for ix=1:nx
+    for iz=1:nz
+        image_slice(1:image_z,1:image_x,ii)=image_pad(iz:iz+image_z-1,ix:ix+image_x-1);
+        image_slice_new(:,:,ii)=interp2(image_slice(:,:,ii),Xq,Zq);
+        ii=ii+1;
+    end
+end
+
+%%% Obtain image batches from train set
+train_slice=zeros(image_z,image_x,2*ntrain);
+train_slice_new=zeros(image_z_new,image_x_new,2*ntrain);
+[Xq,Zq]=meshgrid(1:(image_x-1)/(image_x_new-1):image_x,1:(image_z-1)/(image_z_new-1):image_z);
+for in=1:2*ntrain
+        train_slice(1:image_z,1:image_x,in)=...
+            image_pad(train.trainz(in):train.trainz(in)+image_z-1,train.trainx(in):train.trainx(in)+image_x-1);
+        train_slice_new(:,:,in)=interp2(train_slice(:,:,in),Xq,Zq);
+end
+
+clear image_slice train_slice
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Step 3 Train CNN structure                    % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% Input Training and Test set
+train_x =train_slice_new;  % Training set
+train_y =train.label;      % Training label
+test_x =image_slice_new;   % Test set
+
+
+rand(&#39;state&#39;,0)
+cnn = cnnsetup(cnn, train_x, train_y);
+cnn = cnntrain(cnn, train_x, train_y, opts);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Step 4 Input full image for Classification             % 
+%   (Seperate The Image into 100 parts In case of out of memory)  %  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% 
+[a,b,c] = size(image_input)
+k1 = round(b/10) -1 
+for ii = 1:k1
+disp([&#39;part &#39;,num2str(ii)])
+uu = cnnff(cnn,test_x(:,:,a*10*(ii-1)+1 :a*10*ii));
+[vv,ll]=max(uu.o);
+ui=reshape(-ll+2,a,10);
+un(:,10*(ii-1)+1:10*ii)=ui(:,1:10);
+end
+disp([&#39;final part&#39;])
+uu = cnnff(cnn,test_x(:,:,a*10*k1+1:b*a));
+[vv,ll2]=max(uu.o);
+ui2=reshape(-ll2+2,a,b-k1*10);
+un(:,10*k1+1:b)=ui2(:,1:b-k1*10);
+
+%% %%%%%%%% Image the result %%%%%%%%%%%%
+figure(1)
+subplot(1,2,1)
+imagesc(image_input)
+hold on
+scatter( train.trainx(ntrain+1:2*ntrain), train.trainz(ntrain+1:2*ntrain),18,&#39;ok&#39;,&#39;filled&#39;)
+hold on
+scatter( train.trainx(1:ntrain), train.trainz(1:ntrain),18,&#39;or&#39;,&#39;filled&#39;)
+title({[&#39;Input Image&#39;]},&#39;fontsize&#39;,22,&#39;color&#39;,&#39;black&#39;)
+set(gca,&#39;fontsize&#39;,22)
+xlabel(&#39;Pixels&#39;,&#39;fontsize&#39;,22)
+ylabel(&#39;Pixels&#39;,&#39;fontsize&#39;,22)
+subplot(1,2,2)
+imagesc(un)
+title({[&#39;CNN Labels&#39;]},&#39;fontsize&#39;,22,&#39;color&#39;,&#39;black&#39;)
+set(gca,&#39;fontsize&#39;,22)
+xlabel(&#39;Pixels&#39;,&#39;fontsize&#39;,22)
+ylabel(&#39;Pixels&#39;,&#39;fontsize&#39;,22)
+set(gcf,&#39;unit&#39;,&#39;centimeters&#39;,&#39;position&#39;,[12 5 30 13])
+colormap(parula)
+%%%%%%%%%Plot the error curve  %%%%%%%%%%%
+figure(2)
+plot(cnn.rL);
+title({[&#39;Misfit Curve&#39;]},&#39;fontsize&#39;,22,&#39;color&#39;,&#39;black&#39;)
+set(gca,&#39;fontsize&#39;,22)
+xlabel(&#39;Iteration&#39;,&#39;fontsize&#39;,22)
+ylabel(&#39;Misfit&#39;,&#39;fontsize&#39;,22)
+
+% 
+% 
+
 </code></pre>
-<p>更新内容：1.输出图片</p>
-<p>​                  2.计算层速度</p>
+<p>添加点数代码：</p>
+<pre><code class="matlab">clear all,close all
+
+ntrain=20; % The number of training set
+% 增加标记的点，增加点数时时显示
+
+load real(1).mat 
+image_input=data;
+    figure(1)
+    imagesc(image_input);
+    colorbar
+    a = questdlg(&#39;是否导入已有坐标？&#39;,&#39;问题提示&#39;,&#39;Yes&#39;,&#39;No&#39;,&#39;Yes&#39;);
+
+if a == &quot;Yes&quot; 
+
+    %Crack Points
+    [file_name,path_name] = uigetfile({&#39;*.mat&#39;;&#39;*.dat&#39;;&#39;*.txt&#39;},&#39;Crack Points&#39;);
+    file_path = [path_name file_name] ;
+    data = cell2mat(struct2cell(load(file_path))) ;
+
+    hold on 
+    scatter(data(:,1),data(:,2),18,&#39;or&#39;,&#39;filled&#39;)
+
+    %Non-Crack Points
+    [file_name,path_name] = uigetfile({&#39;*.mat&#39;;&#39;*.dat&#39;;&#39;*.txt&#39;},&#39;Non-Crack Points&#39;);
+    file_path = [path_name file_name] ;
+    data2 = cell2mat(struct2cell(load(file_path))) ;
+
+    hold on 
+    scatter(data2(:,1),data2(:,2),18,&#39;ok&#39;,&#39;filled&#39;)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            repick points
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    title(&#39;Pick  new Crack Points&#39;,&#39;fontsize&#39;,22);
+
+    hold on
+    for i = ntrain+1:2*ntrain
+    [train.trainx(i),train.trainz(i)]=ginput(1);
+    hold on
+    scatter(train.trainx(i),train.trainz(i),18,&#39;or&#39;,&#39;filled&#39;)
+    title([&#39;Pick Non-Crack Points&#39;,num2str(i-ntrain),&#39;/&#39;,num2str(ntrain)],&#39;fontsize&#39;,22);
+    end
+
+    ax2=[data;train.trainx(ntrain+1:2*ntrain)&#39;,train.trainz(ntrain+1:2*ntrain)&#39;];
+    [filename,pathname] = uiputfile({&#39;*.mat&#39;}, &#39;保存坐标&#39;);
+    str=[pathname filename];
+    save(str,&#39;ax2&#39;)
+    aa = msgbox(&#39;文件已保存&#39;,&#39;OK&#39;,&#39;help&#39;);
+    pause(1)
+    delete(aa)
+
+end
+
+
+    title(&#39;Pick  new NON Crack Points&#39;,&#39;fontsize&#39;,22);
+    train.label(ntrain+1:2*ntrain)=0;
+    train.label(2,ntrain+1:2*ntrain)=1;
+
+    hold on
+    for i = ntrain+1:2*ntrain
+    [train.trainx(i),train.trainz(i)]=ginput(1);
+    hold on
+    scatter(train.trainx(i),train.trainz(i),18,&#39;ko&#39;,&#39;filled&#39;)
+    title([&#39;Pick Non-Crack Points&#39;,num2str(i-ntrain),&#39;/&#39;,num2str(ntrain)],&#39;fontsize&#39;,22);
+    end
+%     [train.trainx(ntrain+1:2*ntrain),train.trainz(ntrain+1:2*ntrain)]=ginput(ntrain);
+
+    ax22=[data2;train.trainx(ntrain+1:2*ntrain)&#39;,train.trainz(ntrain+1:2*ntrain)&#39;];
+    [filename,pathname] = uiputfile({&#39;*.mat&#39;}, &#39;保存坐标&#39;);
+    str=[pathname filename];
+    save(str,&#39;ax22&#39;)
+    aa = msgbox(&#39;文件已保存&#39;,&#39;OK&#39;,&#39;help&#39;);
+    pause(1)
+    delete(aa)
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.4/AI/new_600_predict.svg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhang-bai/picture@1.2.4/AI/real_new_tq.jpg" alt></p>
 
         </div>
         <!-- .entry-content -->
@@ -436,28 +586,11 @@ print(&#39;The velocity of first layer is &#39;, v_inverse[0], &#39;m/s&#39; ,&#
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/02/04/统计学习方法/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                统计学习方法（笔记）</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2020/02/04/大创软件设计/" rel="next">
+            <a href="/2020/02/04/统计学习方法/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -465,7 +598,7 @@ print(&#39;The velocity of first layer is &#39;, v_inverse[0], &#39;m/s&#39; ,&#
               Next Post</span>
               <div class="info">
                 <h3>
-                大创软件设计</h3>
+                统计学习方法（笔记）</h3>
                 <hr>
               </div>
             </a>
@@ -504,11 +637,6 @@ print(&#39;The velocity of first layer is &#39;, v_inverse[0], &#39;m/s&#39; ,&#
   </div><!-- #primary -->
 </div>
 
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-  </script>
 
 
     </div>    

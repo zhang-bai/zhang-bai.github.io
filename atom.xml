@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-02-11T05:04:55.578Z</updated>
+  <updated>2020-02-27T03:58:00.827Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GPR_CNN-Undergraduate graduation design</title>
+    <link href="/2020/02/27/GPR_CNN/"/>
+    <id>/2020/02/27/GPR_CNN/</id>
+    <published>2020-02-27T03:49:59.363Z</published>
+    <updated>2020-02-27T03:58:00.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本程序为本科毕设部分内容，参考其他作者的matlab程序。&lt;/p&gt;
+&lt;p&gt;输入数据为经过处理的雷达数据，其通道数为1（即非RGB三通道），设定 ntrain 点数，在雷达数据的 imagesc 图中选取裂缝分界面的点，共ntrain 个，即 CNN
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>统计学习方法（笔记）</title>
     <link href="/2020/02/04/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     <id>/2020/02/04/统计学习方法/</id>
     <published>2020-02-04T07:04:03.035Z</published>
-    <updated>2020-02-11T05:04:55.578Z</updated>
+    <updated>2020-02-23T01:13:32.850Z</updated>
     
     <summary type="html">
     
@@ -46,7 +69,7 @@
     <link href="/2020/02/04/%E5%9C%B0%E9%9C%87%E4%BD%9C%E4%B8%9A/"/>
     <id>/2020/02/04/地震作业/</id>
     <published>2020-02-04T07:04:03.033Z</published>
-    <updated>2020-02-04T13:04:00.960Z</updated>
+    <updated>2020-02-23T01:13:45.391Z</updated>
     
     <summary type="html">
     
