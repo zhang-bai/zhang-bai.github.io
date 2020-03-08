@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-02-27T03:58:00.827Z</updated>
+  <updated>2020-03-08T11:50:11.943Z</updated>
   <id>/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="/2020/02/27/GPR_CNN/"/>
     <id>/2020/02/27/GPR_CNN/</id>
     <published>2020-02-27T03:49:59.363Z</published>
-    <updated>2020-02-27T03:58:00.827Z</updated>
+    <updated>2020-03-08T11:50:11.943Z</updated>
     
     <summary type="html">
     
@@ -44,7 +44,7 @@
     <link href="/2020/02/04/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     <id>/2020/02/04/统计学习方法/</id>
     <published>2020-02-04T07:04:03.035Z</published>
-    <updated>2020-02-23T01:13:32.850Z</updated>
+    <updated>2020-03-08T10:57:32.119Z</updated>
     
     <summary type="html">
     
@@ -69,7 +69,7 @@
     <link href="/2020/02/04/%E5%9C%B0%E9%9C%87%E4%BD%9C%E4%B8%9A/"/>
     <id>/2020/02/04/地震作业/</id>
     <published>2020-02-04T07:04:03.033Z</published>
-    <updated>2020-02-23T01:13:45.391Z</updated>
+    <updated>2020-03-08T11:48:20.657Z</updated>
     
     <summary type="html">
     
@@ -96,7 +96,7 @@
     <link href="/2020/02/04/%E5%A4%A7%E5%88%9B%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
     <id>/2020/02/04/大创软件设计/</id>
     <published>2020-02-04T07:04:03.021Z</published>
-    <updated>2020-02-04T13:03:45.045Z</updated>
+    <updated>2020-03-08T11:48:37.458Z</updated>
     
     <summary type="html">
     
@@ -123,7 +123,7 @@
     <link href="/2020/02/04/vi-learning/"/>
     <id>/2020/02/04/vi-learning/</id>
     <published>2020-02-04T07:04:03.019Z</published>
-    <updated>2020-02-04T13:03:34.677Z</updated>
+    <updated>2020-03-08T11:49:04.091Z</updated>
     
     <summary type="html">
     
@@ -147,7 +147,7 @@
     <link href="/2020/02/04/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85python2.7%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/"/>
     <id>/2020/02/04/Ubuntu下安装python2.7遇到的一些坑/</id>
     <published>2020-02-04T07:04:03.017Z</published>
-    <updated>2020-02-11T05:43:38.996Z</updated>
+    <updated>2020-03-08T11:49:14.245Z</updated>
     
     <summary type="html">
     
@@ -174,7 +174,7 @@
     <link href="/2020/02/04/python-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
     <id>/2020/02/04/python-数据处理/</id>
     <published>2020-02-04T07:01:00.313Z</published>
-    <updated>2020-02-04T13:03:06.529Z</updated>
+    <updated>2020-03-08T11:49:42.315Z</updated>
     
     <summary type="html">
     
@@ -201,7 +201,7 @@
     <link href="/2020/02/04/python-%E6%8B%BE%E9%81%97/"/>
     <id>/2020/02/04/python-拾遗/</id>
     <published>2020-02-04T07:00:25.249Z</published>
-    <updated>2020-02-11T05:45:37.028Z</updated>
+    <updated>2020-03-08T11:49:53.187Z</updated>
     
     <summary type="html">
     
@@ -228,7 +228,7 @@
     <link href="/2020/02/04/Fortran-%E6%95%99%E7%A8%8B/"/>
     <id>/2020/02/04/Fortran-教程/</id>
     <published>2020-02-04T07:00:25.246Z</published>
-    <updated>2020-02-04T13:02:46.387Z</updated>
+    <updated>2020-03-08T11:50:18.655Z</updated>
     
     <summary type="html">
     
@@ -252,7 +252,7 @@
     <link href="/2020/02/04/filters/"/>
     <id>/2020/02/04/filters/</id>
     <published>2020-02-04T07:00:25.244Z</published>
-    <updated>2020-02-04T13:02:33.203Z</updated>
+    <updated>2020-03-08T11:48:12.688Z</updated>
     
     <summary type="html">
     
@@ -279,7 +279,7 @@
     <link href="/2020/02/04/conda%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
     <id>/2020/02/04/conda基本使用方法/</id>
     <published>2020-02-04T07:00:25.241Z</published>
-    <updated>2020-02-04T13:11:20.336Z</updated>
+    <updated>2020-03-08T11:47:53.696Z</updated>
     
     <summary type="html">
     
@@ -303,7 +303,7 @@
     <link href="/2020/02/04/bicubic-interpolati/"/>
     <id>/2020/02/04/bicubic-interpolati/</id>
     <published>2020-02-04T06:59:56.633Z</published>
-    <updated>2020-02-04T13:01:51.276Z</updated>
+    <updated>2020-03-08T11:01:25.965Z</updated>
     
     <summary type="html">
     
@@ -331,7 +331,7 @@
     <link href="/2020/02/04/2D-wave-function/"/>
     <id>/2020/02/04/2D-wave-function/</id>
     <published>2020-02-04T06:59:56.624Z</published>
-    <updated>2020-02-04T12:59:59.393Z</updated>
+    <updated>2020-03-08T10:59:59.525Z</updated>
     
     <summary type="html">
     
@@ -359,7 +359,7 @@
     <link href="/2019/10/05/2019-10-5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>/2019/10/05/2019-10-5-机器学习笔记（一）/</id>
     <published>2019-10-05T13:59:00.000Z</published>
-    <updated>2020-02-11T05:03:41.649Z</updated>
+    <updated>2020-03-08T10:55:22.376Z</updated>
     
     <summary type="html">
     
@@ -385,7 +385,7 @@
     <link href="/2019/10/04/2019-10-4-win-10-%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C/"/>
     <id>/2019/10/04/2019-10-4-win-10-快捷操作/</id>
     <published>2019-10-04T14:38:10.000Z</published>
-    <updated>2020-02-04T13:01:29.854Z</updated>
+    <updated>2020-03-08T11:00:59.591Z</updated>
     
     <summary type="html">
     
@@ -409,7 +409,7 @@
     <link href="/2019/09/27/C++%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
     <id>/2019/09/27/C++ 异常处理/</id>
     <published>2019-09-27T14:26:04.000Z</published>
-    <updated>2020-02-04T13:02:02.673Z</updated>
+    <updated>2020-03-08T11:01:56.606Z</updated>
     
     <summary type="html">
     
@@ -435,7 +435,7 @@
     <link href="/2019/09/25/8queen/"/>
     <id>/2019/09/25/8queen/</id>
     <published>2019-09-25T14:06:41.000Z</published>
-    <updated>2020-02-11T05:03:02.500Z</updated>
+    <updated>2020-03-08T11:00:31.337Z</updated>
     
     <summary type="html">
     
